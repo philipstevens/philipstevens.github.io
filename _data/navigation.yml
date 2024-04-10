@@ -1,9 +1,5 @@
 main:
-  - title: "Portfolio"
-    url: /portfolio/
-  - title: "Blog"
+  - title: "Projects"
     url: /posts/
-  - title: "CV"
-    url: /cv/
   - title: "About"
     url: /about/
