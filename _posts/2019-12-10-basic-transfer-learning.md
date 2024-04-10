@@ -146,7 +146,7 @@ plotImages(sample_train_batch)
 ```
 
 
-![png](output_12_0.png)
+![png](/assets/images/basic-transfer-learning/output_12_0.png)
 
 
 ## 6) Prepare model:
@@ -344,7 +344,7 @@ plt.show()
 ```
 
 
-![png](output_20_0.png)
+![png](/assets/images/basic-transfer-learning/output_20_0.png)
 
 
 ## 10) Evaluation of predictions:
@@ -460,19 +460,19 @@ predictions_dogs = model.predict_classes(sample_test_dogs_batch)
 plotPredictedImages(sample_test_dogs_batch, predictions_dogs, title)
 ```
 
-![png](output_23_0.png)
+![png](/assets/images/basic-transfer-learning/output_23_0.png)
 
 
-![png](output_26_0.png)
+![png](/assets/images/basic-transfer-learning/output_26_0.png)
 
 
-![png](output_27_0.png)
+![png](/assets/images/basic-transfer-learning/output_27_0.png)
 
 
-![png](output_28_0.png)
+![png](/assets/images/basic-transfer-learning/output_28_0.png)
 
 
-![png](output_29_0.png)
+![png](/assets/images/basic-transfer-learning/output_29_0.png)
 
 
 ## 11) Conclusion:
