@@ -5,11 +5,6 @@ categories:
   - computer vision
 ---
 
-+++
-title = "Basic Transfer Learning"
-date = "2019-12-10T10:47:44+07:00"
-+++
-
 # Basic Transfer Learning
 
 Here I will demonstrate how to do basic transfer learning with tensorflow and keras. Transfer learning is when you reuse the model weights trained for one task as the starting point for training a model on a different but related task. The value of this is to very quickly develop a model that converges fast in training and performs well in use. 
