@@ -3,8 +3,10 @@ permalink: /about/
 title: "About"
 ---
 
-Welcome to my website.  
+Welcome to my corner of the web!
 
-As you can see there isn't much here yet. This is where I intend to share projects I've been working on, as well things I've learned and personal musings related to the fields of data science, machine learning and artificial intelligence. 
+While it's still a work in progress, this site is where I'll be sharing my journey as a data scientist and AI engineer, exploring real-world applications with a focus on sustainability. 
 
-Hope you will find something of value here. 
+I'm passionate about leveraging AI for sustainable development, particularly in combating climate change. I'm constantly on the lookout diverse opportunities to collaborate and contribute, so if you share my passion, let's connect!
+
+Stay tuned for updates and let's explore together!
