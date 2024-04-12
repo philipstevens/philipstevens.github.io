@@ -9,7 +9,7 @@ toc_icon: "bookmark"
 [Download Resume](https://philipstevens.github.io/files/20240411-pcs-resume.pdf){: .btn .btn--info}
 
 ## 📧 Contact
-- Email: [philipstevens4@gmail.com](philipstevens4@gmail.com)
+- Email: [philipstevens4@gmail.com](mailto:philipstevens4@gmail.com)
 - LinkedIn: [linkedin.com/in/philip-charles-stevens/](https://www.linkedin.com/in/philip-charles-stevens/)
 
 ## 💼 Experience
