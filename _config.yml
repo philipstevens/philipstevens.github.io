@@ -60,7 +60,7 @@ plugins:
 author:
   name   : "Philip Stevens"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "Data Scientist and AI Engineer"
+  bio    : "<i> Data Scientist. Leveraging AI for positive impact.</i>"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
