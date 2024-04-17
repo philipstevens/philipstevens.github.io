@@ -15,7 +15,7 @@ Here I will demonstrate how to do basic transfer learning with tensorflow and ke
 In this demonstration the bottom layer of our neural network will use a feature vector extracted from a much more complex convolutional neural network trained on a very broad set of images. We will transfer this to the smaller more specific domain of images of certain cat and dog breeds.  
 
 
-## 1) Imports: 
+## Imports 
 
 We will make use of the following modules:
 
@@ -28,7 +28,7 @@ import matplotlib.pyplot as plt # to plot our learning curves
 ```
 
 
-## 2) Setup and validate the GPUs:
+## Setup and validate the GPUs
 
 Here we prepare the GPUs for use and confirm they are available to Tensorflow. Note memory growth must be set before GPUs have been initialized and that memory growth needs to be the same across GPUs. The output lets us know this step worked and how many GPUs are available. 
 
@@ -50,7 +50,7 @@ if gpus:
     1 Physical GPUs, 1 Logical GPUs
 
 
-## 3) Load dataset:
+## Load dataset
 
 Here we load in The Oxford-IIIT Pet Dataset found here: https://www.tensorflow.org/datasets/catalog/oxford_iiit_pet. 
 
@@ -70,7 +70,7 @@ raw_train = dataset['train']
 raw_test = dataset['test']
 ```
 
-## 4) Prepare input pipeline:
+## Prepare input pipeline
 
 Here we prepare our input pipeline for training. Most importantly we format our dataset as a 2-tuple structure of (image, label), resize the images so they all have the same dimensions, and then batch the (image, label) tuples into groups of 34. This is applied to both the train and the test splits.
 
@@ -107,7 +107,7 @@ test = raw_test.map(
 )
 ```
 
-## 5) View and validate images in pipeline:
+## View and validate images in pipeline
 
 It's good to sanity check our input pipeline to make sure the images and labels are what we expect. 
 
@@ -152,7 +152,7 @@ plotImages(sample_train_batch)
 ![png](/assets/images/basic-transfer-learning/output_12_0.png)
 
 
-## 6) Prepare model:
+## Prepare model
 
 Here we actually prepare our model.
 
@@ -213,7 +213,7 @@ model.summary()
     _________________________________________________________________
 
 
-## 7) Prepare training:
+## Prepare training
 
 We use the Adam optimizer and set it's learning rate to 0.0005 which is half it's default value. Our labels are integers and categorical, so rather than one-hot encode them we can simply use the sparse categorical cross entropy loss. We will use accuracy as our metric to understand how well our models are performing.
 
@@ -226,7 +226,7 @@ model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=LEARNING_RATE),
               metrics=['accuracy'])
 ```
 
-## 8) Train model:
+## Train model
 
 We train for 30 epochs and since we set our training input pipeline to repeat we are required to explicitly state the number of steps per epoch. We also set the number of validation steps in such a way that we have 5 subsplits of our validation data. 
 
@@ -312,7 +312,7 @@ history = model.fit(train,
     115/115 [==============================] - 6s 51ms/step - loss: 0.0123 - accuracy: 0.9997 - val_loss: 0.2947 - val_accuracy: 0.9162
 
 
-## 9) Plot learning curves:
+## Plot learning curves
 
 When we plot the accuracy and loss curves for both our training and test sets we can see the model converges very quickly. This is one of the very reasons we use transfer learning.
 
@@ -350,7 +350,7 @@ plt.show()
 ![png](/assets/images/basic-transfer-learning/output_20_0.png)
 
 
-## 10) Evaluation of predictions:
+## Evaluation of predictions
 
 Here we evaluate our predictions. In particular we will observe how well our model adapts to the new classes not included in the training of the feature vector and how well it predicts dogs vs cats. We measure the accuracy on each subset of the images. W also plot a sample of the predicted images where a false prediction has a red label with the true label in parentheses. 
 
@@ -478,7 +478,7 @@ plotPredictedImages(sample_test_dogs_batch, predictions_dogs, title)
 ![png](/assets/images/basic-transfer-learning/output_29_0.png)
 
 
-## 11) Conclusion:
+## Conclusion
 
 In a short period of time with a comparatively simple architecture we were able to develop a model on a new dataset that converged quickly and got results of 88.5% on classes it had not seen before and 91.11% overall. I hope this demonstrates the value of transfer learning. 
 
