@@ -3,6 +3,9 @@ title: "Basic Transfer Learning"
 date: 2019-12-10T10:47:44+07:00
 categories:
   - computer vision
+toc: true
+toc_label: "Table of Contents"
+toc_icon: "bookmark"
 ---
 
 # Basic Transfer Learning
