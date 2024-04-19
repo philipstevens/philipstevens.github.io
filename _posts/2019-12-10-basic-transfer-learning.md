@@ -1,6 +1,6 @@
 ---
 title: "Basic Transfer Learning"
-date: 2019-12-10T10:47:44+07:00
+date: 2024-04-19
 categories:
   - computer vision
 toc: true
