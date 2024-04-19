@@ -1,1 +1,9 @@
-
+---
+title: "Image Recognition: Crop Disease Detection"
+date: 2024-04-19
+categories:
+  - computer vision
+toc: true
+toc_label: "Table of Contents"
+toc_icon: "bookmark"
+---
