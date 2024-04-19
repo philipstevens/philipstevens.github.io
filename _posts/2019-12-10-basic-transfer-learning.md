@@ -8,8 +8,6 @@ toc_label: "Table of Contents"
 toc_icon: "bookmark"
 ---
 
-# Basic Transfer Learning
-
 Here I will demonstrate how to do basic transfer learning with tensorflow and keras. Transfer learning is when you reuse the model weights trained for one task as the starting point for training a model on a different but related task. The value of this is to very quickly develop a model that converges fast in training and performs well in use. 
 
 In this demonstration the bottom layer of our neural network will use a feature vector extracted from a much more complex convolutional neural network trained on a very broad set of images. We will transfer this to the smaller more specific domain of images of certain cat and dog breeds.  
