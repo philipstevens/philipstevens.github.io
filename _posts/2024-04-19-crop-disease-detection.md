@@ -1,5 +1,5 @@
 ---
-title: "Image Recognition: Crop Disease Detection"
+title: "Crop Disease Detection in Images"
 date: 2024-04-19
 categories:
   - computer vision
