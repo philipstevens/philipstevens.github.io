@@ -51,6 +51,10 @@ Joined through a startup acquisition. Quantcast is a SF-based digital marketing 
 
 **Bachelor of Arts in Mathematics and Philosophy (Dual), 2010**
 
+## 📖 Publications
+[Stevens, Blagojevic, & Plimmer, 2013: “Supervised Machine Learning for Grouping
+Sketch Diagram Strokes.” SBIM ‘13](https://dl.acm.org/doi/10.1145/2487381.2487383)
+
 ## 🤖 Skills
 - **Languages:**
   - ***Advanced:*** Python,  SQL
@@ -58,6 +62,8 @@ Joined through a startup acquisition. Quantcast is a SF-based digital marketing 
 - **ML Frameworks/Libraries:** Tensorflow/Keras, scikit-learn, xgboost
 - **Big Data:** Spark, Hive, Pyspark, Hadoop
 - **Applications:** Predictive Modeling, NLP, Computer Vision, Reinforcement Learning, Recommendation, Timeseries, Gen AI
+
+
 
 
 
