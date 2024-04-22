@@ -11,6 +11,7 @@ toc_icon: "bookmark"
 ## 📧 Contact
 - Email: [philipstevens4@gmail.com](mailto:philipstevens4@gmail.com)
 - LinkedIn: [linkedin.com/in/philip-charles-stevens/](https://www.linkedin.com/in/philip-charles-stevens/)
+
 ## 💼 Experience
 ### Agoda
 ***Senior Data Scientist***
@@ -28,6 +29,7 @@ Joined through a startup acquisition. Quantcast is a SF-based digital marketing 
 - Enhanced existing targeting models by adding new features and conducting A/B tests for efficacy evaluation.
 - Applied word2vec embeddings to user browsing history for dimensionality reduction, utilizing resulting embeddings forimpactful tSNE visualizations as a marketing tool.
 - Developed demographic prediction models to optimize creative targeting based on userlikelihood.
+
 ## 🎓 Education
 ### University of Auckland
 **Master of Science in Computer Science, 2012**
@@ -39,9 +41,11 @@ Joined through a startup acquisition. Quantcast is a SF-based digital marketing 
 - First in Course Award in COMPSCI 767 (Intelligent Software Agents)
 - Faculty of Science Summer Research Scholarship
 **Bachelor of Arts in Mathematics and Philosophy (Dual), 2010**
+  
 ## 📖 Publications
 [Stevens, Blagojevic, & Plimmer, 2013: “Supervised Machine Learning for Grouping
 Sketch Diagram Strokes.” SBIM ‘13](https://dl.acm.org/doi/10.1145/2487381.2487383)
+
 ## 🤖 Skills
 - **Languages:**
   - ***Advanced:*** Python,  SQL
