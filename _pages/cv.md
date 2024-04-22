@@ -61,7 +61,7 @@ Sketch Diagram Strokes.” SBIM ‘13](https://dl.acm.org/doi/10.1145/2487381.24
   - ***Advanced:*** Python,  SQL
   - ***Proficient:*** R, Scala, Java, C#
 - **ML Frameworks/Libraries:** Tensorflow/Keras, scikit-learn, xgboost
-- **Big Data:** Spark, Hive, Pyspark, Hadoop
+- **Big Data Frameworks/Libraries:** Spark, Hive, Pyspark, Hadoop
 - **Applications:** Predictive Modeling, NLP, Computer Vision, Reinforcement Learning, Recommendation, Timeseries, Gen AI
 
 
