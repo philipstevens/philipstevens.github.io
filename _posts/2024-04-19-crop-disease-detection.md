@@ -13,5 +13,5 @@ I will use the PlantVillage dataset. This dataset comprises 54,303 images of bot
 
 I will explore two different approaches using Keras: a hand-built custom Convolutional Neural Network and a fine-tuned EfficientNet model.
 
-[Work in Progress](https://colab.research.google.com/drive/1w4vPmpTiKWLiIjrrkWBJ-Ry-VP9XCqns?usp=sharing)
+[![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)](https://colab.research.google.com/drive/1w4vPmpTiKWLiIjrrkWBJ-Ry-VP9XCqns?usp=sharing)
 
