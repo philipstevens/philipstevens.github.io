@@ -9,9 +9,616 @@ toc_icon: "bookmark"
 ---
 [![Run in Google Colab](https://img.shields.io/badge/Colab-Run_in_Google_Colab-blue?logo=Google&logoColor=FDBA18)](https://colab.research.google.com/drive/1w4vPmpTiKWLiIjrrkWBJ-Ry-VP9XCqns?usp=sharing)
 
-In modern agriculture, early detection of crop diseases is paramount for ensuring food security and maximizing yields. My aim here is to develop a model capable of accurately identifying crop diseases from images of leaves.
+Detecting crop diseases early is crucial for food security and getting the most out of our harvests. My goal is to create a model that can spot these diseases accurately just by looking at images of leaves.
 
-I will use the PlantVillage dataset. This dataset comprises 54,303 images of both healthy and unhealthy leaves, categorized into 38 groups based on species and disease. This dataset is accessible via TensorFlow Datasets.
+To do this, I'm turning to the [PlantVillage](https://www.plantvillage.org) dataset. It's got over 54,000 images showing both healthy and sick leaves, sorted into 38 groups based on what kind of plant it is and what disease it might have. You can find this dataset in the [TensorFlow Datasets catalog](https://www.tensorflow.org/datasets/catalog/plant_village).
 
-I will explore two different approaches using Keras: a hand-built custom Convolutional Neural Network and a fine-tuned EfficientNet model.
+I'm going to try two different approaches using Keras: first, I'll build a custom Convolutional Neural Network from scratch, and then I'll fine-tune an EfficientNet model.
+
+# Setup
+
+
+```python
+#Remove from markdown
+from google.colab import drive
+drive.mount('/content/gdrive')
+```
+
+    Mounted at /content/gdrive
+
+
+
+```python
+!pip install -q --upgrade tensorflow
+!pip install -q --upgrade keras
+```
+
+    [2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m589.8/589.8 MB[0m [31m1.6 MB/s[0m eta [36m0:00:00[0m
+    [2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m5.3/5.3 MB[0m [31m103.5 MB/s[0m eta [36m0:00:00[0m
+    [2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m2.2/2.2 MB[0m [31m88.5 MB/s[0m eta [36m0:00:00[0m
+    [2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m5.5/5.5 MB[0m [31m100.0 MB/s[0m eta [36m0:00:00[0m
+    [2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m1.1/1.1 MB[0m [31m73.6 MB/s[0m eta [36m0:00:00[0m
+    [2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m311.2/311.2 kB[0m [31m38.6 MB/s[0m eta [36m0:00:00[0m
+    [?25h[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+    tf-keras 2.15.1 requires tensorflow<2.16,>=2.15, but you have tensorflow 2.16.1 which is incompatible.[0m[31m
+    [0m
+
+
+```python
+import os
+
+import keras
+import matplotlib.pyplot as plt
+import numpy as np
+import tensorflow_datasets as tfds
+
+from keras import layers
+from keras.applications import EfficientNetB0
+from sklearn.metrics import classification_report
+```
+
+# Data
+
+I'll split the data into three parts: 80% for training, 10% for validation, and 10% for testing. This ensures I've got solid sets for each step. I'll batch and shuffle the data, getting it ready for efficient processing and stopping the model from memorizing the order of samples. During training, the dataset will prefetch by default, keeping the flow smooth and minimizing downtime to make the most of the model training runs.
+
+On top of that, I'll pull out the class names for easy reference later. The labels will be encoded as integers in the same order as the list, making it simple to connect with other parts of my setup.
+
+
+```python
+BATCH_SIZE = 128
+
+(train, val, test), metadata = tfds.load(
+    'plant_village',
+    split=['train[:80%]','train[80%:90%]','train[90%:]'],
+    batch_size=BATCH_SIZE,
+    shuffle_files=True,
+    as_supervised=True,
+    with_info=True,
+)
+
+NUM_CLASSES = metadata.features['label'].num_classes
+CLASS_NAMES = metadata.features['label'].names
+```
+
+    Downloading and preparing dataset 827.82 MiB (download: 827.82 MiB, generated: 815.37 MiB, total: 1.60 GiB) to /root/tensorflow_datasets/plant_village/1.0.2...
+
+
+
+    Dl Completed...: 0 url [00:00, ? url/s]
+
+
+
+    Dl Size...: 0 MiB [00:00, ? MiB/s]
+
+
+
+    Extraction completed...: 0 file [00:00, ? file/s]
+
+
+    IOPub message rate exceeded.
+    The notebook server will temporarily stop sending output
+    to the client in order to avoid crashing it.
+    To change this limit, set the config variable
+    `--NotebookApp.iopub_msg_rate_limit`.
+    
+    Current values:
+    NotebookApp.iopub_msg_rate_limit=1000.0 (msgs/sec)
+    NotebookApp.rate_limit_window=3.0 (secs)
+    
+    IOPub message rate exceeded.
+    The notebook server will temporarily stop sending output
+    to the client in order to avoid crashing it.
+    To change this limit, set the config variable
+    `--NotebookApp.iopub_msg_rate_limit`.
+    
+    Current values:
+    NotebookApp.iopub_msg_rate_limit=1000.0 (msgs/sec)
+    NotebookApp.rate_limit_window=3.0 (secs)
+    
+    IOPub message rate exceeded.
+    The notebook server will temporarily stop sending output
+    to the client in order to avoid crashing it.
+    To change this limit, set the config variable
+    `--NotebookApp.iopub_msg_rate_limit`.
+    
+    Current values:
+    NotebookApp.iopub_msg_rate_limit=1000.0 (msgs/sec)
+    NotebookApp.rate_limit_window=3.0 (secs)
+    
+    IOPub message rate exceeded.
+    The notebook server will temporarily stop sending output
+    to the client in order to avoid crashing it.
+    To change this limit, set the config variable
+    `--NotebookApp.iopub_msg_rate_limit`.
+    
+    Current values:
+    NotebookApp.iopub_msg_rate_limit=1000.0 (msgs/sec)
+    NotebookApp.rate_limit_window=3.0 (secs)
+    
+
+
+
+    Generating splits...:   0%|          | 0/1 [00:00<?, ? splits/s]
+
+
+
+    Generating train examples...:   0%|          | 0/54303 [00:00<?, ? examples/s]
+
+
+
+    Shuffling /root/tensorflow_datasets/plant_village/1.0.2.incompleteW4QO52/plant_village-train.tfrecord*...:   0…
+
+
+    Dataset plant_village downloaded and prepared to /root/tensorflow_datasets/plant_village/1.0.2. Subsequent calls will reuse this data.
+
+
+
+```python
+plt.figure(figsize=(10, 10))
+for images, labels in train.take(1):
+    for i in range(9):
+        ax = plt.subplot(3, 3, i + 1)
+        plt.imshow(np.array(images[i]).astype("uint8")) #Read from dict
+        plt.title(CLASS_NAMES[int(labels[i])], fontsize=10) #Lower font size
+        plt.axis("off")
+```
+
+
+    
+![png](Crop%20Disease%20Detection_files/Crop%20Disease%20Detection_9_0.png)
+    
+
+
+# Custom Model
+
+
+
+## Build
+To start, I’ll craft a custom CNN model using the Keras Functional API. Here's a detailed breakdown of the architecture:
+
+1. **Input and Preprocessing**: It takes the images as input, which are expected to have dimensions of 256x256 pixels and 3 color channels (RGB). The raw images from the dataset come like this. The input images then undergo some data augmentation, which includes transformations like rotation, flipping, translation and adjustments to contrast to increase the diversity of the training data. I also normalize the images so that the pixel values of the images are scaled down to a range between 0 and 1.
+2. **Feature Extraction**: The initial convolutional layer operates on normalized images, employing 128 filters sized at 3x3 pixels with a stride of 2 pixels. Batch normalization and ReLU activation are applied here and after most convolutional layers that follow.
+    
+    Following this, there are three blocks each with three convolutional layers. The number of feature maps in each block doubles compared to the previous block. Within each block, two consecutive layers use separable convolution for speed and efficiency, followed by max-pooling to reduce the feature map size by half. Simultaneously, there's another convolutional layer running in parallel. Its output connects with a residual connection, which adds its result to the output of the max-pooling layer. This combined output is then forwarded to the next block.
+    
+    One final convolutional layer is added to the output of the three blocks concluding in 1024 16x16 feature maps.
+    
+3. **Output**: After the feature extraction, global average pooling is applied to reduce the spatial dimensions of the feature maps to a single vector with 1024 dimensions for each image. Dropout is applied to the pooled features to prevent overfitting by randomly setting a fraction of input units to 0 at each update during training. Finally, a dense layer produces the output logits, which represent the unnormalized scores for each of the 38 classes. No activation function is applied to this layer, as it aims to return raw logit scores rather than probabilities.
+
+
+```python
+data_augmentation_layers = [
+    layers.RandomRotation(factor=0.15),
+    layers.RandomTranslation(height_factor=0.1, width_factor=0.1),
+    layers.RandomFlip(),
+    layers.RandomContrast(factor=0.1),
+]
+
+def data_augmentation(images):
+    for layer in data_augmentation_layers:
+        images = layer(images)
+    return images
+
+def build_custom_model(num_classes):
+    # Input
+    inputs = keras.Input(shape=(256, 256,3))
+    x = data_augmentation(inputs)
+    x = layers.Rescaling(1.0 / 255)(x)
+
+    # Feature Extraction
+    x = layers.Conv2D(128, 3, strides=2, padding="same")(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.Activation("relu")(x)
+    previous_block_activation = x
+
+    for size in [256, 512, 728]:
+        x = layers.Activation("relu")(x)
+
+        x = layers.SeparableConv2D(size, 3, padding="same")(x)
+        x = layers.BatchNormalization()(x)
+        x = layers.Activation("relu")(x)
+
+        x = layers.SeparableConv2D(size, 3, padding="same")(x)
+        x = layers.BatchNormalization()(x)
+
+        x = layers.MaxPooling2D(3, strides=2, padding="same")(x)
+
+        # Residual
+        residual = layers.Conv2D(size, 1, strides=2, padding="same")(
+            previous_block_activation
+        )
+        x = layers.add([x, residual])
+        previous_block_activation = x
+
+    x = layers.SeparableConv2D(1024, 3, padding="same")(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.Activation("relu")(x)
+
+    # Output
+    x = layers.GlobalAveragePooling2D()(x)
+    x = layers.Dropout(0.25)(x)
+    outputs = layers.Dense(num_classes, activation=None)(x)
+
+    return keras.Model(inputs, outputs, name="CustomModel")
+
+
+custom_model = build_custom_model(num_classes=NUM_CLASSES)
+keras.utils.plot_model(custom_model, show_shapes=True)
+```
+
+
+
+
+    
+![png](Crop%20Disease%20Detection_files/Crop%20Disease%20Detection_12_0.png)
+    
+
+
+
+## Train
+
+In this phase, I train the custom model employing the Adam optimizer with a learning rate set to 0.0003. For training, I employ sparse categorical cross-entropy loss and track the accuracy metric. Throughout training, I save model checkpoints at the conclusion of each epoch. The training spans 25 epochs utilizing the training data, with validation data employed for validation throughout. The training history is then returned, serving as the basis for plotting the training run.
+
+
+```python
+callbacks = [
+    keras.callbacks.ModelCheckpoint("custom_model_{epoch:02d}-{val_loss:.2f}.keras"),
+]
+custom_model.compile(
+    optimizer=keras.optimizers.Adam(3e-4),
+    loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+    metrics=[keras.metrics.SparseCategoricalAccuracy(name="accuracy")],
+)
+hist = custom_model.fit(
+    train,
+    epochs=25,
+    callbacks=callbacks,
+    validation_data=val,
+)
+```
+
+    Epoch 1/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m217s[0m 560ms/step - accuracy: 0.6436 - loss: 1.3229 - val_accuracy: 0.1007 - val_loss: 3.7074
+    Epoch 2/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9103 - loss: 0.3222 - val_accuracy: 0.3305 - val_loss: 3.0962
+    Epoch 3/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9501 - loss: 0.1772 - val_accuracy: 0.6875 - val_loss: 1.0931
+    Epoch 4/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9654 - loss: 0.1206 - val_accuracy: 0.7512 - val_loss: 0.9421
+    Epoch 5/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9749 - loss: 0.0865 - val_accuracy: 0.8634 - val_loss: 0.4647
+    Epoch 6/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9787 - loss: 0.0715 - val_accuracy: 0.8177 - val_loss: 0.6186
+    Epoch 7/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9836 - loss: 0.0568 - val_accuracy: 0.8748 - val_loss: 0.4183
+    Epoch 8/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9839 - loss: 0.0555 - val_accuracy: 0.8273 - val_loss: 0.6005
+    Epoch 9/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 536ms/step - accuracy: 0.9844 - loss: 0.0509 - val_accuracy: 0.9157 - val_loss: 0.2416
+    Epoch 10/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 536ms/step - accuracy: 0.9883 - loss: 0.0385 - val_accuracy: 0.8776 - val_loss: 0.3853
+    Epoch 11/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9885 - loss: 0.0382 - val_accuracy: 0.8904 - val_loss: 0.3542
+    Epoch 12/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9885 - loss: 0.0362 - val_accuracy: 0.9072 - val_loss: 0.2743
+    Epoch 13/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 536ms/step - accuracy: 0.9895 - loss: 0.0351 - val_accuracy: 0.8919 - val_loss: 0.3177
+    Epoch 14/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9920 - loss: 0.0280 - val_accuracy: 0.9556 - val_loss: 0.1271
+    Epoch 15/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 536ms/step - accuracy: 0.9910 - loss: 0.0294 - val_accuracy: 0.9184 - val_loss: 0.2643
+    Epoch 16/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9902 - loss: 0.0334 - val_accuracy: 0.9356 - val_loss: 0.1837
+    Epoch 17/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m183s[0m 537ms/step - accuracy: 0.9922 - loss: 0.0250 - val_accuracy: 0.7881 - val_loss: 0.8638
+    Epoch 18/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9923 - loss: 0.0258 - val_accuracy: 0.9774 - val_loss: 0.0707
+    Epoch 19/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9924 - loss: 0.0243 - val_accuracy: 0.9321 - val_loss: 0.2613
+    Epoch 20/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9904 - loss: 0.0291 - val_accuracy: 0.9549 - val_loss: 0.1336
+    Epoch 21/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9922 - loss: 0.0243 - val_accuracy: 0.7805 - val_loss: 0.8193
+    Epoch 22/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9942 - loss: 0.0201 - val_accuracy: 0.9181 - val_loss: 0.2905
+    Epoch 23/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m183s[0m 537ms/step - accuracy: 0.9945 - loss: 0.0175 - val_accuracy: 0.9705 - val_loss: 0.0921
+    Epoch 24/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9934 - loss: 0.0199 - val_accuracy: 0.9464 - val_loss: 0.1890
+    Epoch 25/25
+    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9923 - loss: 0.0237 - val_accuracy: 0.9291 - val_loss: 0.2638
+
+
+
+```python
+# Remove from markdown
+custom_model.save("/content/gdrive/MyDrive/crop_model4.keras")
+```
+
+## Evaluate
+In this section, I visualize the model training and examine the classification report from sklearn, featuring metrics like precision, recall, F1-score, and support for each class. It also includes overall average and weighted average metrics for the per-class statistics.
+
+Upon review, a couple of observations stand out:
+
+1. The training seems to converge rapidly, yet there's significant jitteriness in the validation curve likely due to small batch size and high learning rate.
+2. Overall accuracy on the test set looks solid at 93%, though we observe that certain classes with lower support exhibit less impressive precision or recall.
+
+
+```python
+# Remove from markdown
+custom_model = keras.saving.load_model("/content/gdrive/MyDrive/crop_model4.keras")
+```
+
+
+```python
+def plot_hist(hist):
+    plt.plot(hist.history["accuracy"])
+    plt.plot(hist.history["val_accuracy"])
+    plt.title("model accuracy")
+    plt.ylabel("accuracy")
+    plt.xlabel("epoch")
+    plt.legend(["train", "validation"], loc="upper left")
+    plt.show()
+
+def print_report(model, data):
+  pred = np.argmax(model.predict(data), axis=-1)
+  y = np.concatenate([y for x, y in data], axis=0)
+  report = classification_report(y, pred, target_names = CLASS_NAMES)
+  print(report)
+```
+
+
+```python
+plot_hist(hist)
+```
+
+
+    
+![png](Crop%20Disease%20Detection_files/Crop%20Disease%20Detection_19_0.png)
+    
+
+
+
+```python
+print_report(custom_model, test)
+```
+
+    [1m43/43[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 130ms/step
+                                                   precision    recall  f1-score   support
+    
+                               Apple___Apple_scab       1.00      0.88      0.94        58
+                                Apple___Black_rot       1.00      0.91      0.95        65
+                         Apple___Cedar_apple_rust       1.00      1.00      1.00        25
+                                  Apple___healthy       1.00      0.84      0.91       159
+                              Blueberry___healthy       1.00      0.99      1.00       133
+                                 Cherry___healthy       1.00      0.32      0.49        90
+                          Cherry___Powdery_mildew       0.99      0.97      0.98       100
+       Corn___Cercospora_leaf_spot Gray_leaf_spot       0.87      0.96      0.92        56
+                               Corn___Common_rust       1.00      1.00      1.00       127
+                                   Corn___healthy       1.00      1.00      1.00       112
+                      Corn___Northern_Leaf_Blight       0.96      0.94      0.95       112
+                                Grape___Black_rot       0.97      0.96      0.96       112
+                     Grape___Esca_(Black_Measles)       1.00      0.96      0.98       126
+                                  Grape___healthy       0.97      1.00      0.99        36
+       Grape___Leaf_blight_(Isariopsis_Leaf_Spot)       1.00      0.83      0.91       105
+         Orange___Haunglongbing_(Citrus_greening)       1.00      1.00      1.00       561
+                           Peach___Bacterial_spot       0.91      0.98      0.95       237
+                                  Peach___healthy       0.45      1.00      0.62        27
+                    Pepper,_bell___Bacterial_spot       0.97      0.98      0.98       105
+                           Pepper,_bell___healthy       0.76      0.99      0.86       154
+                            Potato___Early_blight       0.70      1.00      0.82        98
+                                 Potato___healthy       0.89      0.80      0.84        10
+                             Potato___Late_blight       0.88      0.95      0.92       104
+                              Raspberry___healthy       1.00      0.90      0.95        30
+                                Soybean___healthy       0.95      1.00      0.97       527
+                          Squash___Powdery_mildew       0.92      1.00      0.96       188
+                             Strawberry___healthy       1.00      0.76      0.86        50
+                         Strawberry___Leaf_scorch       1.00      0.90      0.95        88
+                          Tomato___Bacterial_spot       0.95      0.97      0.96       184
+                            Tomato___Early_blight       0.74      0.97      0.84        96
+                                 Tomato___healthy       0.98      1.00      0.99       164
+                             Tomato___Late_blight       0.99      0.75      0.86       191
+                               Tomato___Leaf_Mold       1.00      0.57      0.72        97
+                      Tomato___Septoria_leaf_spot       0.95      0.85      0.89       181
+    Tomato___Spider_mites Two-spotted_spider_mite       0.72      0.99      0.83       168
+                             Tomato___Target_Spot       0.90      0.94      0.92       149
+                     Tomato___Tomato_mosaic_virus       0.97      0.97      0.97        36
+           Tomato___Tomato_Yellow_Leaf_Curl_Virus       1.00      0.93      0.96       569
+    
+                                         accuracy                           0.93      5430
+                                        macro avg       0.93      0.91      0.91      5430
+                                     weighted avg       0.95      0.93      0.93      5430
+    
+
+
+# Fine-tune EfficientNet
+
+Rather than using a custom model, let's finetune a pretrained EfficientNet model.
+
+## Build
+Here I construct my model by harnessing the power of the EfficientNet architecture along with pre-trained weights. Here's a detailed breakdown of the process:
+
+1. **Input and Preprocessing**:  The variant of EfficientNet I'm utilizing expects images with dimensions of 224x224 pixels. Therefore, I ensure that the images are resized accordingly to meet this requirement. The input also undergoes the same data augmentation as the custom model did. No normalizing is done here as the EfficientNet already handles all other aspects of preprocessing.
+2. **EfficientNetB0:** I employ the EfficientNetB0 model that's been pre-trained on the ImageNet dataset. Since we won't be using the top layer for ImageNet classes, I discard it. Additionally, I freeze the weights to preserve the learned representations, keeping them static during the initial training phases.
+3. **Output**: To tailor the model for our specific classification task, I introduce additional layers atop the pre-trained base. This includes incorporating global average pooling, batch normalization, dropout, and a dense layer devoid of an activation function, which yields the class predictions.
+
+
+
+```python
+def build_efficientnet_model(num_classes):
+
+    # Input
+    inputs = layers.Input(shape=(256, 256, 3))
+    x = data_augmentation(inputs)
+    x = layers.Resizing(224, 224)(x)
+
+    # Pretrained model with frozen weights and top layer removed
+    model = EfficientNetB0(include_top=False, input_tensor=x, weights="imagenet")
+    model.trainable = False
+
+    # Output
+    x = layers.GlobalAveragePooling2D()(model.output)
+    x = layers.BatchNormalization()(x)
+    x = layers.Dropout(0.2)(x)
+    outputs = layers.Dense(num_classes, activation=None)(x)
+
+    return keras.Model(inputs, outputs, name="EfficientNet")
+
+en_model = build_efficientnet_model(num_classes=NUM_CLASSES)
+keras.utils.plot_model(en_model)
+```
+
+## Train
+First, I'll train the custom top layer of this model using a relatively high learning rate to quickly get a decent model. Then, I'll unfreeze the EfficientNetB0 layers and train again with a smaller learning rate. This method allows for only subtle adjustments to be made to the pre-trained weights so we don't lose any critical feature representations in the initial stages of training. The idea is to keep the underlying power of the pretrained model and make it work better for our specific needs.
+
+### Step 1
+
+
+```python
+callbacks = [
+    keras.callbacks.ModelCheckpoint("efficientnet_model_step_1_{epoch:02d}-{val_loss:.2f}.keras"),
+]
+
+en_model.compile(
+    optimizer=keras.optimizers.Adam(learning_rate=1e-2),
+    loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+    metrics=[keras.metrics.SparseCategoricalAccuracy(name="accuracy")],
+)
+
+step1_hist = en_model.fit(
+    train,
+    epochs=25,
+    callbacks=callbacks,
+    validation_data=val,
+)
+```
+
+### Step 2
+
+
+```python
+def unfreeze_model(model):
+    # We unfreeze the top 20 layers while leaving BatchNorm layers frozen
+    for layer in model.layers[-20:]:
+        if not isinstance(layer, layers.BatchNormalization):
+            layer.trainable = True
+
+unfreeze_model(en_model)
+```
+
+
+```python
+callbacks = [
+    keras.callbacks.ModelCheckpoint("efficientnet_model_step_2_{epoch:02d}-{val_loss:.2f}.keras"),
+]
+
+en_model.compile(
+    optimizer=keras.optimizers.Adam(learning_rate=1e-5),
+    loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+    metrics=[keras.metrics.SparseCategoricalAccuracy(name="accuracy")]
+)
+
+step2_hist = en_model.fit(
+    train,
+    epochs=4,
+    callbacks=callbacks,
+    validation_data=val)
+```
+
+
+```python
+#Remove from markdown
+en_model.save("/content/gdrive/MyDrive/en_crop_model4.keras")
+```
+
+## Evaluate
+As before, I visualize the model training and examine the per-class and overall classification metrics.
+
+Here, a few observations stand out:
+
+1. The training run reaches high accuracy even before I unfreeze the bottom pre-trained layers. Again there is some jitteriness in the validation curve in stage 1 likely due to small batch size and high learning rate. However, further training these layers results in a slight enhancement in overall accuracy and a more robust model.
+2. The validation accuracy is higher than the training accuracy. This is common behaviour when using dropout layers, as they are only used in training and deliberately hamper the model.
+2. Overall accuracy on the test set impressively reaches 97%, with all classes exhibiting high precision and recall. Nonetheless, some classes still demonstrate slightly better performance than others.
+
+
+
+
+
+
+
+
+```python
+plot_hist(step1_hist)
+```
+
+
+    
+![png](Crop%20Disease%20Detection_files/Crop%20Disease%20Detection_32_0.png)
+    
+
+
+
+```python
+plot_hist(step2_hist)
+```
+
+
+    
+![png](Crop%20Disease%20Detection_files/Crop%20Disease%20Detection_33_0.png)
+    
+
+
+
+```python
+print_report(en_model, test)
+```
+
+    [1m43/43[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m2s[0m 48ms/step
+                                                   precision    recall  f1-score   support
+    
+                               Apple___Apple_scab       0.96      0.93      0.95        58
+                                Apple___Black_rot       1.00      1.00      1.00        65
+                         Apple___Cedar_apple_rust       1.00      0.88      0.94        25
+                                  Apple___healthy       0.98      0.99      0.99       159
+                              Blueberry___healthy       0.99      1.00      1.00       133
+                                 Cherry___healthy       1.00      0.99      0.99        90
+                          Cherry___Powdery_mildew       0.99      1.00      1.00       100
+       Corn___Cercospora_leaf_spot Gray_leaf_spot       0.92      0.88      0.90        56
+                               Corn___Common_rust       0.98      1.00      0.99       127
+                                   Corn___healthy       1.00      0.99      1.00       112
+                      Corn___Northern_Leaf_Blight       0.94      0.96      0.95       112
+                                Grape___Black_rot       0.96      0.96      0.96       112
+                     Grape___Esca_(Black_Measles)       0.98      0.97      0.97       126
+                                  Grape___healthy       1.00      1.00      1.00        36
+       Grape___Leaf_blight_(Isariopsis_Leaf_Spot)       1.00      1.00      1.00       105
+         Orange___Haunglongbing_(Citrus_greening)       1.00      1.00      1.00       561
+                           Peach___Bacterial_spot       1.00      0.99      0.99       237
+                                  Peach___healthy       0.93      1.00      0.96        27
+                    Pepper,_bell___Bacterial_spot       0.99      0.98      0.99       105
+                           Pepper,_bell___healthy       0.99      1.00      0.99       154
+                            Potato___Early_blight       0.96      0.99      0.97        98
+                                 Potato___healthy       1.00      0.80      0.89        10
+                             Potato___Late_blight       0.97      0.96      0.97       104
+                              Raspberry___healthy       1.00      1.00      1.00        30
+                                Soybean___healthy       0.99      1.00      1.00       527
+                          Squash___Powdery_mildew       1.00      1.00      1.00       188
+                             Strawberry___healthy       0.98      1.00      0.99        50
+                         Strawberry___Leaf_scorch       1.00      0.98      0.99        88
+                          Tomato___Bacterial_spot       0.94      0.93      0.94       184
+                            Tomato___Early_blight       0.86      0.66      0.75        96
+                                 Tomato___healthy       0.96      0.99      0.98       164
+                             Tomato___Late_blight       0.87      0.95      0.91       191
+                               Tomato___Leaf_Mold       0.96      0.84      0.90        97
+                      Tomato___Septoria_leaf_spot       0.94      0.88      0.91       181
+    Tomato___Spider_mites Two-spotted_spider_mite       0.90      0.96      0.93       168
+                             Tomato___Target_Spot       0.83      0.95      0.89       149
+                     Tomato___Tomato_mosaic_virus       0.97      0.97      0.97        36
+           Tomato___Tomato_Yellow_Leaf_Curl_Virus       0.99      0.98      0.98       569
+    
+                                         accuracy                           0.97      5430
+                                        macro avg       0.97      0.96      0.96      5430
+                                     weighted avg       0.97      0.97      0.97      5430
+    
+
+
 
