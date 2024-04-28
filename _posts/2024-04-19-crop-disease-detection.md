@@ -148,11 +148,7 @@ custom_model = build_custom_model(num_classes=NUM_CLASSES)
 keras.utils.plot_model(custom_model, show_shapes=True)
 ```
 
-
-
-
-    
-![png](assets/images/crop-disease-detection/Crop Disease Detection_12_0.png)
+![png](/assets/images/crop-disease-detection/custom_model_build.png)
     
 
 
