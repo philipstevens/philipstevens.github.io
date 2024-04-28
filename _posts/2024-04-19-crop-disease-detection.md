@@ -152,7 +152,7 @@ keras.utils.plot_model(custom_model, show_shapes=True)
 
 
     
-![png](Crop%20Disease%20Detection_files/Crop%20Disease%20Detection_12_0.png)
+![png](assets/images/crop-disease-detection/Crop Disease Detection_12_0.png)
     
 
 
