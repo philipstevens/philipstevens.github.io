@@ -68,7 +68,7 @@ for images, labels in train.take(1):
         plt.axis("off")
 ```
 
-![png](Crop%20Disease%20Detection_files/Crop%20Disease%20Detection_9_0.png)
+![png](/assets/images/crop-disease-detection/sample_images.png)
     
 
 # Custom Model
@@ -204,7 +204,7 @@ def print_report(model, data):
 plot_hist(hist)
 ```
     
-![png](Crop%20Disease%20Detection_files/Crop%20Disease%20Detection_19_0.png)
+![png](/assets/images/crop-disease-detection/cm_training_curve.png)
 
     
 ```python
@@ -374,7 +374,7 @@ plot_hist(step1_hist)
 
 
     
-![png](Crop%20Disease%20Detection_files/Crop%20Disease%20Detection_32_0.png)
+![png](/assets/images/crop-disease-detection/en_training_curve_1.png)
     
 
 
@@ -385,7 +385,7 @@ plot_hist(step2_hist)
 
 
     
-![png](Crop%20Disease%20Detection_files/Crop%20Disease%20Detection_33_0.png)
+![png](/assets/images/crop-disease-detection/en_training_curve_2.png)
     
 
 
