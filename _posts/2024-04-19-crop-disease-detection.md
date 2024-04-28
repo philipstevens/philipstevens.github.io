@@ -58,79 +58,6 @@ NUM_CLASSES = metadata.features['label'].num_classes
 CLASS_NAMES = metadata.features['label'].names
 ```
 
-    Downloading and preparing dataset 827.82 MiB (download: 827.82 MiB, generated: 815.37 MiB, total: 1.60 GiB) to /root/tensorflow_datasets/plant_village/1.0.2...
-
-
-
-    Dl Completed...: 0 url [00:00, ? url/s]
-
-
-
-    Dl Size...: 0 MiB [00:00, ? MiB/s]
-
-
-
-    Extraction completed...: 0 file [00:00, ? file/s]
-
-
-    IOPub message rate exceeded.
-    The notebook server will temporarily stop sending output
-    to the client in order to avoid crashing it.
-    To change this limit, set the config variable
-    `--NotebookApp.iopub_msg_rate_limit`.
-    
-    Current values:
-    NotebookApp.iopub_msg_rate_limit=1000.0 (msgs/sec)
-    NotebookApp.rate_limit_window=3.0 (secs)
-    
-    IOPub message rate exceeded.
-    The notebook server will temporarily stop sending output
-    to the client in order to avoid crashing it.
-    To change this limit, set the config variable
-    `--NotebookApp.iopub_msg_rate_limit`.
-    
-    Current values:
-    NotebookApp.iopub_msg_rate_limit=1000.0 (msgs/sec)
-    NotebookApp.rate_limit_window=3.0 (secs)
-    
-    IOPub message rate exceeded.
-    The notebook server will temporarily stop sending output
-    to the client in order to avoid crashing it.
-    To change this limit, set the config variable
-    `--NotebookApp.iopub_msg_rate_limit`.
-    
-    Current values:
-    NotebookApp.iopub_msg_rate_limit=1000.0 (msgs/sec)
-    NotebookApp.rate_limit_window=3.0 (secs)
-    
-    IOPub message rate exceeded.
-    The notebook server will temporarily stop sending output
-    to the client in order to avoid crashing it.
-    To change this limit, set the config variable
-    `--NotebookApp.iopub_msg_rate_limit`.
-    
-    Current values:
-    NotebookApp.iopub_msg_rate_limit=1000.0 (msgs/sec)
-    NotebookApp.rate_limit_window=3.0 (secs)
-    
-
-
-
-    Generating splits...:   0%|          | 0/1 [00:00<?, ? splits/s]
-
-
-
-    Generating train examples...:   0%|          | 0/54303 [00:00<?, ? examples/s]
-
-
-
-    Shuffling /root/tensorflow_datasets/plant_village/1.0.2.incompleteW4QO52/plant_village-train.tfrecord*...:   0…
-
-
-    Dataset plant_village downloaded and prepared to /root/tensorflow_datasets/plant_village/1.0.2. Subsequent calls will reuse this data.
-
-
-
 ```python
 plt.figure(figsize=(10, 10))
 for images, labels in train.take(1):
@@ -141,11 +68,8 @@ for images, labels in train.take(1):
         plt.axis("off")
 ```
 
-
-    
 ![png](Crop%20Disease%20Detection_files/Crop%20Disease%20Detection_9_0.png)
     
-
 
 # Custom Model
 
@@ -255,64 +179,6 @@ hist = custom_model.fit(
 )
 ```
 
-    Epoch 1/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m217s[0m 560ms/step - accuracy: 0.6436 - loss: 1.3229 - val_accuracy: 0.1007 - val_loss: 3.7074
-    Epoch 2/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9103 - loss: 0.3222 - val_accuracy: 0.3305 - val_loss: 3.0962
-    Epoch 3/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9501 - loss: 0.1772 - val_accuracy: 0.6875 - val_loss: 1.0931
-    Epoch 4/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9654 - loss: 0.1206 - val_accuracy: 0.7512 - val_loss: 0.9421
-    Epoch 5/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9749 - loss: 0.0865 - val_accuracy: 0.8634 - val_loss: 0.4647
-    Epoch 6/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9787 - loss: 0.0715 - val_accuracy: 0.8177 - val_loss: 0.6186
-    Epoch 7/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9836 - loss: 0.0568 - val_accuracy: 0.8748 - val_loss: 0.4183
-    Epoch 8/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9839 - loss: 0.0555 - val_accuracy: 0.8273 - val_loss: 0.6005
-    Epoch 9/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 536ms/step - accuracy: 0.9844 - loss: 0.0509 - val_accuracy: 0.9157 - val_loss: 0.2416
-    Epoch 10/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 536ms/step - accuracy: 0.9883 - loss: 0.0385 - val_accuracy: 0.8776 - val_loss: 0.3853
-    Epoch 11/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9885 - loss: 0.0382 - val_accuracy: 0.8904 - val_loss: 0.3542
-    Epoch 12/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9885 - loss: 0.0362 - val_accuracy: 0.9072 - val_loss: 0.2743
-    Epoch 13/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 536ms/step - accuracy: 0.9895 - loss: 0.0351 - val_accuracy: 0.8919 - val_loss: 0.3177
-    Epoch 14/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9920 - loss: 0.0280 - val_accuracy: 0.9556 - val_loss: 0.1271
-    Epoch 15/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 536ms/step - accuracy: 0.9910 - loss: 0.0294 - val_accuracy: 0.9184 - val_loss: 0.2643
-    Epoch 16/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9902 - loss: 0.0334 - val_accuracy: 0.9356 - val_loss: 0.1837
-    Epoch 17/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m183s[0m 537ms/step - accuracy: 0.9922 - loss: 0.0250 - val_accuracy: 0.7881 - val_loss: 0.8638
-    Epoch 18/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9923 - loss: 0.0258 - val_accuracy: 0.9774 - val_loss: 0.0707
-    Epoch 19/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9924 - loss: 0.0243 - val_accuracy: 0.9321 - val_loss: 0.2613
-    Epoch 20/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9904 - loss: 0.0291 - val_accuracy: 0.9549 - val_loss: 0.1336
-    Epoch 21/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9922 - loss: 0.0243 - val_accuracy: 0.7805 - val_loss: 0.8193
-    Epoch 22/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9942 - loss: 0.0201 - val_accuracy: 0.9181 - val_loss: 0.2905
-    Epoch 23/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m183s[0m 537ms/step - accuracy: 0.9945 - loss: 0.0175 - val_accuracy: 0.9705 - val_loss: 0.0921
-    Epoch 24/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9934 - loss: 0.0199 - val_accuracy: 0.9464 - val_loss: 0.1890
-    Epoch 25/25
-    [1m340/340[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m182s[0m 537ms/step - accuracy: 0.9923 - loss: 0.0237 - val_accuracy: 0.9291 - val_loss: 0.2638
-
-
-
-```python
-# Remove from markdown
-custom_model.save("/content/gdrive/MyDrive/crop_model4.keras")
-```
-
 ## Evaluate
 In this section, I visualize the model training and examine the classification report from sklearn, featuring metrics like precision, recall, F1-score, and support for each class. It also includes overall average and weighted average metrics for the per-class statistics.
 
@@ -320,13 +186,6 @@ Upon review, a couple of observations stand out:
 
 1. The training seems to converge rapidly, yet there's significant jitteriness in the validation curve likely due to small batch size and high learning rate.
 2. Overall accuracy on the test set looks solid at 93%, though we observe that certain classes with lower support exhibit less impressive precision or recall.
-
-
-```python
-# Remove from markdown
-custom_model = keras.saving.load_model("/content/gdrive/MyDrive/crop_model4.keras")
-```
-
 
 ```python
 def plot_hist(hist):
@@ -345,23 +204,17 @@ def print_report(model, data):
   print(report)
 ```
 
-
 ```python
 plot_hist(hist)
 ```
-
-
     
 ![png](Crop%20Disease%20Detection_files/Crop%20Disease%20Detection_19_0.png)
+
     
-
-
-
 ```python
 print_report(custom_model, test)
 ```
 
-    [1m43/43[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m6s[0m 130ms/step
                                                    precision    recall  f1-score   support
     
                                Apple___Apple_scab       1.00      0.88      0.94        58
@@ -503,12 +356,6 @@ step2_hist = en_model.fit(
     validation_data=val)
 ```
 
-
-```python
-#Remove from markdown
-en_model.save("/content/gdrive/MyDrive/en_crop_model4.keras")
-```
-
 ## Evaluate
 As before, I visualize the model training and examine the per-class and overall classification metrics.
 
@@ -551,7 +398,6 @@ plot_hist(step2_hist)
 print_report(en_model, test)
 ```
 
-    [1m43/43[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m2s[0m 48ms/step
                                                    precision    recall  f1-score   support
     
                                Apple___Apple_scab       0.96      0.93      0.95        58
