@@ -29,7 +29,7 @@ notable KPI and revenue growth.
 
 ### Quantcast
 
-***Modeling Scientist***
+***Data Scientist***
 
 *Oct 2013 - Sep 2018, London, UK*
 
