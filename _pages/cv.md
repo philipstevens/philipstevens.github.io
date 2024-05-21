@@ -19,11 +19,12 @@ toc_icon: "bookmark"
 
 *Mar 2020 - Feb 2023, Bangkok, Thailand*
 
-Contributed to personalized user experiences for millions of travelers at a leading online travel agency. Focused on enhancing user experience and increasing hotel booking rates. Projects and responsibilities included:
-- Applied contextual bandits to optimize front-end elements for end-users.
-- Developed a match score system forrecommended property displays.
-- Enhanced and maintained a product featuring positive user-generated review snippets.
-- Analyzed A/B tests to support product owner decision-making
+Leading online travel agency, subsidiary of Booking Holdings.
+_Accomplishments and Responsibilities:_
+- Spearheaded contextual bandit integration for front-end optimization, significantly enhancing user experience and driving
+notable KPI and revenue growth.
+- Elevated user engagement through various other initiatives, including developing embedding-based recommendation systems and NLP models to highlight impactful sections of user-generated reviews.
+- Expanded the team and mentored interns and junior members
 
 ### Quantcast
 
