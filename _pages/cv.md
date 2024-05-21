@@ -20,6 +20,7 @@ toc_icon: "bookmark"
 *Mar 2020 - Feb 2023, Bangkok, Thailand*
 
 Leading online travel agency, subsidiary of Booking Holdings.
+
 _Accomplishments and Responsibilities:_
 - Spearheaded contextual bandit integration for front-end optimization, significantly enhancing user experience and driving
 notable KPI and revenue growth.
@@ -32,22 +33,24 @@ notable KPI and revenue growth.
 
 *Oct 2013 - Sep 2018, London, UK*
 
-Joined through a startup acquisition. Quantcast is a SF-based digital marketing SaaS company that specializes in AI-driven real-time advertising, audience insights and measurement. Projects and responsibilities included:
-- Played a key role in building and maintaining large-scale end-to-end machine learning pipelines, processing up to 30 PB per day.
-- Enhanced existing targeting models by adding new features and conducting A/B tests for efficacy evaluation.
-- Applied word2vec embeddings to user browsing history for dimensionality reduction, utilizing resulting embeddings forimpactful tSNE visualizations as a marketing tool.
-- Developed demographic prediction models to optimize creative targeting based on userlikelihood.
+Industry-leading AI-powered targeted advertising and audience measurement based in San Francisco. Joined as part of startup
+acquisition.
+
+_Accomplishments and Responsibilities:_
+- Directed numerous projects to develop, enhance and optimize core targeting models, resulting in significant KPI and revenue improvements.
+- Led experiments in adding new features, advanced feature engineering (e.g., embeddings), feature selection, model development, hyperparameter tuning, and data quality assurance.
+- Collaborated directly with clients, delivering successful bespoke projects and presenting technology updates to ad agencies.
 
 ## 🎓 Education
 ### University of Auckland
 
 **Master of Science in Computer Science, 2012**
-- 1st Class Honours
+- Graduated with 1st Class Honours
 - Faculty of Science Master’s Award
 - Master’s Scholarship funded though Royal Society of New Zealand Marsden Grant, Dr. Beryl Plimmer
 
 **Bachelor of Science (Hons) in Logic and Computation, 2011**
-- 1st Class Honours
+- Graduated with 1st Class Honours
 - First in Course Award in COMPSCI 767 (Intelligent Software Agents)
 - Faculty of Science Summer Research Scholarship
 
