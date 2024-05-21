@@ -1,12 +1,12 @@
 ---
-title: "Curriculum Vitae"
+title: "Resume"
 permalink: /cv/
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "bookmark"
 ---
 
-[Download Resume](https://philipstevens.github.io/files/20240521-pcs-resume.pdf "download"){: .btn .btn--info}
+[Download](https://philipstevens.github.io/files/20240521-pcs-resume.pdf "download"){: .btn .btn--info}
 
 ## 📧 Contact
 - Email: [philipstevens4@gmail.com](mailto:philipstevens4@gmail.com)
