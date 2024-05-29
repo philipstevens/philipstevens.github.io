@@ -46,6 +46,7 @@ _Accomplishments and Responsibilities:_
 ***Data Scientist***
 
 *Oct 2013 - Sep 2014, London, UK*
+
 A fast-paced AdTech startup, acquired by Quantcast.
 
 _Accomplishments and Responsibilities:_
