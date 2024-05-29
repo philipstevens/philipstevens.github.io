@@ -1,6 +1,6 @@
 ---
 title: "Resume"
-permalink: /resume/
+permalink: /cv/
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "bookmark"
