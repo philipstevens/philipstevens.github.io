@@ -7,6 +7,6 @@ toc_icon: "bookmark"
 
 ---
 
-###[Engish to Thai Translation] (https://philipstevens.github.io/nlp/thai-english-translation/)
+[Engish to Thai Translation] (https://philipstevens.github.io/nlp/thai-english-translation/)
 
-###[Crop Disease Detection] (https://philipstevens.github.io/computer%20vision/crop-disease-detection/)
+[Crop Disease Detection] (https://philipstevens.github.io/computer%20vision/crop-disease-detection/)
