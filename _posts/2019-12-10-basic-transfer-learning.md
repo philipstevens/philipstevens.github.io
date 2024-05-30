@@ -1,5 +1,5 @@
 ---
-title: "Basic Transfer Learning"
+title: "Basic Transfer Learning for Cat/Dog Breed Detection"
 date: 2019-12-10
 categories:
   - Computer Vision
