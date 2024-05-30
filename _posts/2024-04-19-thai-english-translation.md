@@ -1,5 +1,5 @@
 ---
-title: "Thai-to-English Translation"
+title: "English-to-Thai Translation"
 date: 2024-04-19
 categories:
   - nlp
