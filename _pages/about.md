@@ -3,10 +3,6 @@ permalink: /about/
 title: "About"
 ---
 
-Welcome to my corner of the web!
+Hello. My name is Philip Stevens. Welcome to my corner of the web! I'm thrilled to share my journey as an experienced data scientist with over 10 years of success in developing innovative AI and machine learning solutions across diverse industries, including digital advertising and online travel. While this site is still in its early stages, it's where I'll be exploring real-world applications that captivate me and sharing my passion for leveraging AI to make a positive impact.
 
-While it's still a work in progress, this site is where I'll be sharing my journey as a data scientist and AI engineer, exploring real-world applications with a focus on sustainability. 
-
-I'm passionate about leveraging AI for sustainable development, particularly in combating climate change. I'm constantly on the lookout diverse opportunities to collaborate and contribute, so if you share my passion, let's connect!
-
-Stay tuned for updates and let's explore together!
+Currently on sabbatical, I'm always on the lookout for new opportunities to connect with like-minded individuals who share my enthusiasm for AI and data science. If you're interested, let's connect!
