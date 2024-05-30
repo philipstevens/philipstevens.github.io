@@ -2,7 +2,7 @@
 title: "English-to-Thai Translation"
 date: 2024-04-19
 categories:
-  - nlp
+  - NLP
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "bookmark"
