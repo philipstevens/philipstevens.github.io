@@ -61,7 +61,7 @@ plugins:
 author:
   name   : "Philip Stevens"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "<i> Leveraging AI<br>for positive<br>impact</i>"
+  bio    : "<i> Exploring, <br>Innovating, <br>Creating</i>"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
