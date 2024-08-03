@@ -61,7 +61,7 @@ plugins:
 author:
   name   : "Philip Stevens"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "<i> Data Scientist &<br> AI Specialist. <br><br>Exploring, <br>Innovating, <br>Creating</i>"
+  bio    : "<em> Data Scientist &<br> AI Specialist.</em><br><br><i>Exploring, <br>Innovating, <br>Creating</i>"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
