@@ -65,7 +65,7 @@ plugins:
 author:
   name   : "Philip Stevens"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "<i><b>Foundation <br>Model <br>Engineer:</b><i><br><i>Exploring, <br>Innovating, <br>Creating</i>"
+  bio: "<b>Foundation Model<br>Engineer</b><br><i>Production-grade<br>domain-adapted<br>LLM workflows</i>"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
