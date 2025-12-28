@@ -1,7 +1,13 @@
 main:
-  - title: "Projects"
-    url: /projects/
-  - title: "Resume"
-    url: /cv/
-  - title: "About"
+  - title: "Start here"
+    url: /
+  - title: "Services"
+    url: /services/
+  - title: "Case Studies"
+    url: /case-studies/
+  - title: "Tutorials"
+    url: /tutorials/
+  - title: "About Me"
     url: /about/
+  - title: "Contact"
+    url: /contact/

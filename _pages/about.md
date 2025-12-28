@@ -1,39 +1,43 @@
 ---
-permalink: /about/
 title: "About"
+layout: single
+permalink: /about/
+author_profile: true
+classes: wide
 ---
 
 Hi, I’m Phil.
 
-I’m a Foundation Model Engineer. I help product and engineering teams turn one critical, high-stakes AI workflow from demo/pilot into **production-grade**: reliable, safe, measurable, and defensible.
+I’m a Foundation Model Engineer. I help product and engineering teams turn one critical, high-stakes AI workflow from demo/pilot into production-grade: reliable, safe, measurable, and defensible.
 
-This site is my personal portfolio. I share projects, notes, and experiments across ML and LLM systems.
+This site is my portfolio. I share case studies, technical write-ups, and tutorials across evaluation-first LLM systems.
 
 Right now I’m focused on spec-driven evals, post-training, and release gates for domain-adapted LLM workflows.
 
-## Work with me
+## Proof, selected outcomes
+- Prevented production regressions by building spec-driven eval suites and integrating regression gates into release processes.
+- Stabilized retrieval quality across updates by hardening RAG pipelines with retrieval instrumentation and regression tracking.
+- Improved domain performance by shipping versioned fine-tuning packages (LoRA/QLoRA) validated against task-specific evals.
+- Enabled reliable agent and tool workflows via tool contracts, routing and guardrails, and scenario tests for correctness and recovery.
+- Improved serving efficiency without quality loss through profiling, batching, quantization and runtime selection, and caching within eval thresholds.
 
-If you’re stuck between demo and production, it usually shows up as:
-- hallucinations or inconsistent edge-case behavior
-- regressions after model or data updates
-- no defensible evidence trail for safety/compliance questions
-- latency and cost that don’t scale
+## How I work
+1. Define the bar: map the workflow, enumerate failure modes, set acceptance criteria.
+2. Build evidence: implement evals and a regression harness, then iterate until the bar is met consistently.
+3. Ship safely: version artifacts behind gates, monitor drift, and keep rollback simple.
 
-### Production-Grade AI Workflow Audit
+## Background
+I bring 10+ years of applied ML across personalization, recommendations, NLP, and real-time decision systems, including production work at Agoda and Quantcast.
 
-A focused assessment of one workflow to define the bar and the path to ship.
+## Topics I write about
+- Evaluation and regression testing for LLM workflows  
+- Grounded retrieval (RAG), attribution behavior, retrieval instrumentation  
+- Post-training (LoRA/QLoRA, preference tuning) and packaging  
+- Release gating, monitoring, rollback, and operating model and data changes  
 
-You get:
-- a workflow spec (task, failure modes, acceptance criteria)
-- a starter evaluation plan (test cases, metrics, regression outline)
-- a prioritized set of recommendations (what to do next and why)
+If you want help hardening a workflow:
+[See services](/services/){: .btn .btn--primary }
 
-**Book a 30-min workflow clinic:** https://clarity.fm/philipstevens  
-**Or email me:** [philipstevens4@gmail.com](mailto:philipstevens4@gmail.com)
-
-## What I’m interested in
-
-Computer vision, NLP, reinforcement learning, generative AI/LLMs, and building systems that are efficient, scalable, and trustworthy. I’m especially interested in evaluation, post-training, and release gating for high-stakes workflows.
-
-If you’re building something meaningful and want to collaborate, reach out.
-
+- Book: https://clarity.fm/philipstevens  
+- Email: philipstevens4@gmail.com
+- CV: [/cv/](/cv/)

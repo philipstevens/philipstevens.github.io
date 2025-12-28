@@ -121,9 +121,37 @@ defaults:
       layout: single
       author_profile: true
 
+  - scope:
+      path: ""
+      type: case_studies
+    values:
+      layout: single
+      classes: wide
+      author_profile: true
+      share: true
+      toc: true
+
+  - scope:
+      path: ""
+      type: tutorials
+    values:
+      layout: single
+      classes: wide
+      author_profile: true
+      share: true
+      toc: true
+
 category_archive:
   type: liquid
   path: /categories/
 tag_archive:
   type: liquid
   path: /tags/
+
+collections:
+  case_studies:
+    output: true
+    permalink: /case-studies/:path/
+  tutorials:
+    output: true
+    permalink: /tutorials/:path/
