@@ -3,6 +3,7 @@ layout: splash
 permalink: /
 title: "Phil Stevens"
 excerpt: "High-stakes, domain-adapted LLM workflows. Made reliable."
+description: "Spec-driven evals, post-training, and release gates for high-stakes, domain-adapted LLM workflows."
 author_profile: false
 classes: wide
 header:

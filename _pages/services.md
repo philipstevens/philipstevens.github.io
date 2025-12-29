@@ -2,6 +2,7 @@
 title: "Services"
 layout: single
 permalink: /services/
+description: "Packaged engagements: Workflow Audit, Build and Harden, and Release Ops for production LLM workflows."
 author_profile: true
 classes: wide
 ---

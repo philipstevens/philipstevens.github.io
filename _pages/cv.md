@@ -1,9 +1,11 @@
 ---
-title: "Resume"
+title: "CV"
 permalink: /cv/
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "bookmark"
+author_profile: true
+classes: wide
 ---
 
 [Download](https://philipstevens.github.io/files/20240529-pcs-resume.pdf "download"){: .btn .btn--info}
@@ -13,6 +15,22 @@ toc_icon: "bookmark"
 - LinkedIn: [linkedin.com/in/philip-charles-stevens/](https://www.linkedin.com/in/philip-charles-stevens/)
 
 ## 💼 Experience
+### Self-employed
+
+***Foundation Model Engineer (Consultant)***
+
+*Mar 2023 - Present*
+
+High-stakes, domain-adapted LLM workflows, made reliable.
+
+_Selected outcomes:_
+- Built spec-driven eval suites and regression gates and integrated them into release processes to prevent regressions.
+- Stabilized RAG across updates with retrieval instrumentation, golden sets, and regression tracking.
+- Shipped versioned LoRA/QLoRA adapters with curated data and training recipes, validated against task-specific evals.
+- Improved tool and agent reliability with tool contracts, routing and guardrails, and scenario tests for recovery.
+- Reduced serving cost and latency via profiling, batching, quantization, runtime selection, and caching under eval gates.
+
+
 ### Agoda
 
 ***Senior Data Scientist***
@@ -71,19 +89,43 @@ techniques, resulting in a ~20% increase in user clicks and conversions for clie
 Sketch Diagram Strokes.” SBIM ‘13](https://dl.acm.org/doi/10.1145/2487381.2487383)
 
 ## 🤖 Skills
-- **Languages:**
-  - ***Advanced:*** Python,  SQL
-  - ***Proficient:*** R, Scala, Java, C#
-- **ML Frameworks/Libraries:** Tensorflow/Keras, scikit-learn, xgboost, PyTorch
-- **Applications:** Natural Language Processing (NLP), Computer Vision, Recommendation Systems, Generative AI, Predictive Models
-- **Techniques:** Deep Learning, Transfer Learning (LLMs), Reinforcement Learning, Classical ML (eg, Regression, Decision Trees,
-Ensembles, Clustering)
-- **Big Data:** Spark, Hive, Pyspark, Hadoop
 
+- **Post-training and adaptation (core):**
+  - Instruction tuning (SFT), task and domain adaptation
+  - Preference optimization: DPO, ORPO, SimPO-style objectives
+  - Preference data design: pairwise and single-response feedback, rubric design, consistency checks
+  - Alignment and safety post-training: constitutional style critique and revision loops, RLAIF patterns when needed
+  - PEFT: LoRA and QLoRA adapters, adapter packaging, versioning, merge and composition strategies
 
+- **Data for post-training (what actually moves the needle):**
+  - Dataset design and curation: filtering, dedup, quality gates, label guidelines, synthetic data with verification
+  - Decontamination and leakage control: strict train and eval separation, contamination checks
+  - Eval set construction: golden sets, stress sets, adversarial sets aligned to real failure modes
 
+- **Evaluation and release engineering:**
+  - Spec-driven evals: failure modes, acceptance criteria, scenario tests, regression harnesses
+  - CI integrated eval gates, safe rollout patterns, rollback criteria, drift monitoring triggers
 
+- **Grounded workflows and tool reliability:**
+  - RAG design: chunking, hybrid retrieval, reranking, citation and attribution behavior
+  - Retrieval instrumentation: coverage and recall proxies, regression tracking
+  - Tool contracts, routing, guardrails, safe failure modes, recovery tests
 
+- **Reliability contracts for production:**
+  - Structured outputs, schema validation, constrained decoding for deterministic interfaces
+  - Output validation that is separate from prompting, with explicit fallbacks
 
+- **Serving and inference efficiency:**
+  - Throughput and latency optimization: continuous batching, KV cache and prefix caching concepts
+  - Quantization under quality gates, profiling driven capacity planning, caching strategies
 
+- **Observability and security:**
+  - OpenTelemetry-based tracing, latency and cost monitoring, error taxonomy
+  - LLM security: prompt injection, insecure output handling, excessive agency controls, audit trails
 
+- **Stack:**
+  - Python, SQL (advanced); R, Scala, Java, C# (proficient)
+  - PyTorch; Transformers ecosystem (Transformers, PEFT, TRL); scikit-learn, xgboost
+  - Spark, PySpark, Hive, Hadoop
+
+See supporting write-ups and case studies: [/projects/](/projects/)
