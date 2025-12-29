@@ -3,7 +3,9 @@ title: "About"
 layout: single
 permalink: /about/
 author_profile: true
+profile_page: true
 classes: wide
+last_updated: 2025-12-28
 ---
 
 Hi, I’m Phil.
@@ -41,3 +43,5 @@ If you want help hardening a workflow:
 - Book: https://clarity.fm/philipstevens  
 - Email: philipstevens4@gmail.com
 - CV: [/cv/](/cv/)
+
+{% include last-updated.html %}

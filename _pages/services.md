@@ -5,12 +5,21 @@ permalink: /services/
 description: "Packaged engagements: Workflow Audit, Build and Harden, and Release Ops for production LLM workflows."
 author_profile: true
 classes: wide
+last_updated: 2025-12-28
 ---
 
 I help product and engineering teams turn one high-stakes LLM workflow from demo/pilot into production-grade: reliable, safe, measurable, and defensible.
 
 [Book an advisory call](https://clarity.fm/philipstevens){: .btn .btn--primary }
 Email: philipstevens4@gmail.com
+
+## Typical engagement
+
+| Audit | Build and harden | Release gates | Monitor |
+|---|---|---|---|
+| Define the bar: failure modes, acceptance criteria, eval plan | Implement and iterate until it meets the bar | Ship behind eval gates with safe rollout and rollback | Monitor drift, triage regressions, schedule re-tuning |
+
+Audit → Build and harden → Release gates → Monitor
 
 ---
 
@@ -89,3 +98,5 @@ If you want to start, book a call or email me:
 [Book an advisory call](https://clarity.fm/philipstevens){: .btn .btn--primary }
 
 Email: philipstevens4@gmail.com
+
+{% include last-updated.html %}

@@ -1,0 +1,19 @@
+{% if page.profile_page %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "{{ site.author.name | escape }}",
+    "description": "{{ site.author.bio | strip_html | strip_newlines | escape }}",
+    "url": "{{ site.url }}{{ page.url }}",
+    "image": "{{ site.url }}{{ site.author.avatar }}",
+    "sameAs": [
+      "https://github.com/philipstevens",
+      "https://www.linkedin.com/in/philip-charles-stevens/"
+    ]
+  }
+}
+</script>
+{% endif %}

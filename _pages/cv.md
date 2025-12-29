@@ -6,7 +6,10 @@ toc_label: "Table of Contents"
 toc_icon: "bookmark"
 author_profile: true
 classes: wide
+last_updated: 2025-12-28
 ---
+
+{% include last-updated.html %}
 
 [Download](https://philipstevens.github.io/files/20240529-pcs-resume.pdf "download"){: .btn .btn--info}
 
