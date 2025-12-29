@@ -13,16 +13,14 @@ I help product and engineering teams turn one high-stakes LLM workflow from demo
 [Book an advisory call](https://clarity.fm/philipstevens){: .btn .btn--primary }
 Email: philipstevens4@gmail.com
 
-## Typical engagement
 
-| Audit | Build and harden | Release gates | Monitor |
-|---|---|---|---|
-| Define the bar: failure modes, acceptance criteria, eval plan | Implement and iterate until it meets the bar | Ship behind eval gates with safe rollout and rollback | Monitor drift, triage regressions, schedule re-tuning |
+| Offer | What it does | Typical outcome |
+|---|---|---|
+| [Audit](#audit) | Define the bar: failure modes, acceptance criteria, eval plan | Clear ship criteria plus a concrete plan |
+| [Build and Harden](#build-harden) | Implement evals and harden until the workflow meets the bar | Stable behavior on representative cases |
+| [Release Ops](#release-ops) | Gate releases, monitor drift, and keep rollback simple | Predictable releases and fewer regressions |
 
-Audit → Build and harden → Release gates → Monitor
-
----
-
+<a id="audit"></a>
 ## Offer 1: Workflow Audit
 A focused assessment of one workflow to define the production bar and the path to ship.
 
@@ -45,7 +43,7 @@ Teams with a demo or pilot that works on happy paths but is not reliable, testab
 Book: https://clarity.fm/philipstevens
 
 ---
-
+<a id="build-harden"></a>
 ## Offer 2: Build and Harden
 Build or baseline the workflow, implement the eval suite and regression harness, then iterate until it meets the production bar for quality, safety, and auditability.
 
@@ -69,7 +67,7 @@ Teams that want the workflow shipped into production, not just assessed.
 Book: https://clarity.fm/philipstevens
 
 ---
-
+<a id="release-ops"></a>
 ## Offer 3: Release Ops
 Operate releases like software: versioned artifacts behind eval gates, safe rollouts with rollback, drift monitoring, and periodic re-tuning.
 
