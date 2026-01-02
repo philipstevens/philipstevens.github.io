@@ -3,17 +3,15 @@ layout: splash
 permalink: /
 title: "Phil Stevens"
 excerpt: "High-stakes, domain-adapted LLM workflows. Made reliable."
-description: "Spec-driven evals, post-training, and release gates for high-stakes, domain-adapted LLM workflows."
+description: "Philip Stevens, foundation model engineer. I build production-grade, domain-adapted LLM workflows with spec-driven evals, post-training, and release gates."
 author_profile: false
 classes: wide
 header:
   overlay_color: "#0B1220"
   overlay_filter: 0.35
   actions:
-    - label: "Book an advisory call"
-      url: "https://clarity.fm/philipstevens"
-    - label: "See services"
-      url: "/services/"
+    - label: "Book intro call"
+      url: "https://calendly.com/philipstevens4/intro"
 ---
 
 ## What I do
@@ -39,9 +37,9 @@ I make one high-stakes LLM workflow production-grade: spec → evals → hardeni
 - Classification, triage, routing
 - Assisted drafting and editing
 
-## Proof and portfolio
-Case studies and technical write-ups: [/projects/](/projects/)
+## Where to next
 
-## Contact
-- Book: https://clarity.fm/philipstevens
-- Email: philipstevens4@gmail.com
+- If you want help shipping a workflow, see what [services](/services/) I offer.
+- If you want to reach me, email [philipstevens4@gmail.com](mailto:philipstevens4@gmail.com).
+- If you want to see how I work, check out my [case studies and tutorials](/work/).
+

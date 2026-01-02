@@ -13,13 +13,12 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: PCS 
 email: philipstevens4@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
-twitter_username: username
+title: Philip Stevens
+description: "Production-grade, domain-adapted LLM workflows (spec-driven evals • post-training • release gates)"
+url: "https://philipstevens.github.io"
+baseurl: ""
+masthead_title: "PCS"
 github_username: philipstevens
 minimal_mistakes_skin: default
 search: true
@@ -51,7 +50,6 @@ exclude:
   - .git
   - .vscode
 
-
 # Plugins (previously gems:)
 plugins:
   - jekyll-paginate
@@ -65,26 +63,27 @@ plugins:
 author:
   name   : "Philip Stevens"
   avatar : "/assets/images/bio-photo.jpg"
-  bio: "<b>Foundation Model<br>Engineer</b><br><i>Production-grade<br>domain-adapted<br>LLM workflows</i>"
+  bio: "<b>Foundation Model<br>Engineer</b><br><i>High-stakes<br>domain-adapted<br>LLM workflows.<br>Made reliable.</i>"
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: mailto:philipstevens4@gmail.com
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/philipstevens"
-    - label: "LinkedIn"
-      icon: "fab fa-fw fa-linkedin"
-      url: "https://www.linkedin.com/in/philip-charles-stevens/"
-    # - label: "Website"
-    #   icon: "fas fa-fw fa-link"
-    #   url: "https://"
-    # - label: "Twitter"
-    #   icon: "fab fa-fw fa-twitter-square"
-    #   url: "https://twitter.com/"
-    # - label: "Instagram"
-    #   icon: "fab fa-fw fa-instagram"
-    #   url: "https://instagram.com/"
+  - label: "Book intro call"
+    icon: "fas fa-fw fa-calendar"
+    url: "https://calendly.com/philipstevens4/intro"
+
+  - label: "Email"
+    icon: "fas fa-fw fa-envelope"
+    url: "mailto:philipstevens4@gmail.com"
+
+  - label: "LinkedIn"
+    icon: "fab fa-fw fa-linkedin"
+    url: "https://www.linkedin.com/in/philip-charles-stevens"
+
+  - label: "GitHub"
+    icon: "fab fa-fw fa-github"
+    url: "https://github.com/philipstevens"
+
+  - label: "CV"
+    icon: "fas fa-fw fa-file-alt"
+    url: "/cv/"
 
 footer:
   links:
@@ -94,15 +93,12 @@ footer:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: https://www.linkedin.com/in/philip-charles-stevens/
-    # - label: "Twitter"
-    #   icon: "fab fa-fw fa-twitter-square"
-    #   url: "https://twitter.com/"
-    # - label: "Instagram"
-    #   icon: "fab fa-fw fa-instagram"
-    #   url: "https://instagram.com/"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope"
+      url: "mailto:philipstevens4@gmail.com"
+    
 
 defaults:
-  # _posts
   - scope:
       path: ""
       type: posts
@@ -110,10 +106,10 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: true
+      comments: false
       share: true
       related: true
-  # _pages
+
   - scope:
       path: "_pages"
       type: pages
@@ -123,23 +119,13 @@ defaults:
 
   - scope:
       path: ""
-      type: case_studies
+      type: work
     values:
       layout: single
       classes: wide
       author_profile: true
-      share: true
       toc: true
-
-  - scope:
-      path: ""
-      type: tutorials
-    values:
-      layout: single
-      classes: wide
-      author_profile: true
       share: true
-      toc: true
 
 category_archive:
   type: liquid
@@ -149,9 +135,7 @@ tag_archive:
   path: /tags/
 
 collections:
-  case_studies:
+  work:
     output: true
-    permalink: /case-studies/:path/
-  tutorials:
-    output: true
-    permalink: /tutorials/:path/
+    permalink: /work/:path/
+  

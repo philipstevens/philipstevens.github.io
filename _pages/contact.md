@@ -2,42 +2,14 @@
 title: "Contact"
 layout: single
 permalink: /contact/
+description: "Contact Philip Stevens to discuss LLM workflow hardening, speaking, or roles. Book an intro call or send a message with what’s breaking in production."
 author_profile: true
 classes: wide
 ---
 
+[Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
+[Email me](mailto:philipstevens4@gmail.com){: .btn .btn--inverse }
+
 Email: **philipstevens4@gmail.com**
 
-Book a call: https://clarity.fm/philipstevens
-
-I’m happy to hear from you about consulting, partnerships, roles, writing, speaking, open source, or just saying hi.
-
-<details markdown="1">
-  <summary>Optional: if your message is about a workflow (to speed things up)</summary>
-
-- What the workflow does
-- What is breaking (one example)
-- Constraints (quality, safety, latency, cost, compliance)
-- Current setup (model, retrieval, tools) and where it runs
-- What you want next (advice, audit, build, ongoing)
-
-</details>
-
-<details markdown="1">
-  <summary>Optional: if your message is about a role, partnership, or collaboration</summary>
-
-- The context and why you think I’m a fit
-- Timeline
-- Links or docs that matter
-
-</details>
-
-<details markdown="1">
-  <summary>Optional: if you want the shortest possible template</summary>
-
-- What this is about:
-- What you want:
-- Timeline:
-- Link(s):
-
-</details>
+I’m happy to hear from you about consulting, partnerships, direct hire roles, writing, speaking, or collaborations.

@@ -3,10 +3,8 @@ main:
     url: /
   - title: "Services"
     url: /services/
-  - title: "Case Studies"
-    url: /case-studies/
-  - title: "Tutorials"
-    url: /tutorials/
+  - title: "Work"
+    url: /work/
   - title: "About Me"
     url: /about/
   - title: "Contact"

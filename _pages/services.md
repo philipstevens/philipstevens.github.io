@@ -2,17 +2,18 @@
 title: "Services"
 layout: single
 permalink: /services/
-description: "Packaged engagements: Workflow Audit, Build and Harden, and Release Ops for production LLM workflows."
+description: "Packaged engagements to harden an LLM workflow: audit & acceptance criteria, evaluation + regression harness, build & harden, and eval-gated release ops."
 author_profile: true
 classes: wide
 last_updated: 2025-12-28
 ---
 
-I help product and engineering teams turn one high-stakes LLM workflow from demo/pilot into production-grade: reliable, safe, measurable, and defensible.
+[Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
+[Email me](mailto:philipstevens4@gmail.com){: .btn .btn--inverse }
 
-[Book an advisory call](https://clarity.fm/philipstevens){: .btn .btn--primary }
-Email: philipstevens4@gmail.com
+High-stakes, domain-adapted LLM workflows, made reliable through spec-driven evals, post-training, and gated releases.
 
+Below are my offers. Engagements are modular. You can start at any step.
 
 | Offer | What it does | Typical outcome |
 |---|---|---|
@@ -40,10 +41,9 @@ Teams with a demo or pilot that works on happy paths but is not reliable, testab
 - An evaluation plan exists that can gate changes and prevent regressions
 - Next steps are scoped and prioritized
 
-Book: https://clarity.fm/philipstevens
-
 ---
 <a id="build-harden"></a>
+
 ## Offer 2: Build and Harden
 Build or baseline the workflow, implement the eval suite and regression harness, then iterate until it meets the production bar for quality, safety, and auditability.
 
@@ -64,10 +64,9 @@ Teams that want the workflow shipped into production, not just assessed.
 - Regressions are caught before release
 - Latency and cost stay within agreed thresholds
 
-Book: https://clarity.fm/philipstevens
-
 ---
 <a id="release-ops"></a>
+
 ## Offer 3: Release Ops
 Operate releases like software: versioned artifacts behind eval gates, safe rollouts with rollback, drift monitoring, and periodic re-tuning.
 
@@ -88,13 +87,5 @@ Ongoing support (monthly retainer or fixed cadence)
 - Drift is detected early and handled predictably
 - Rollback is fast and low-risk
 
-Book: https://clarity.fm/philipstevens
-
----
-
-If you want to start, book a call or email me:
-[Book an advisory call](https://clarity.fm/philipstevens){: .btn .btn--primary }
-
-Email: philipstevens4@gmail.com
 
 {% include last-updated.html %}

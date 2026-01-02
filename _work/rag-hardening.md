@@ -1,6 +1,7 @@
 ---
 title: "RAG hardening with regression gates"
 excerpt: "How I stabilized retrieval quality across updates using golden sets, instrumentation, and gated releases."
+#type: case-study
 tags: [rag, evaluation, release-gates]
 ---
 

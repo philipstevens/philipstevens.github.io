@@ -1,6 +1,7 @@
 ---
 title: "CV"
 permalink: /cv/
+description: "CV of Philip Stevens, applied ML + foundation model engineering across personalization, NLP, and production LLM workflows (evals, RAG, post-training)."
 toc: true
 toc_label: "Table of Contents"
 toc_icon: "bookmark"
@@ -11,7 +12,7 @@ last_updated: 2025-12-28
 
 {% include last-updated.html %}
 
-[Download](https://philipstevens.github.io/files/20240529-pcs-resume.pdf "download"){: .btn .btn--info}
+[Download CV PDF](https://philipstevens.github.io/files/20240529-pcs-resume.pdf "download"){: .btn .btn--info}
 
 ## 📧 Contact
 - Email: [philipstevens4@gmail.com](mailto:philipstevens4@gmail.com)
@@ -131,4 +132,4 @@ Sketch Diagram Strokes.” SBIM ‘13](https://dl.acm.org/doi/10.1145/2487381.24
   - PyTorch; Transformers ecosystem (Transformers, PEFT, TRL); scikit-learn, xgboost
   - Spark, PySpark, Hive, Hadoop
 
-See supporting write-ups and case studies: [/projects/](/projects/)
+See supporting write-ups: [/case-studies/](/case-studies/) and [/tutorials/](/tutorials/)
