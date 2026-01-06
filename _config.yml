@@ -63,7 +63,7 @@ plugins:
 author:
   name   : "Philip Stevens"
   avatar : "/assets/images/bio-photo.jpg"
-  bio: "<b>Foundation Model<br>Engineer</b><br><i>High-stakes<br>domain-adapted<br>LLM workflows.<br>Made reliable.</i>"
+  bio: "<b>Foundation Model<br>Engineer</b><br><i>Prodction-grade<br>domain-adapted<br>LLM workflows.<br>Made reliable.</i>"
   links:
   - label: "Book intro call"
     icon: "fas fa-fw fa-calendar"

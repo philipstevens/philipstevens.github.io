@@ -11,9 +11,9 @@ last_updated: 2025-12-28
 
 Hi, I’m Phil.
 
-I’m a Foundation Model Engineer. I work on high-stakes, domain-adapted LLM workflows where reliability matters. 
+I’m a Foundation Model Engineer currently focused on making LLM workflows reliable in production.
 
-My focus is spec-driven evals, post-training, and gated releases that keep behavior stable across updates and make shipping defensible.
+My focus is on domain adaptation via post-training, and on eval-driven development and release gating for both training and deployment.
 
 I bring 10+ years of applied ML across personalization, recommendations, NLP, and real-time decision systems, including production work at Agoda and Quantcast.
 

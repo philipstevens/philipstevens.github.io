@@ -11,9 +11,9 @@ last_updated: 2025-12-28
 [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
 [Email me](mailto:philipstevens4@gmail.com){: .btn .btn--inverse }
 
-High-stakes, domain-adapted LLM workflows, made reliable through spec-driven evals, post-training, and gated releases.
+Domain-adapted LLM workflows, made production-grade through spec-driven evals, post-training, and gated releases.
 
-Below are my offers. Engagements are modular. You can start at any step.
+Built for teams that need to move beyond a demo and ship a customized LLM workflow that behaves reliably under real-world usage.
 
 | Offer | What it does | Typical outcome |
 |---|---|---|
@@ -51,10 +51,9 @@ Build or baseline the workflow, implement the eval suite and regression harness,
 Teams that want the workflow shipped into production, not just assessed.
 
 **Deliverables**
-- Evaluation suite plus regression harness integrated into your dev and release flow
-- Hardened workflow: grounding, validation, routing, adaptation where justified
-- Versioning plan for key artifacts: data, model or adapter, prompts, configs
-- Release gate checklist and rollout plan
+- Evaluation suite and regression harness integrated into your dev and release flow
+- Hardened workflow with grounding, validation, routing, and adaptation where justified
+- Versioning plan plus release gates: key artifacts, rollout checklist, and a rollback-ready plan
 
 **Typical timeline**
 2 to 6+ weeks (depends on workflow complexity and integration)
@@ -75,9 +74,8 @@ Workflows already in production that must stay stable across upstream model, dat
 
 **Deliverables**
 - Eval-gated release process and cadence
-- Monitoring plan: quality proxies, safety signals, drift triggers
-- Rollback plan for model, data, prompts, and configs
-- Retuning triggers and review cadence
+- Monitoring plan for quality, safety, and drift
+- Rollback and retuning plan (model, data, prompts, configs)
 
 **Typical timeline**
 Ongoing support (monthly retainer or fixed cadence)

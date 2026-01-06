@@ -2,7 +2,7 @@
 layout: splash
 permalink: /
 title: "Phil Stevens"
-excerpt: "High-stakes, domain-adapted LLM workflows. Made reliable."
+excerpt: "Reliable LLM workflows, customized to your domain."
 description: "Philip Stevens, foundation model engineer. I build production-grade, domain-adapted LLM workflows with spec-driven evals, post-training, and release gates."
 author_profile: false
 classes: wide
@@ -16,30 +16,26 @@ header:
 
 ## What I do
 
-I make one high-stakes LLM workflow production-grade: spec → evals → hardening → gated releases.
+I make your LLM workflows production-grade and domain-adapted: spec → evals → hardening → gated releases.
 
-## If you are stuck between demo and production, it usually looks like
-- Hallucinations or inconsistent behavior on edge cases
-- Regressions after model or data updates
-- No defensible evidence trail for safety and compliance questions
-- Latency and cost that do not scale
+Especially helpful when you’re moving from demo to production and need customization plus measurable reliability.
 
-## What I deliver per workflow
-- Workflow spec: task, failure modes, acceptance criteria
-- Evaluation suite: test sets, metrics, regression harness
-- Hardened workflow: grounded, validated, tuned
-- Eval-gated releases: versioning, drift monitoring, rollback
+## The usual reasons AI pilots get stuck
+- Outputs aren’t reliable and updates break behaviour
+- Outputs aren’t defensible for review, safety, or compliance
+- It’s too slow or too expensive to run at scale
 
-## Typical workflow types
-- Grounded search and Q&A (RAG)
-- Summarization and synthesis
-- Extraction to structuring
-- Classification, triage, routing
-- Assisted drafting and editing
+## How I solve it
+- Define the spec and acceptance criteria
+- Build evals, then harden the workflow until it passes consistently
+- Ship behind release gates with monitoring and rollback
+
+## Typical workflows I help with
+- Answer questions and draft responses from your documents
+- Summarize and combine information from documents
+- Extract key fields and route or classify items
 
 ## Where to next
-
-- If you want help shipping a workflow, see what [services](/services/) I offer.
-- If you want to reach me, email [philipstevens4@gmail.com](mailto:philipstevens4@gmail.com).
-- If you want to see how I work, check out my [case studies and tutorials](/work/).
-
+- Services: packaged engagements to ship a workflow ([services](/services/))
+- Work: case studies and tutorials ([work](/work/))
+- Contact: book a call or email me ([contact](/contact/))
