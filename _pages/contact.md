@@ -12,4 +12,4 @@ classes: wide
 
 Email: **philipstevens4@gmail.com**
 
-I’m happy to hear from you about consulting, partnerships, direct hire roles, writing, speaking, or collaborations.
+I’m happy to hear from you about consulting, collaborations, writing, speaking or direct hire roles.
