@@ -20,6 +20,7 @@ I bring 10+ years of applied ML across personalization, recommendations, NLP, an
 This site is my portfolio. I share case studies, technical write-ups, and tutorials across evaluation-first LLM systems.
 
 ## Where to go next
+
 - [Services](/services/) for engagement options  
 - [Work](/work/) for case studies and tutorials  
 - [CV](/cv/) for background  

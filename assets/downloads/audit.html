@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LLM Workflow Audit — Phil Stevens</title>
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --muted: #64748b;
+      --accent: #4f46e5;
+      --accent-light: #e0e7ff;
+      --line: #e2e8f0;
+      --bg: #ffffff;
+      --surface: #f8fafc;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      background: var(--bg);
+      color: var(--ink);
+      font: 15px/1.6 'Inter', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 40px 60px;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .header-left h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      color: var(--ink);
+    }
+
+    .header-left .subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      margin: 0;
+      max-width: 500px;
+    }
+
+    .header-right {
+      text-align: right;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .header-right .name {
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    /* Key-value pairs */
+    .overview {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 12px 20px;
+      margin: 24px 0;
+      padding: 20px 24px;
+      background: var(--surface);
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .overview dt {
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .overview dd {
+      margin: 0;
+      color: var(--ink);
+    }
+
+    /* Sections */
+    section {
+      margin: 36px 0;
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 0 0 12px;
+    }
+
+    p {
+      margin: 12px 0;
+    }
+
+    ul {
+      margin: 12px 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .card-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .card-full {
+      grid-column: 1 / -1;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin: 16px 0;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      background: var(--surface);
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: var(--surface);
+    }
+
+    .small {
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* Success criteria */
+    .success-list {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 1px solid #86efac;
+      border-radius: 10px;
+      padding: 20px 24px;
+    }
+
+    .success-list ul {
+      margin: 0;
+    }
+
+    .success-list li {
+      color: #166534;
+    }
+
+    /* Boundaries */
+    .boundaries {
+      background: var(--surface);
+      border-radius: 10px;
+      padding: 20px 24px;
+    }
+
+    .boundaries ul {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* CTA / Contact */
+    .contact-section {
+      margin-top: 48px;
+      padding: 28px;
+      background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+      border: 1px solid #c7d2fe;
+      border-radius: 12px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .contact-text h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      color: var(--ink);
+    }
+
+    .contact-text p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact-url {
+      display: inline-block;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      padding: 10px 0;
+    }
+
+    .contact-url:hover {
+      text-decoration: underline;
+    }
+
+    .contact-details {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    .qr-box {
+      text-align: center;
+    }
+
+    .qr-box img {
+      width: 100px;
+      height: 100px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      padding: 4px;
+    }
+
+    .qr-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Print styles */
+    @media print {
+      .page {
+        max-width: none;
+        padding: 24px;
+        margin: 0;
+      }
+
+      .header {
+        page-break-after: avoid;
+      }
+
+      section {
+        page-break-inside: avoid;
+      }
+
+      table {
+        page-break-inside: avoid;
+      }
+
+      .contact-section {
+        page-break-inside: avoid;
+      }
+
+      a {
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      .contact-url {
+        color: var(--accent);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .grid { grid-template-columns: 1fr; }
+      .overview { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .qr-box { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div class="header-left">
+        <h1>LLM Workflow Audit</h1>
+        <p class="subtitle">Define the production bar for one workflow and produce an implementation-ready plan to ship it safely.</p>
+      </div>
+      <div class="header-right">
+        <div class="name">Phil Stevens</div>
+        <div>philipstevens.github.io</div>
+      </div>
+    </header>
+
+    <dl class="overview">
+      <dt>Scope</dt>
+      <dd>One LLM workflow end-to-end (prompting/routing, RAG/tools if present, output constraints, and operational controls).</dd>
+      <dt>Primary output</dt>
+      <dd>Contracts + gates + failure-mode coverage + eval plan + ops plan (ready to implement).</dd>
+    </dl>
+
+    <section>
+      <h2>Best Fit</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-label">You have</div>
+          <ul>
+            <li>A demo or pilot that "works," but is brittle or hard to trust.</li>
+            <li>Stakeholders asking: "How do we know it's safe to ship?"</li>
+            <li>Frequent changes (prompt/model/docs/tools) causing behavior drift.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-label">You need</div>
+          <ul>
+            <li>Explicit ship/no-ship criteria and a must-pass set.</li>
+            <li>A failure-mode map that's testable and operational.</li>
+            <li>An eval + monitoring plan tied to rollback triggers.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Inputs Required</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Input</th>
+            <th>Minimum</th>
+            <th>What it enables</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Representative examples</td>
+            <td>30–100 inputs (+ current outputs if available)</td>
+            <td>Realistic eval coverage; must-pass selection; edge cases.</td>
+          </tr>
+          <tr>
+            <td>Current implementation overview</td>
+            <td>Prompts/routing and where it runs (repo access or walkthrough)</td>
+            <td>Accurate diagnosis; practical fixes; correct trace/version requirements.</td>
+          </tr>
+          <tr>
+            <td>Integration constraints</td>
+            <td>Output consumer + required format + downstream constraints</td>
+            <td>Correct output contract and validation strategy.</td>
+          </tr>
+          <tr>
+            <td>Policy/compliance constraints</td>
+            <td>PII rules, safety constraints, brand/voice rules (if any)</td>
+            <td>Explicit refusal/escalation behavior and safety gates.</td>
+          </tr>
+          <tr>
+            <td>Optional accelerators</td>
+            <td>Logs, known incidents, RAG details (chunking/retrieval), tool specs</td>
+            <td>Higher precision failure modes; stronger regression harness design.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="small">Data handling: least-privilege access; redact sensitive fields in shared artifacts; keep examples minimal and relevant.</p>
+    </section>
+
+    <section>
+      <h2>Process</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Step</th>
+            <th>What we do</th>
+            <th>Artifact produced</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Scope + risk tier</strong></td>
+            <td>Define workflow boundaries, unacceptable failures, and allowed uncertainty (refuse / escalate / partial).</td>
+            <td>Workflow contract draft + risk tier defaults</td>
+          </tr>
+          <tr>
+            <td><strong>2. System teardown</strong></td>
+            <td>Map prompting, routing, RAG/tool use, validators, and where failures can occur.</td>
+            <td>Architecture + dependency map</td>
+          </tr>
+          <tr>
+            <td><strong>3. Failure modes</strong></td>
+            <td>Enumerate failures, severities, detection methods, and mitigations tied to the workflow.</td>
+            <td>Failure-mode coverage matrix</td>
+          </tr>
+          <tr>
+            <td><strong>4. Eval design</strong></td>
+            <td>Define test categories, must-pass set selection rules, and measurable gates.</td>
+            <td>Eval plan + gate thresholds proposal</td>
+          </tr>
+          <tr>
+            <td><strong>5. Operability design</strong></td>
+            <td>Define trace fields, versioning scheme, monitoring signals, rollout and rollback triggers.</td>
+            <td>Ops plan + release readiness requirements</td>
+          </tr>
+          <tr>
+            <td><strong>6. Readout</strong></td>
+            <td>Prioritize fixes, estimate effort, and define "done" for Build & Harden.</td>
+            <td>Implementation roadmap (sequenced, with acceptance criteria)</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Deliverables</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Workflow Contract Pack</h3>
+          <ul>
+            <li><strong>Input contract:</strong> fields, validation rules, max sizes.</li>
+            <li><strong>Output contract:</strong> schema/format + refusal/escalation structure.</li>
+            <li><strong>Grounding mode:</strong> grounded-only / mixed / ungrounded, with evidence rules.</li>
+            <li><strong>Tool policy:</strong> allow-list + argument validation + failure handling (if tools).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Gates + Coverage</h3>
+          <ul>
+            <li><strong>Failure-mode matrix:</strong> blocker/major/minor, detection (auto vs review), mitigations.</li>
+            <li><strong>Eval blueprint:</strong> categories, minimum counts, must-pass definition.</li>
+            <li><strong>Gate thresholds:</strong> risk-tier defaults for quality/safety/perf/regression.</li>
+            <li><strong>Release requirements:</strong> what evidence must exist to ship.</li>
+          </ul>
+        </div>
+        <div class="card card-full">
+          <h3>Ops & Auditability Plan</h3>
+          <ul>
+            <li><strong>Trace requirements:</strong> versions (model/prompt/retrieval), tool calls, retrieved IDs, latency/cost.</li>
+            <li><strong>Monitoring plan:</strong> alert thresholds and drift signals tied to rollback triggers.</li>
+            <li><strong>Rollout plan outline:</strong> shadow/canary/ramp recommendation and approval steps.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Success Criteria</h2>
+      <div class="success-list">
+        <ul>
+          <li>Everyone can answer: "What does 'correct' mean for this workflow?" in measurable terms.</li>
+          <li>There is a must-pass set and a gate definition that would prevent unacceptable releases.</li>
+          <li>There is an implementable plan to add traceability, monitoring, and rollback triggers.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Boundaries</h2>
+      <div class="boundaries">
+        <ul>
+          <li>Implementing the harness, CI gates, or production rollout (covered in Build & Harden / Retainer).</li>
+          <li>Large-scale labeling programs or broad multi-workflow platform work (can be separately scoped).</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="contact-section">
+      <div class="contact-grid">
+        <div class="contact-text">
+          <h3>Next Step</h3>
+          <p>Share one workflow and 30–100 representative examples to start. If examples are sensitive, start with synthetic or redacted cases and iterate.</p>
+          <div class="contact-action">
+            <strong>Book an intro call:</strong><br>
+            <a href="https://calendly.com/philipstevens4/intro" class="contact-url">calendly.com/philipstevens4/intro</a>
+          </div>
+          <div class="contact-details">
+            <strong>Email:</strong> philipstevens4@gmail.com<br>
+            <strong>Web:</strong> philipstevens.github.io
+          </div>
+        </div>
+        <div class="qr-box">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://calendly.com/philipstevens4/intro" alt="QR Code to book intro call" />
+          <div class="qr-label">Scan to book a call</div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div>Phil Stevens — LLM Workflow Reliability</div>
+      <div>philipstevens.github.io</div>
+    </footer>
+  </main>
+</body>
+</html>

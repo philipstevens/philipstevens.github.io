@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM Workflow Production Readiness Checklist</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-size: 10pt;
+      line-height: 1.5;
+      color: #1a1a1a;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 20pt;
+      border-bottom: 3px solid #5b21b6;
+      padding-bottom: 0.4em;
+      margin-bottom: 0.3em;
+      color: #1a1a1a;
+    }
+
+    .subtitle {
+      color: #666;
+      font-size: 10pt;
+      margin-bottom: 2em;
+    }
+
+    h2 {
+      font-size: 14pt;
+      color: #5b21b6;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.3em;
+      margin-top: 2em;
+      page-break-after: avoid;
+    }
+
+    h3 {
+      font-size: 11pt;
+      color: #374151;
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin: 0.8em 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1em 0;
+      font-size: 9pt;
+      page-break-inside: avoid;
+    }
+
+    th, td {
+      border: 1px solid #d1d5db;
+      padding: 6px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #f3f4f6;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9fafb;
+    }
+
+    .critical {
+      color: #dc2626;
+      font-weight: 600;
+    }
+
+    code {
+      background-color: #f3f4f6;
+      padding: 0.15em 0.4em;
+      border-radius: 3px;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+      font-size: 9pt;
+    }
+
+    pre {
+      background-color: #1e293b;
+      color: #e2e8f0;
+      padding: 1em;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-size: 8pt;
+      line-height: 1.4;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+
+    .checkbox {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border: 1.5px solid #6b7280;
+      border-radius: 2px;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+
+    ul, ol {
+      margin: 0.8em 0;
+      padding-left: 1.5em;
+    }
+
+    li {
+      margin: 0.3em 0;
+    }
+
+    .tip {
+      background-color: #f0fdf4;
+      border-left: 4px solid #22c55e;
+      padding: 0.8em 1em;
+      margin: 1em 0;
+      font-size: 9pt;
+    }
+
+    .warning {
+      background-color: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      padding: 0.8em 1em;
+      margin: 1em 0;
+      font-size: 9pt;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e5e7eb;
+      margin: 2em 0;
+    }
+
+    .footer {
+      margin-top: 3em;
+      padding-top: 1.5em;
+      border-top: 2px solid #5b21b6;
+      font-size: 9pt;
+      color: #666;
+    }
+
+    .footer a {
+      color: #5b21b6;
+    }
+
+    @media print {
+      body {
+        font-size: 9pt;
+        padding: 0;
+      }
+
+      h1 {
+        font-size: 18pt;
+      }
+
+      h2 {
+        font-size: 13pt;
+        margin-top: 1.5em;
+      }
+
+      h3 {
+        font-size: 10pt;
+      }
+
+      table {
+        font-size: 8pt;
+      }
+
+      pre {
+        font-size: 7pt;
+      }
+
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>LLM Workflow Production Readiness Checklist</h1>
+<div class="subtitle"><strong>Version 1.0</strong> &nbsp;|&nbsp; Philip Stevens &nbsp;|&nbsp; philipstevens4@gmail.com</div>
+
+<h2>How to Use This Checklist</h2>
+<p>This checklist is designed for engineering teams preparing to ship an LLM-powered workflow to production. Work through each section before release. Items marked with <span class="critical">[CRITICAL]</span> are non-negotiable; shipping without them significantly increases the risk of production incidents.</p>
+
+<hr>
+
+<h2>Part 1: Eval Gates</h2>
+<p>Before any release, run these evaluations and verify thresholds are met.</p>
+
+<h3>1.1 Accuracy &amp; Quality</h3>
+<table>
+  <tr>
+    <th>Check</th>
+    <th>Your Threshold</th>
+    <th>Measured</th>
+    <th>Pass?</th>
+  </tr>
+  <tr>
+    <td><span class="critical">[CRITICAL]</span> Task accuracy on golden set (n≥50)</td>
+    <td>____%</td>
+    <td>____%</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Accuracy on edge cases subset</td>
+    <td>____%</td>
+    <td>____%</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Accuracy on adversarial/malformed inputs</td>
+    <td>____%</td>
+    <td>____%</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Human preference score (if applicable)</td>
+    <td>____/5</td>
+    <td>____/5</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+</table>
+
+<div class="tip"><strong>Setting thresholds:</strong> Start with your current baseline. If you don't have one, run the eval and use current performance minus a small buffer (e.g., if you measure 94%, set threshold at 92%). Raise the bar over time.</div>
+
+<h3>1.2 Safety &amp; Compliance</h3>
+<table>
+  <tr>
+    <th>Check</th>
+    <th>Threshold</th>
+    <th>Measured</th>
+    <th>Pass?</th>
+  </tr>
+  <tr>
+    <td><span class="critical">[CRITICAL]</span> Refusal rate on unsafe inputs</td>
+    <td>100%</td>
+    <td>____%</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><span class="critical">[CRITICAL]</span> No PII leakage on test set</td>
+    <td>0 instances</td>
+    <td>____</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Hallucination rate (factual claims)</td>
+    <td>≤____%</td>
+    <td>____%</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Compliance with domain-specific rules</td>
+    <td>100%</td>
+    <td>____%</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+</table>
+
+<div class="tip"><strong>Unsafe input test set:</strong> Include prompt injections, attempts to extract system prompts, requests for harmful content, and attempts to bypass guardrails. Minimum 20 cases; 50+ recommended.</div>
+
+<h3>1.3 Performance &amp; Cost</h3>
+<table>
+  <tr>
+    <th>Check</th>
+    <th>Threshold</th>
+    <th>Measured</th>
+    <th>Pass?</th>
+  </tr>
+  <tr>
+    <td>Latency p50</td>
+    <td>≤____s</td>
+    <td>____s</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><span class="critical">[CRITICAL]</span> Latency p95</td>
+    <td>≤____s</td>
+    <td>____s</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Latency p99</td>
+    <td>≤____s</td>
+    <td>____s</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Cost per request (avg)</td>
+    <td>≤$____</td>
+    <td>$____</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Token efficiency (output/input ratio)</td>
+    <td>≤____</td>
+    <td>____</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+</table>
+
+<div class="tip"><strong>Latency measurement:</strong> Measure end-to-end, not just model call time. Include retrieval, preprocessing, validation, and any retries.</div>
+
+<h3>1.4 Regression Check</h3>
+<table>
+  <tr>
+    <th>Check</th>
+    <th>Threshold</th>
+    <th>Measured</th>
+    <th>Pass?</th>
+  </tr>
+  <tr>
+    <td><span class="critical">[CRITICAL]</span> Regression suite pass rate</td>
+    <td>100%</td>
+    <td>____%</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>No new failures on previously-passing cases</td>
+    <td>0</td>
+    <td>____</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Performance delta vs. previous version</td>
+    <td>≤____%</td>
+    <td>____%</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+</table>
+
+<hr class="page-break">
+
+<h2>Part 2: Failure Mode Coverage</h2>
+<p>Verify you have detection and mitigation for each failure mode category.</p>
+
+<h3>2.1 Output Quality Failures</h3>
+<table>
+  <tr>
+    <th>Failure Mode</th>
+    <th>Detection Method</th>
+    <th>Mitigation</th>
+    <th><span class="checkbox"></span></th>
+  </tr>
+  <tr>
+    <td><strong>Hallucinated facts</strong></td>
+    <td>Citation verification, factual consistency check</td>
+    <td>Ground with retrieved docs, add confidence thresholds</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Incomplete output</strong></td>
+    <td>Required field validation, length checks</td>
+    <td>Structured output schema, retry logic</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Wrong format</strong></td>
+    <td>Schema validation, regex checks</td>
+    <td>Strict output parsing, fallback formatting</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Inconsistent with context</strong></td>
+    <td>Semantic similarity to input, contradiction detection</td>
+    <td>Re-ranking, chain-of-thought verification</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Outdated information</strong></td>
+    <td>Timestamp checks on retrieved content</td>
+    <td>Source freshness filters, recency weighting</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+</table>
+
+<h3>2.2 Safety Failures</h3>
+<table>
+  <tr>
+    <th>Failure Mode</th>
+    <th>Detection Method</th>
+    <th>Mitigation</th>
+    <th><span class="checkbox"></span></th>
+  </tr>
+  <tr>
+    <td><strong>Prompt injection executed</strong></td>
+    <td>Input classification, output anomaly detection</td>
+    <td>Input sanitization, output filtering, system prompt hardening</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>PII in output</strong></td>
+    <td>Regex + NER detection on outputs</td>
+    <td>PII scrubbing layer, training data audit</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Harmful content generated</strong></td>
+    <td>Content classification on outputs</td>
+    <td>Output filtering, refusal training</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>System prompt leaked</strong></td>
+    <td>Pattern matching for prompt fragments</td>
+    <td>Instruction hierarchy, output filtering</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Unauthorized capability use</strong></td>
+    <td>Action logging, capability boundaries</td>
+    <td>Explicit allow-lists, confirmation steps</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+</table>
+
+<h3>2.3 Reliability Failures</h3>
+<table>
+  <tr>
+    <th>Failure Mode</th>
+    <th>Detection Method</th>
+    <th>Mitigation</th>
+    <th><span class="checkbox"></span></th>
+  </tr>
+  <tr>
+    <td><strong>Model API timeout</strong></td>
+    <td>Request timing, circuit breaker triggers</td>
+    <td>Timeouts, retries with backoff, fallback responses</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Rate limit exceeded</strong></td>
+    <td>429 response tracking</td>
+    <td>Request queuing, rate limiting at app layer</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Context window exceeded</strong></td>
+    <td>Token counting before calls</td>
+    <td>Truncation strategy, summarization, chunking</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Retrieval returned no results</strong></td>
+    <td>Empty result detection</td>
+    <td>Fallback to broader query, graceful degradation</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Retrieval returned irrelevant results</strong></td>
+    <td>Relevance scoring threshold</td>
+    <td>Re-ranking, score cutoffs, "I don't know" responses</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+</table>
+
+<h3>2.4 Upstream Dependency Failures</h3>
+<table>
+  <tr>
+    <th>Failure Mode</th>
+    <th>Detection Method</th>
+    <th>Mitigation</th>
+    <th><span class="checkbox"></span></th>
+  </tr>
+  <tr>
+    <td><strong>Model behavior changed (silent update)</strong></td>
+    <td>Eval suite drift detection, output distribution monitoring</td>
+    <td>Version pinning where possible, automated regression alerts</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Embedding model changed</strong></td>
+    <td>Similarity score distribution shift</td>
+    <td>Re-index on change, version tracking</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Vector DB unavailable</strong></td>
+    <td>Health checks, latency monitoring</td>
+    <td>Caching layer, graceful degradation</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Source data stale or missing</strong></td>
+    <td>Freshness checks, data pipeline monitoring</td>
+    <td>Staleness alerts, fallback sources</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+</table>
+
+<hr class="page-break">
+
+<h2>Part 3: Release Decision Framework</h2>
+
+<h3>3.1 Ship / No-Ship Criteria</h3>
+
+<p><strong>SHIP</strong> if all of the following are true:</p>
+<ul>
+  <li><span class="checkbox"></span> All <span class="critical">[CRITICAL]</span> eval gates pass</li>
+  <li><span class="checkbox"></span> No regressions on the regression suite</li>
+  <li><span class="checkbox"></span> All failure modes have detection or mitigation in place</li>
+  <li><span class="checkbox"></span> Rollback tested and verified working</li>
+  <li><span class="checkbox"></span> Monitoring and alerting configured</li>
+  <li><span class="checkbox"></span> Required sign-offs collected</li>
+</ul>
+
+<p><strong>NO-SHIP</strong> if any of the following are true:</p>
+<ul>
+  <li><span class="checkbox"></span> Any <span class="critical">[CRITICAL]</span> eval gate fails</li>
+  <li><span class="checkbox"></span> New regression introduced</li>
+  <li><span class="checkbox"></span> Unmitigated high-severity failure mode discovered</li>
+  <li><span class="checkbox"></span> Rollback not tested or broken</li>
+  <li><span class="checkbox"></span> Missing required sign-off</li>
+</ul>
+
+<h3>3.2 Release Artifacts Checklist</h3>
+<p>Before release, verify these artifacts exist and are versioned:</p>
+
+<table>
+  <tr>
+    <th>Artifact</th>
+    <th>Location</th>
+    <th>Version</th>
+    <th>Verified?</th>
+  </tr>
+  <tr>
+    <td><strong>Prompt(s)</strong></td>
+    <td>____________</td>
+    <td>v____</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>System configuration</strong></td>
+    <td>____________</td>
+    <td>v____</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Model identifier</strong></td>
+    <td>____________</td>
+    <td>______</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Eval suite</strong></td>
+    <td>____________</td>
+    <td>v____</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Regression test set</strong></td>
+    <td>____________</td>
+    <td>v____</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td><strong>Retrieval index</strong> (if applicable)</td>
+    <td>____________</td>
+    <td>v____</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+</table>
+
+<h3>3.3 Rollback Verification</h3>
+<table>
+  <tr>
+    <th>Check</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+    <td>Previous version artifacts accessible</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Rollback procedure documented</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Rollback tested in staging</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Rollback time estimate: ____ minutes</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Rollback owner identified: ____________</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+</table>
+
+<hr class="page-break">
+
+<h2>Part 4: Post-Deploy Monitoring</h2>
+
+<h3>4.1 Real-Time Signals</h3>
+<p>Configure alerts for these signals before going live:</p>
+
+<table>
+  <tr>
+    <th>Signal</th>
+    <th>Alert Threshold</th>
+    <th>Current Value</th>
+    <th>Configured?</th>
+  </tr>
+  <tr>
+    <td>Error rate (5xx, exceptions)</td>
+    <td>&gt;____%</td>
+    <td>____%</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Latency p95</td>
+    <td>&gt;____s</td>
+    <td>____s</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Request volume anomaly</td>
+    <td>±____% from baseline</td>
+    <td>____</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Cost per hour</td>
+    <td>&gt;$____</td>
+    <td>$____</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Empty/null response rate</td>
+    <td>&gt;____%</td>
+    <td>____%</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+</table>
+
+<h3>4.2 Quality Monitoring (Sampled)</h3>
+<table>
+  <tr>
+    <th>Signal</th>
+    <th>Sample Rate</th>
+    <th>Check Frequency</th>
+    <th>Configured?</th>
+  </tr>
+  <tr>
+    <td>Human review of random outputs</td>
+    <td>____%</td>
+    <td>Daily / Weekly</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Automated quality scoring</td>
+    <td>____%</td>
+    <td>Continuous</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>User feedback/thumbs tracking</td>
+    <td>100%</td>
+    <td>Continuous</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Hallucination spot-check</td>
+    <td>____%</td>
+    <td>Daily / Weekly</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+</table>
+
+<h3>4.3 Drift Detection</h3>
+<table>
+  <tr>
+    <th>Signal</th>
+    <th>Detection Method</th>
+    <th>Check Frequency</th>
+    <th>Configured?</th>
+  </tr>
+  <tr>
+    <td>Output length distribution</td>
+    <td>Statistical test on rolling window</td>
+    <td>Daily</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Output sentiment/tone</td>
+    <td>Classifier on sampled outputs</td>
+    <td>Daily</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Refusal rate</td>
+    <td>Threshold on rolling average</td>
+    <td>Continuous</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Latency trend</td>
+    <td>Regression on 7-day window</td>
+    <td>Daily</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Eval score trend</td>
+    <td>Weekly eval run, track over time</td>
+    <td>Weekly</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+</table>
+
+<hr class="page-break">
+
+<h2>Part 5: Regression Harness Structure</h2>
+
+<h3>5.1 Test Case Categories</h3>
+<p>A complete regression suite should include cases from each category:</p>
+
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Description</th>
+    <th>Minimum Cases</th>
+    <th>Your Count</th>
+  </tr>
+  <tr>
+    <td><strong>Golden set</strong></td>
+    <td>Representative inputs with verified correct outputs</td>
+    <td>50</td>
+    <td>____</td>
+  </tr>
+  <tr>
+    <td><strong>Edge cases</strong></td>
+    <td>Boundary conditions, unusual but valid inputs</td>
+    <td>20</td>
+    <td>____</td>
+  </tr>
+  <tr>
+    <td><strong>Adversarial</strong></td>
+    <td>Prompt injections, malformed inputs, attack attempts</td>
+    <td>20</td>
+    <td>____</td>
+  </tr>
+  <tr>
+    <td><strong>Historical failures</strong></td>
+    <td>Cases that broke in previous versions</td>
+    <td>All</td>
+    <td>____</td>
+  </tr>
+  <tr>
+    <td><strong>High-stakes</strong></td>
+    <td>Cases where errors have significant consequences</td>
+    <td>10</td>
+    <td>____</td>
+  </tr>
+</table>
+
+<h3>5.2 Test Case Structure</h3>
+<p>Each test case should include:</p>
+
+<pre><code>{
+  "id": "unique-identifier",
+  "category": "golden|edge|adversarial|regression|high-stakes",
+  "input": { ... },
+  "expected_output": { ... } | null,
+  "evaluation": {
+    "method": "exact_match|semantic_similarity|llm_judge|custom",
+    "threshold": 0.95,
+    "custom_evaluator": "path/to/evaluator" | null
+  },
+  "metadata": {
+    "added_date": "2024-01-15",
+    "source": "production_failure|synthetic|user_reported",
+    "severity": "critical|high|medium|low",
+    "notes": "..."
+  }
+}</code></pre>
+
+<h3>5.3 Harness Requirements</h3>
+<table>
+  <tr>
+    <th>Requirement</th>
+    <th>Implementation</th>
+    <th>Done?</th>
+  </tr>
+  <tr>
+    <td>Single command to run full suite</td>
+    <td><code>make eval</code> or equivalent</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Parallelized execution</td>
+    <td>Configurable concurrency</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Deterministic where possible</td>
+    <td>Fixed seeds, temperature=0</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Results persisted</td>
+    <td>Database or versioned files</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Diff against previous run</td>
+    <td>Automated comparison</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>CI/CD integration</td>
+    <td>Runs on PR, blocks on failure</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+  <tr>
+    <td>Human-readable report</td>
+    <td>Summary + drill-down</td>
+    <td><span class="checkbox"></span></td>
+  </tr>
+</table>
+
+<hr class="page-break">
+
+<h2>Part 6: Quick Reference</h2>
+
+<h3>Red Flags That Should Block Release</h3>
+<ol>
+  <li><strong>Regression on any previously-passing test case</strong> — Something broke</li>
+  <li><strong>Safety eval failure</strong> — Non-negotiable</li>
+  <li><strong>Latency p95 above threshold</strong> — Will affect users</li>
+  <li><strong>Untested rollback</strong> — You will need it eventually</li>
+  <li><strong>"We'll fix it after launch"</strong> — You probably won't</li>
+</ol>
+
+<h3>Common Mistakes</h3>
+<table>
+  <tr>
+    <th>Mistake</th>
+    <th>Why It Hurts</th>
+    <th>What to Do Instead</th>
+  </tr>
+  <tr>
+    <td>Testing only happy paths</td>
+    <td>Real traffic includes edge cases and adversarial inputs</td>
+    <td>Build adversarial test set from day one</td>
+  </tr>
+  <tr>
+    <td>Threshold set to current performance</td>
+    <td>Any variance causes false failures</td>
+    <td>Set threshold below current with small buffer</td>
+  </tr>
+  <tr>
+    <td>Eval suite in notebook, not CI</td>
+    <td>Gets skipped under deadline pressure</td>
+    <td>Integrate into PR workflow from start</td>
+  </tr>
+  <tr>
+    <td>No rollback testing</td>
+    <td>Rollback fails when you need it most</td>
+    <td>Test rollback monthly, after every infra change</td>
+  </tr>
+  <tr>
+    <td>Ignoring cost until bill arrives</td>
+    <td>Budget surprises, rushed optimization</td>
+    <td>Track cost per request from day one</td>
+  </tr>
+  <tr>
+    <td>"Model X is better" without eval</td>
+    <td>Vibes don't catch regressions</td>
+    <td>Always run full eval before switching</td>
+  </tr>
+</table>
+
+<h3>First 24 Hours Post-Deploy</h3>
+<table>
+  <tr>
+    <th>Hour</th>
+    <th>Action</th>
+  </tr>
+  <tr>
+    <td>0-1</td>
+    <td>Watch error rate, latency, request volume</td>
+  </tr>
+  <tr>
+    <td>1-4</td>
+    <td>Spot-check 10 random outputs manually</td>
+  </tr>
+  <tr>
+    <td>4-8</td>
+    <td>Review any user feedback/complaints</td>
+  </tr>
+  <tr>
+    <td>8-24</td>
+    <td>Compare quality metrics to pre-deploy baseline</td>
+  </tr>
+  <tr>
+    <td>24+</td>
+    <td>Run full eval suite, compare to release eval</td>
+  </tr>
+</table>
+
+<div class="footer">
+  <h2>Getting Help</h2>
+  <p>If you're preparing an LLM workflow for production and want expert help with defining acceptance criteria, building eval suites, hardening workflows, or setting up release gates and monitoring:</p>
+  <p><strong>Book an intro call:</strong> <a href="https://calendly.com/philipstevens4/intro">calendly.com/philipstevens4/intro</a></p>
+  <hr>
+  <p><em>This checklist is provided as a starting point. Adapt thresholds, categories, and checks to your specific workflow and domain requirements.</em></p>
+</div>
+
+</body>
+</html>
