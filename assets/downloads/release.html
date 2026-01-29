@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Release Ops Retainer — Phil Stevens</title>
+  <style>
+    :root {
+      --ink: #1a1a2e;
+      --muted: #64748b;
+      --accent: #7c3aed;
+      --accent-light: #ede9fe;
+      --line: #e2e8f0;
+      --bg: #ffffff;
+      --surface: #f8fafc;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      background: var(--bg);
+      color: var(--ink);
+      font: 15px/1.6 'Inter', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 40px 60px;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .header-left h1 {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+      color: var(--ink);
+    }
+
+    .header-left .subtitle {
+      font-size: 16px;
+      color: var(--muted);
+      margin: 0;
+      max-width: 520px;
+    }
+
+    .header-right {
+      text-align: right;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .header-right .name {
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    /* Sections */
+    section {
+      margin: 36px 0;
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 0 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 0 0 12px;
+    }
+
+    p {
+      margin: 12px 0;
+    }
+
+    ul {
+      margin: 12px 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 8px 0;
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .card-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .card-full {
+      grid-column: 1 / -1;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin: 16px 0;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+    }
+
+    th {
+      background: var(--surface);
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: var(--surface);
+    }
+
+    td ul {
+      margin: 0;
+      padding-left: 16px;
+    }
+
+    td li {
+      margin: 4px 0;
+    }
+
+    .small {
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* Cadence highlight */
+    .cadence-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 4px;
+    }
+
+    .cadence-weekly {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .cadence-release {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .cadence-monthly {
+      background: #e0e7ff;
+      color: #4338ca;
+    }
+
+    /* Success criteria */
+    .success-list {
+      background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+      border: 1px solid #86efac;
+      border-radius: 10px;
+      padding: 20px 24px;
+    }
+
+    .success-list ul {
+      margin: 0;
+      list-style: none;
+      padding: 0;
+    }
+
+    .success-list li {
+      color: #166534;
+      padding-left: 28px;
+      position: relative;
+      margin: 10px 0;
+    }
+
+    .success-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #22c55e;
+      font-weight: bold;
+    }
+
+    /* Prerequisites */
+    .prereq-box {
+      background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
+      border: 1px solid #fde047;
+      border-radius: 10px;
+      padding: 20px 24px;
+    }
+
+    .prereq-box table {
+      margin: 0;
+    }
+
+    .prereq-box th {
+      background: transparent;
+    }
+
+    /* Boundaries */
+    .boundaries {
+      background: var(--surface);
+      border-radius: 10px;
+      padding: 20px 24px;
+    }
+
+    .boundaries ul {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* CTA / Contact */
+    .contact-section {
+      margin-top: 48px;
+      padding: 28px;
+      background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+      border: 1px solid #c4b5fd;
+      border-radius: 12px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .contact-text h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+      color: var(--ink);
+    }
+
+    .contact-text p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact-url {
+      display: inline-block;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      padding: 10px 0;
+    }
+
+    .contact-url:hover {
+      text-decoration: underline;
+    }
+
+    .contact-details {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    .qr-box {
+      text-align: center;
+    }
+
+    .qr-box img {
+      width: 100px;
+      height: 100px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      padding: 4px;
+    }
+
+    .qr-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Print styles */
+    @media print {
+      .page {
+        max-width: none;
+        padding: 24px;
+        margin: 0;
+      }
+
+      .header {
+        page-break-after: avoid;
+      }
+
+      section {
+        page-break-inside: avoid;
+      }
+
+      table {
+        page-break-inside: avoid;
+      }
+
+      .contact-section {
+        page-break-inside: avoid;
+      }
+
+      a {
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      .contact-url {
+        color: var(--accent);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .qr-box { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div class="header-left">
+        <h1>Release Ops Retainer</h1>
+        <p class="subtitle">Ongoing reliability and release discipline for in-production LLM workflows: eval-gated changes, drift detection, safer rollouts, and fast rollback.</p>
+      </div>
+      <div class="header-right">
+        <div class="name">Phil Stevens</div>
+        <div>philipstevens.github.io</div>
+      </div>
+    </header>
+
+    <section>
+      <h2>Best Fit</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-label">You have</div>
+          <ul>
+            <li>A workflow already in production (or about to ship).</li>
+            <li>Regular changes: prompts, model versions, docs/index, tool behavior, policies.</li>
+            <li>Incidents that are expensive to debug or repeat unexpectedly.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-label">You want</div>
+          <ul>
+            <li>Predictable releases with evidence-based ship/no-ship decisions.</li>
+            <li>Regression tests that grow with incidents (no repeat failures).</li>
+            <li>Monitoring tied to rollback triggers (not vanity dashboards).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Operating Model</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 12%;">Cadence</th>
+            <th style="width: 48%;">What happens</th>
+            <th style="width: 40%;">What you get</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="cadence-label cadence-weekly">Weekly</span></td>
+            <td>
+              <ul>
+                <li>Review production signals (latency/cost/refusal/safety/tool errors)</li>
+                <li>Quality sampling on a small rotating set (human rubric)</li>
+                <li>Triage drift indicators and prioritize fixes</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Weekly stability memo (what changed, what's trending, what to fix)</li>
+                <li>PR-ready recommendations (gates, prompts, retrieval thresholds)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="cadence-label cadence-release">Per release</span></td>
+            <td>
+              <ul>
+                <li>Run eval gates on proposed changes (prompt/model/retrieval/docs/tools)</li>
+                <li>Analyze deltas vs baseline and must-pass set results</li>
+                <li>Define rollout plan and rollback triggers for that release</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Release gate report (pass/fail + deltas + risks)</li>
+                <li>Rollout checklist + monitoring window plan</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="cadence-label cadence-monthly">Monthly</span></td>
+            <td>
+              <ul>
+                <li>Update test set from incidents and new product surface area</li>
+                <li>Review gate thresholds and ratchet where stable</li>
+                <li>Calibrate alerts (reduce noise; catch real regressions)</li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Monthly drift report + test-set maintenance summary</li>
+                <li>Threshold ratcheting plan</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>What's Included</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Release Gating</h3>
+          <ul>
+            <li>Gate runs and analysis for every change that can shift behavior.</li>
+            <li>Must-pass maintenance (new cases added when incidents occur).</li>
+            <li>Approval-ready "ship / hold" recommendation with evidence.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Drift & Regression Control</h3>
+          <ul>
+            <li>Signals for retrieval health, refusal drift, safety events, tool failures.</li>
+            <li>Investigations that connect drift to root cause (prompt, index, tool, model).</li>
+            <li>Small-to-medium fixes: prompts/config/routing/retrieval thresholds.</li>
+          </ul>
+        </div>
+        <div class="card card-full">
+          <h3>Operational Rigor</h3>
+          <ul>
+            <li><strong>Version control discipline:</strong> prompt/config hashes, model identifiers, retrieval/index versions.</li>
+            <li><strong>Trace requirements:</strong> enough to replay and audit outputs without guesswork.</li>
+            <li><strong>Rollback readiness:</strong> explicit triggers and tested procedures.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Minimum Prerequisites</h2>
+      <div class="prereq-box">
+        <table>
+          <thead>
+            <tr>
+              <th>Prerequisite</th>
+              <th>Minimum</th>
+              <th>Reason</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Eval harness</td>
+              <td>Runnable gate suite with must-pass subset</td>
+              <td>Retainer is about preventing regressions over time.</td>
+            </tr>
+            <tr>
+              <td>Traceability</td>
+              <td>Version identifiers in trace/logs</td>
+              <td>Without this, incident response becomes guesswork.</td>
+            </tr>
+            <tr>
+              <td>Release path</td>
+              <td>Canary/shadow/ramp capability (even manual)</td>
+              <td>Allows safe rollout and rapid rollback.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="small">If you don't have these yet, the first month often starts with a short Build & Harden sprint to establish them.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Success Criteria</h2>
+      <div class="success-list">
+        <ul>
+          <li>Regressions are caught by gates or monitoring before users report them.</li>
+          <li>Releases are repeatable: same process, same evidence, clear approvers.</li>
+          <li>Operational metrics stay within agreed bounds despite upstream change.</li>
+          <li>Every incident produces a new regression test (no repeat failures).</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Boundaries</h2>
+      <div class="boundaries">
+        <ul>
+          <li>Building brand-new workflows from scratch (handled via Audit + Build & Harden).</li>
+          <li>Large re-architecture or platform build work.</li>
+          <li>Large labeling efforts or full-time QA programs.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="contact-section">
+      <div class="contact-grid">
+        <div class="contact-text">
+          <h3>Next Step</h3>
+          <p>Review one workflow's current gates and monitoring, then define the first month's reliability plan. If you're pre-prod, start with an Audit or Build & Harden sprint.</p>
+          <div class="contact-action">
+            <strong>Book an intro call:</strong><br>
+            <a href="https://calendly.com/philipstevens4/intro" class="contact-url">calendly.com/philipstevens4/intro</a>
+          </div>
+          <div class="contact-details">
+            <strong>Email:</strong> philipstevens4@gmail.com<br>
+            <strong>Web:</strong> philipstevens.github.io
+          </div>
+        </div>
+        <div class="qr-box">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://calendly.com/philipstevens4/intro" alt="QR Code to book intro call" />
+          <div class="qr-label">Scan to book a call</div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div>Phil Stevens — LLM Workflow Reliability</div>
+      <div>philipstevens.github.io</div>
+    </footer>
+  </main>
+</body>
+</html>

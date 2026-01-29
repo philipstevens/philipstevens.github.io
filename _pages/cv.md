@@ -15,10 +15,12 @@ last_updated: 2025-12-28
 [Download CV PDF](https://philipstevens.github.io/files/20240529-pcs-resume.pdf "download"){: .btn .btn--info}
 
 ## 📧 Contact
+
 - Email: [philipstevens4@gmail.com](mailto:philipstevens4@gmail.com)
 - LinkedIn: [linkedin.com/in/philip-charles-stevens/](https://www.linkedin.com/in/philip-charles-stevens/)
 
 ## 💼 Experience
+
 ### Self-employed
 
 ***Foundation Model Engineer (Consultant)***
@@ -27,13 +29,13 @@ last_updated: 2025-12-28
 
 High-stakes, domain-adapted LLM workflows, made reliable.
 
-_Selected outcomes:_
+*Selected outcomes:_
+
 - Built spec-driven eval suites and regression gates and integrated them into release processes to prevent regressions.
 - Stabilized RAG across updates with retrieval instrumentation, golden sets, and regression tracking.
 - Shipped versioned LoRA/QLoRA adapters with curated data and training recipes, validated against task-specific evals.
 - Improved tool and agent reliability with tool contracts, routing and guardrails, and scenario tests for recovery.
 - Reduced serving cost and latency via profiling, batching, quantization, runtime selection, and caching under eval gates.
-
 
 ### Agoda
 
@@ -43,7 +45,8 @@ _Selected outcomes:_
 
 Leading online travel agency, subsidiary of Booking Holdings.
 
-_Accomplishments and Responsibilities:_
+*Accomplishments and Responsibilities:_
+
 - Spearheaded several frontend personalization projects using contextual bandit algorithms (e.g., linear Thompson Sampling), dynamically adjusting content based on user data, boosting bookings by 500/day.
 - Developed recommendation systems with Word2Vec/Doc2Vec embedding models, increasing daily bookings by hundreds.
 - Enhanced systems to highlight key reviews using advanced BERT and LDA topic models, significantly boosting user engagement and resulting in additional bookings.
@@ -58,7 +61,8 @@ _Accomplishments and Responsibilities:_
 Industry-leading AI-powered targeted advertising and audience measurement based in San Francisco. Joined as part of startup
 acquisition.
 
-_Accomplishments and Responsibilities:_
+*Accomplishments and Responsibilities:_
+
 - Directed many experiments to enhance core targeting models using advanced feature engineering, new data sources, refined model architectures, hyperparameter tuning, and domain drift monitoring, achieving 2-10% quarterly conversion rate improvements.
 - Managed the end-to-end machine learning lifecycle and data pipeline for core targeting models, ensuring robust performance and consistency across data collection, processing, model training, deployment, and performance monitoring.
 - Collaborated with external stakeholders to deliver custom projects and regularly communicated technology updates to advertising agencies, strengthening client relationships and enhancing project outcomes.
@@ -71,15 +75,17 @@ _Accomplishments and Responsibilities:_
 
 A fast-paced AdTech startup, acquired by Quantcast.
 
-_Accomplishments and Responsibilities:_
+*Accomplishments and Responsibilities:_
+
 - Integrated user data into click, conversion, and revenue prediction models, enhancing accuracy through advanced feature engineering
 techniques, resulting in a ~20% increase in user clicks and conversions for clients.
 
-
 ## 🎓 Education
+
 ### University of Auckland
 
 **Master of Science in Computer Science, 2012**
+
 - Graduated with 1st Class Honours
 - Faculty of Science Master’s Award
 - Master’s Scholarship funded though Royal Society of New Zealand Marsden Grant, Dr. Beryl Plimmer
@@ -89,6 +95,7 @@ techniques, resulting in a ~20% increase in user clicks and conversions for clie
 **Bachelor of Arts in Mathematics and Philosophy (Dual), 2010**
   
 ## 📖 Publications
+
 [Stevens, Blagojevic, & Plimmer, 2013: “Supervised Machine Learning for Grouping
 Sketch Diagram Strokes.” SBIM ‘13](https://dl.acm.org/doi/10.1145/2487381.2487383)
 
