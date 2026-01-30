@@ -1,0 +1,72 @@
+<div class="lead-capture-box">
+  <p class="lead-capture-description"><strong>FREE: LLM Workflow Production Readiness Checklist (PDF)</strong> — a fill-in workbook to decide ship / no-ship and set up the minimum production controls.</p>
+
+  <ul class="lead-capture-list">
+    <li><strong>Eval gates</strong> (quality, safety/PII, latency/cost, regression) with blank thresholds + pass/fail</li>
+    <li><strong>Failure-mode coverage matrix</strong> (hallucinations, injection, PII, timeouts, retrieval issues, upstream drift) with detection + mitigation</li>
+    <li><strong>Release decision framework:</strong> ship/no-ship criteria, required artifacts, rollback verification</li>
+    <li><strong>Post-deploy monitoring:</strong> alert thresholds, drift signals, and a first 24-hour checklist</li>
+    <li><strong>Regression harness blueprint:</strong> required test categories + minimum counts + test case structure + CI requirements</li>
+  </ul>
+
+  <form
+    action="https://script.google.com/macros/s/AKfycbwsGuKomWjQTU60wsHW2GAySY169c0TO--06edsSW4I3XUfwMopgdcYdj2X3wy9j73E/exec"
+    method="post"
+    class="checklist-form"
+    id="lead_form"
+    target="lead_hidden_iframe"
+    onsubmit="leadCaptureSubmit(event)"
+  >
+    <div class="form-row">
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="you@company.com"
+        required
+        autocomplete="email"
+      />
+      <button type="submit" class="btn btn--primary">Submit</button>
+    </div>
+
+    <!-- honeypot -->
+    <input
+      type="text"
+      name="company"
+      tabindex="-1"
+      autocomplete="off"
+      aria-hidden="true"
+      style="position:absolute;left:-9999px;opacity:0;height:0;width:0;"
+    />
+    <input type="hidden" name="k" value="formkey_QidffT6hpBTjEE38dkn2pbCvfCmebUJn" />
+    <input type="hidden" name="source" value="{{ include.source | default: 'unknown' }}" />
+    <input type="hidden" name="ua" id="lead_ua" />
+  </form>
+
+  <iframe name="lead_hidden_iframe" style="display:none"></iframe>
+
+  <div id="lead_success" class="lead-capture-success" style="display:none">
+    <p><strong>Sent, check your inbox for the PDF.</strong></p>
+    <p class="lead-capture-secondary">
+      <a href="https://calendly.com/philipstevens4/intro">Want to talk? Book an intro call.</a>
+    </p>
+    <p class="lead-capture-fallback">
+      Didn't get it? Email me at <a href="mailto:philipstevens4@gmail.com?subject=Checklist%20PDF%20request">philipstevens4@gmail.com</a> and I'll send it manually.
+    </p>
+  </div>
+
+</div>
+
+<script>
+  (function () {
+    var uaField = document.getElementById("lead_ua");
+    if (uaField) uaField.value = navigator.userAgent;
+  })();
+
+  function leadCaptureSubmit(e) {
+    var form = document.getElementById("lead_form");
+    var success = document.getElementById("lead_success");
+    if (form) form.style.display = "none";
+    if (success) success.style.display = "block";
+  }
+</script>

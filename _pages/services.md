@@ -15,15 +15,15 @@ Domain-adapted LLM workflows, made production-grade through spec-driven evals, p
 
 Built for teams that need to move beyond a demo and ship a customized LLM workflow that behaves reliably under real-world usage.
 
-| Offer | What it does | Typical outcome | Pricing |
-| --- | --- | --- | --- |
-| [Audit](#audit) | Define the bar: failure modes, acceptance criteria, eval plan | Clear ship criteria plus a concrete plan | Fixed fee (starting at $7500) |
-| [Build and Harden](#build-harden) | Implement evals and harden until the workflow meets the bar | Stable behavior on representative cases | Project fee (typical range $25000–$90000) |
-| [Release Ops](#release-ops) | Gate releases, monitor drift, and keep rollback simple | Predictable releases and fewer regressions | Monthly retainer (starting at $3000/mo) |
+| Offer | What it does | Typical outcome | Pricing |  Details |
+| --- | --- | --- | --- | --- |
+| [LLM Workflow Audit](#llm-workflow-audit) | Define the bar: failure modes, acceptance criteria, eval plan | Clear ship criteria plus a concrete plan | Fixed fee (starting at $7500) | [PDF](/assets/downloads/llm-workflow-audit.pdf) |
+| [LLM Workflow Build & Harden](#llm-workflow-build-and-harden) | Implement evals and harden until the workflow meets the bar | Stable behavior on representative cases | Project fee (typical range $25000–$90000) | [PDF](/assets/downloads/llm-workflow-build-and-harden.pdf) |
+| [LLM Workflow Release Ops](#llm-workflow-release-ops) | Gate releases, monitor drift, and keep rollback simple | Predictable releases and fewer regressions | Monthly retainer (starting at $3000/mo) | [PDF](/assets/downloads/llm-workflow-release-ops.pdf) |
 
 ---
 
-## Offer 1: Workflow Audit {#audit}
+## Offer 1: LLM Workflow Audit {#llm-workflow-audit}
 
 A focused assessment of one workflow to define the production bar and the path to ship.
 
@@ -136,11 +136,11 @@ Fixed fee (starting at $7500)
 </details>
 
 [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
-[Download offer details (PDF)](/assets/downloads/audit.pdf){: .btn .btn--inverse }
+[Download offer details (PDF)](/assets/downloads/llm-workflow-audit.pdf){: .btn .btn--inverse }
 
 ---
 
-## Offer 2: Build and Harden {#build-harden}
+## Offer 2: LLM Workflow Build & Harden {#llm-workflow-build-and-harden}
 
 Build or baseline the workflow, implement the eval suite and regression harness, then iterate until it meets the production bar for quality, safety, and auditability.
 
@@ -257,11 +257,11 @@ Project fee (typical range $25000–$90000)
 </details>
 
 [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
-[Download offer details (PDF)](/assets/downloads/build-harden.pdf){: .btn .btn--inverse }
+[Download offer details (PDF)](/assets/downloads/llm-workflow-build-and-harden.pdf){: .btn .btn--inverse }
 
 ---
 
-## Offer 3: Release Ops {#release-ops}
+## Offer 3: LLM Workflow Release Ops {#llm-workflow-release-ops}
 
 Operate releases like software: versioned artifacts behind eval gates, safe rollouts with rollback, drift monitoring, and periodic re-tuning.
 
@@ -409,9 +409,10 @@ Monthly retainer (starting at $3000/mo)
 </details>
 
 [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
-[Download offer details (PDF)](/assets/downloads/release.pdf){: .btn .btn--inverse }
+[Download offer details (PDF)](/assets/downloads/llm-workflow-release-ops.pdf){: .btn .btn--inverse }
 
----
+
+{% include lead-capture.html source="services-page" %}
 
 ## FAQ
 
