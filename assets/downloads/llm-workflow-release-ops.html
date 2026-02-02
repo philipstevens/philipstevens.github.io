@@ -68,6 +68,31 @@
       font-size: 14px;
     }
 
+    /* Key-value pairs */
+    .overview {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 12px 20px;
+      margin: 24px 0;
+      padding: 20px 24px;
+      background: var(--surface);
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .overview dt {
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .overview dd {
+      margin: 0;
+      color: var(--ink);
+    }
+
     /* Sections */
     section {
       margin: 36px 0;
@@ -242,22 +267,6 @@
       font-weight: bold;
     }
 
-    /* Prerequisites */
-    .prereq-box {
-      background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
-      border: 1px solid #fde047;
-      border-radius: 10px;
-      padding: 20px 24px;
-    }
-
-    .prereq-box table {
-      margin: 0;
-    }
-
-    .prereq-box th {
-      background: transparent;
-    }
-
     /* Boundaries */
     .boundaries {
       background: var(--surface);
@@ -393,7 +402,7 @@
     <header class="header">
       <div class="header-left">
         <h1>LLM Workflow Release Ops</h1>
-        <p class="subtitle">Ongoing reliability and release discipline for in-production LLM workflows: eval-gated changes, drift detection, safer rollouts, and fast rollback.</p>
+        <p class="subtitle">Operate releases with eval gating, drift detection, and rollback discipline so you ship safely over time.</p>
       </div>
       <div class="header-right">
         <div class="name">Phil Stevens</div>
@@ -401,162 +410,130 @@
       </div>
     </header>
 
+    <dl class="overview">
+      <dt>Scope</dt>
+      <dd>One or more production LLM workflows requiring ongoing release discipline and drift management.</dd>
+      <dt>Primary output</dt>
+      <dd>Gated releases + drift monitoring + threshold maintenance + rollback readiness (sustained over time).</dd>
+    </dl>
+
     <section>
       <h2>Best Fit</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="card-label">You have</div>
-          <ul>
-            <li>A workflow already in production (or about to ship).</li>
-            <li>Regular changes: prompts, model versions, docs/index, tool behavior, policies.</li>
-            <li>Incidents that are expensive to debug or repeat unexpectedly.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="card-label">You want</div>
-          <ul>
-            <li>Predictable releases with evidence-based ship/no-ship decisions.</li>
-            <li>Regression tests that grow with incidents (no repeat failures).</li>
-            <li>Monitoring tied to rollback triggers (not vanity dashboards).</li>
-          </ul>
-        </div>
-      </div>
+      <ul>
+        <li>Your workflow is live, and regressions or drift are a recurring risk.</li>
+        <li>You want repeatable releases with clear evidence and fast rollback.</li>
+        <li>You already have (or want to establish) an eval harness and baseline gates.</li>
+      </ul>
     </section>
 
     <section>
-      <h2>Operating Model</h2>
+      <h2>Inputs Required</h2>
       <table>
         <thead>
           <tr>
-            <th style="width: 12%;">Cadence</th>
-            <th style="width: 48%;">What happens</th>
-            <th style="width: 40%;">What you get</th>
+            <th>Input</th>
+            <th>Minimum</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Baseline eval suite</td>
+            <td>Runnable gate suite with must-pass subset</td>
+            <td>Release ops is about preventing regressions over time.</td>
+          </tr>
+          <tr>
+            <td>Telemetry access</td>
+            <td>Version identifiers in trace/logs; production signals</td>
+            <td>Without this, incident response becomes guesswork.</td>
+          </tr>
+          <tr>
+            <td>Release process</td>
+            <td>Canary/shadow/ramp capability (even manual)</td>
+            <td>Allows safe rollout and rapid rollback.</td>
+          </tr>
+          <tr>
+            <td>Owner plus cadence</td>
+            <td>Someone who can approve releases and review weekly</td>
+            <td>Ensures accountability and keeps drift monitoring actionable.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="small">If you don't have these yet, the first month often starts with a short Build & Harden sprint to establish them.</p>
+    </section>
+
+    <section>
+      <h2>How the Work Runs</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 15%;">Cadence</th>
+            <th>What happens</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><span class="cadence-label cadence-weekly">Weekly</span></td>
-            <td>
-              <ul>
-                <li>Review production signals (latency/cost/refusal/safety/tool errors)</li>
-                <li>Quality sampling on a small rotating set (human rubric)</li>
-                <li>Triage drift indicators and prioritize fixes</li>
-              </ul>
-            </td>
-            <td>
-              <ul>
-                <li>Weekly stability memo (what changed, what's trending, what to fix)</li>
-                <li>PR-ready recommendations (gates, prompts, retrieval thresholds)</li>
-              </ul>
-            </td>
+            <td>Review production signals, sample quality on a rotating set, triage drift indicators and prioritize fixes.</td>
           </tr>
           <tr>
             <td><span class="cadence-label cadence-release">Per release</span></td>
-            <td>
-              <ul>
-                <li>Run eval gates on proposed changes (prompt/model/retrieval/docs/tools)</li>
-                <li>Analyze deltas vs baseline and must-pass set results</li>
-                <li>Define rollout plan and rollback triggers for that release</li>
-              </ul>
-            </td>
-            <td>
-              <ul>
-                <li>Release gate report (pass/fail + deltas + risks)</li>
-                <li>Rollout checklist + monitoring window plan</li>
-              </ul>
-            </td>
+            <td>Run eval gates on proposed changes, analyze deltas vs baseline, define rollout plan and rollback triggers.</td>
           </tr>
           <tr>
             <td><span class="cadence-label cadence-monthly">Monthly</span></td>
-            <td>
-              <ul>
-                <li>Update test set from incidents and new product surface area</li>
-                <li>Review gate thresholds and ratchet where stable</li>
-                <li>Calibrate alerts (reduce noise; catch real regressions)</li>
-              </ul>
-            </td>
-            <td>
-              <ul>
-                <li>Monthly drift report + test-set maintenance summary</li>
-                <li>Threshold ratcheting plan</li>
-              </ul>
-            </td>
+            <td>Update test sets from incidents, review and ratchet gate thresholds, calibrate alerts to reduce noise.</td>
           </tr>
         </tbody>
       </table>
     </section>
 
     <section>
-      <h2>What's Included</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Release Gating</h3>
-          <ul>
-            <li>Gate runs and analysis for every change that can shift behavior.</li>
-            <li>Must-pass maintenance (new cases added when incidents occur).</li>
-            <li>Approval-ready "ship / hold" recommendation with evidence.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Drift & Regression Control</h3>
-          <ul>
-            <li>Signals for retrieval health, refusal drift, safety events, tool failures.</li>
-            <li>Investigations that connect drift to root cause (prompt, index, tool, model).</li>
-            <li>Small-to-medium fixes: prompts/config/routing/retrieval thresholds.</li>
-          </ul>
-        </div>
-        <div class="card card-full">
-          <h3>Operational Rigor</h3>
-          <ul>
-            <li><strong>Version control discipline:</strong> prompt/config hashes, model identifiers, retrieval/index versions.</li>
-            <li><strong>Trace requirements:</strong> enough to replay and audit outputs without guesswork.</li>
-            <li><strong>Rollback readiness:</strong> explicit triggers and tested procedures.</li>
-          </ul>
-        </div>
-      </div>
+      <h2>Deliverables</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Artifact</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Maintained eval suite (test sets updated from incidents)</td>
+            <td>Keeps coverage current as product and failure modes evolve</td>
+          </tr>
+          <tr>
+            <td>Release gate reports</td>
+            <td>Documents what changed, what passed/failed, and ship decision</td>
+          </tr>
+          <tr>
+            <td>Weekly stability memos</td>
+            <td>Summarizes trends, drift signals, and recommended fixes</td>
+          </tr>
+          <tr>
+            <td>Drift monitoring dashboards and alerts</td>
+            <td>Surfaces regressions before users report them</td>
+          </tr>
+          <tr>
+            <td>Updated thresholds and gate configurations</td>
+            <td>Ratchets quality bar as workflow stabilizes</td>
+          </tr>
+          <tr>
+            <td>Rollback runbook (tested and current)</td>
+            <td>Ensures fast recovery when releases fail</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <section>
-      <h2>Minimum Prerequisites</h2>
-      <div class="prereq-box">
-        <table>
-          <thead>
-            <tr>
-              <th>Prerequisite</th>
-              <th>Minimum</th>
-              <th>Reason</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Eval harness</td>
-              <td>Runnable gate suite with must-pass subset</td>
-              <td>Retainer is about preventing regressions over time.</td>
-            </tr>
-            <tr>
-              <td>Traceability</td>
-              <td>Version identifiers in trace/logs</td>
-              <td>Without this, incident response becomes guesswork.</td>
-            </tr>
-            <tr>
-              <td>Release path</td>
-              <td>Canary/shadow/ramp capability (even manual)</td>
-              <td>Allows safe rollout and rapid rollback.</td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="small">If you don't have these yet, the first month often starts with a short Build & Harden sprint to establish them.</p>
-      </div>
-    </section>
-
-    <section>
-      <h2>Success Criteria</h2>
+      <h2>Definition of Done</h2>
       <div class="success-list">
         <ul>
-          <li>Regressions are caught by gates or monitoring before users report them.</li>
-          <li>Releases are repeatable: same process, same evidence, clear approvers.</li>
-          <li>Operational metrics stay within agreed bounds despite upstream change.</li>
-          <li>Every incident produces a new regression test (no repeat failures).</li>
+          <li>Every release has a gate report (what changed, what passed/failed, decision recorded).</li>
+          <li>Drift and regression monitoring is in place with clear signals and response steps.</li>
+          <li>Thresholds and test sets are maintained (updates are versioned and reviewed).</li>
+          <li>Rollback is documented and exercised so failures are recoverable quickly.</li>
         </ul>
       </div>
     </section>

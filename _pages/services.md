@@ -11,45 +11,32 @@ last_updated: 2025-12-28
 [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
 [Email me](mailto:philipstevens4@gmail.com){: .btn .btn--inverse }
 
-Domain-adapted LLM workflows, made production-grade through spec-driven evals, post-training, and gated releases.
+I help teams take a promising LLM workflow and make it safe to ship.
 
-Built for teams that need to move beyond a demo and ship a customized LLM workflow that behaves reliably under real-world usage.
+Demos work. Edge cases pile up. Shipping gets stuck.
+
+I help teams replace gut feel with clear, explicit gates.
 
 | Offer | What it does | Typical outcome | Pricing |  Details |
 | --- | --- | --- | --- | --- |
-| [LLM Workflow Audit](#llm-workflow-audit) | Define the bar: failure modes, acceptance criteria, eval plan | Clear ship criteria plus a concrete plan | Fixed fee (starting at $7500) | [PDF](/assets/downloads/llm-workflow-audit.pdf) |
-| [LLM Workflow Build & Harden](#llm-workflow-build-and-harden) | Implement evals and harden until the workflow meets the bar | Stable behavior on representative cases | Project fee (typical range $25000–$90000) | [PDF](/assets/downloads/llm-workflow-build-and-harden.pdf) |
-| [LLM Workflow Release Ops](#llm-workflow-release-ops) | Gate releases, monitor drift, and keep rollback simple | Predictable releases and fewer regressions | Monthly retainer (starting at $3000/mo) | [PDF](/assets/downloads/llm-workflow-release-ops.pdf) |
+| [LLM Workflow Audit](#llm-workflow-audit) | Define the production bar | Clear ship / no-ship decision | Fixed fee (starting at $7500) | [PDF](/assets/downloads/llm-workflow-audit.pdf) |
+| [LLM Workflow Build & Harden](#llm-workflow-build-and-harden) | Meet the production bar | Workflow that reliably passes gates | Project fee (typical range $25000–$90000) | [PDF](/assets/downloads/llm-workflow-build-and-harden.pdf) |
+| [LLM Workflow Release Ops](#llm-workflow-release-ops) | Keep meeting the bar over time | Predictable releases, fewer surprises | Monthly retainer (starting at $3000/mo) | [PDF](/assets/downloads/llm-workflow-release-ops.pdf) |
+
+Most teams follow a simple path:
+**Define the bar → Meet it → Keep meeting it.**
+
 
 ---
 
 ## Offer 1: LLM Workflow Audit {#llm-workflow-audit}
 
-A focused assessment of one workflow to define the production bar and the path to ship.
+If you have a workflow that kind of works, this is the fast way to get clarity. I’ll pull the system apart, look at real examples, and pin down what “good enough” actually means for your use case.
 
-### Who it is for
-
-Teams with a demo or pilot that works on happy paths but is not reliable, testable, or defensible.
-
-### Deliverables
-
-- Workflow spec: task, failure modes, acceptance criteria
-- Evaluation plan: test cases, metrics, regression outline
-- Prioritized recommendations: what to do next and why
-
-### Typical timeline
-
-1 to 2 weeks (depends on access and scope)
-
-### Success criteria
-
-- Acceptance criteria are explicit and testable
-- An evaluation plan exists that can gate changes and prevent regressions
-- Next steps are scoped and prioritized
-
-### Pricing
-
-Fixed fee (starting at $7500)
+You’ll end up with:
+- The main ways it fails (and which ones actually matter)
+- Clear acceptance criteria you can align on internally
+- A concrete eval plan + a prioritized plan of attack for hardening
 
 <details class="case-snippet">
   <summary class="case-snippet-header">
@@ -142,31 +129,12 @@ Fixed fee (starting at $7500)
 
 ## Offer 2: LLM Workflow Build & Harden {#llm-workflow-build-and-harden}
 
-Build or baseline the workflow, implement the eval suite and regression harness, then iterate until it meets the production bar for quality, safety, and auditability.
+This is the implementation work. I take the audit plan (or your existing spec), build the evals, and then iterate on the workflow until it behaves consistently on real inputs, not just the demo path.
 
-### Who it is for
-
-Teams that want the workflow shipped into production, not just assessed.
-
-### Deliverables
-
-- Evaluation suite and regression harness integrated into your dev and release flow
-- Hardened workflow with grounding, validation, routing, and adaptation where justified
-- Versioning plan plus release gates: key artifacts, rollout checklist, and a rollback-ready plan
-
-### Typical timeline
-
-2 to 6+ weeks (depends on workflow complexity and integration)
-
-### Success criteria
-
-- The workflow passes eval gates reliably on representative cases
-- Regressions are caught before release
-- Latency and cost stay within agreed thresholds
-
-### Pricing
-
-Project fee (typical range $25000–$90000)
+You’ll end up with:
+- An eval suite you can run on every change
+- A hardened workflow that meets your acceptance criteria reliably
+- A practical release + rollback checklist so shipping changes isn’t scary
 
 <details class="case-snippet">
   <summary class="case-snippet-header">
@@ -263,31 +231,12 @@ Project fee (typical range $25000–$90000)
 
 ## Offer 3: LLM Workflow Release Ops {#llm-workflow-release-ops}
 
-Operate releases like software: versioned artifacts behind eval gates, safe rollouts with rollback, drift monitoring, and periodic re-tuning.
+This is for teams already in production (or shipping frequently) who want fewer surprises. We make releases repeatable, catch drift early, and keep the tests and thresholds up to date as new edge cases show up.
 
-### Who it is for
-
-Workflows already in production that must stay stable across upstream model, data, or dependency changes.
-
-### Deliverables
-
-- Eval-gated release process and cadence
-- Monitoring plan for quality, safety, and drift
-- Rollback and retuning plan (model, data, prompts, configs)
-
-### Typical timeline
-
-Ongoing support (monthly retainer or fixed cadence)
-
-### Success criteria
-
-- Stable quality over time despite upstream changes
-- Drift is detected early and handled predictably
-- Rollback is fast and low-risk
-
-### Pricing
-
-Monthly retainer (starting at $3000/mo)
+You’ll end up with:
+- A lightweight release routine with a clear “did we get better or worse?” signal
+- Monitoring that surfaces drift/regressions before users do
+- Updated test cases and thresholds over time so quality doesn’t quietly slide
 
 <details class="case-snippet">
   <summary class="case-snippet-header">
