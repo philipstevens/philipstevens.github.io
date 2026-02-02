@@ -68,6 +68,31 @@
       font-size: 14px;
     }
 
+    /* Key-value pairs */
+    .overview {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 12px 20px;
+      margin: 24px 0;
+      padding: 20px 24px;
+      background: var(--surface);
+      border-radius: 8px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .overview dt {
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .overview dd {
+      margin: 0;
+      color: var(--ink);
+    }
+
     /* Sections */
     section {
       margin: 36px 0;
@@ -366,7 +391,7 @@
     <header class="header">
       <div class="header-left">
         <h1>LLM Workflow Build & Harden</h1>
-        <p class="subtitle">Implement eval gates and regression protection, then harden the workflow until it meets reliability, safety, latency, and cost targets.</p>
+        <p class="subtitle">Implement eval gates and a regression harness, then harden the workflow until it meets the production bar.</p>
       </div>
       <div class="header-right">
         <div class="name">Phil Stevens</div>
@@ -374,26 +399,20 @@
       </div>
     </header>
 
+    <dl class="overview">
+      <dt>Scope</dt>
+      <dd>One LLM workflow with an agreed production bar, hardened to meet quality, safety, and operational targets.</dd>
+      <dt>Primary output</dt>
+      <dd>Eval harness in CI + hardened workflow + release gates + rollback plan (ready to ship).</dd>
+    </dl>
+
     <section>
       <h2>Best Fit</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="card-label">You have</div>
-          <ul>
-            <li>A workflow that produces useful output but drifts when prompts/models/docs change.</li>
-            <li>Known failure modes (hallucinations, wrong routing, tool errors, retrieval regressions).</li>
-            <li>Pressure to ship without a credible "proof" of readiness.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="card-label">You want</div>
-          <ul>
-            <li>PR/CI gates that block must-pass failures automatically.</li>
-            <li>Traceability (versions + evidence) so outputs are debuggable and auditable.</li>
-            <li>A release process with rollout and rollback triggers tied to real metrics.</li>
-          </ul>
-        </div>
-      </div>
+      <ul>
+        <li>You want this workflow shipped with predictable behavior on real inputs.</li>
+        <li>You need eval gating in CI to prevent regressions and unsafe releases.</li>
+        <li>You have enough examples and access to iterate quickly.</li>
+      </ul>
     </section>
 
     <section>
@@ -408,155 +427,108 @@
         </thead>
         <tbody>
           <tr>
-            <td>Integration surface</td>
-            <td>Repo access or an endpoint to invoke the workflow in staging</td>
-            <td>Allows harness integration, CI gating, and reproducible runs.</td>
+            <td>Agreed production bar</td>
+            <td>Workflow spec with acceptance criteria (from Audit or equivalent)</td>
+            <td>Defines what "done" means so hardening has a clear target.</td>
           </tr>
           <tr>
-            <td>Examples</td>
+            <td>Example set</td>
             <td>50+ representative examples; 10–30 must-pass candidates</td>
             <td>Prevents "happy-path only" evals; makes gates meaningful.</td>
           </tr>
           <tr>
-            <td>RAG/tool details (if applicable)</td>
-            <td>Retrieval config, chunking rules, tool schemas, tool allow-list</td>
-            <td>Enables proxy retrieval tests, citation checks, tool correctness checks.</td>
+            <td>Integration access</td>
+            <td>Repo access or endpoint to invoke the workflow in staging</td>
+            <td>Allows harness integration, CI gating, and reproducible runs.</td>
           </tr>
           <tr>
-            <td>Operational targets</td>
-            <td>Latency p95 + cost p95 targets; safety constraints</td>
-            <td>Lets you gate performance and prevent cost regressions.</td>
+            <td>SME review bandwidth</td>
+            <td>Someone who can review outputs and approve changes weekly</td>
+            <td>Enables fast iteration and prevents quality drift during hardening.</td>
           </tr>
         </tbody>
       </table>
     </section>
 
     <section>
-      <h2>Delivery Phases</h2>
+      <h2>How the Work Runs</h2>
       <table>
         <thead>
           <tr>
-            <th style="width: 20%;">Phase</th>
-            <th style="width: 45%;">What's implemented</th>
-            <th style="width: 35%;">Definition of done</th>
+            <th>Phase</th>
+            <th>What happens</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><strong>0. Contracts + baseline</strong></td>
-            <td>
-              <ul>
-                <li>Output contract enforcement (schema/format + strict parser)</li>
-                <li>Refusal/escalation policy encoded in output</li>
-                <li>Trace fields defined (versions, retrieval/tool calls, latency/cost)</li>
-              </ul>
-            </td>
-            <td>
-              <ul>
-                <li>Every response is contract-valid or explicitly fails</li>
-                <li>Baseline run artifact saved as last-known-good</li>
-              </ul>
-            </td>
+            <td>Enforce output contracts, encode refusal/escalation policy, define trace fields, establish baseline.</td>
           </tr>
           <tr>
             <td><strong>1. Eval harness + CI gates</strong></td>
-            <td>
-              <ul>
-                <li>Case format + runner (local + CI)</li>
-                <li>Must-pass blocking gate</li>
-                <li>Automated checks (schema, refusals, citation integrity, expected-source proxy)</li>
-              </ul>
-            </td>
-            <td>
-              <ul>
-                <li>PRs fail when gates fail</li>
-                <li>Run artifacts stored for diffing against baseline</li>
-              </ul>
-            </td>
+            <td>Build case runner, integrate must-pass blocking gate, add automated checks to CI.</td>
           </tr>
           <tr>
             <td><strong>2. Hardening loops</strong></td>
-            <td>
-              <ul>
-                <li>Prompt packaging + versioning + routing decomposition</li>
-                <li>RAG tuning (context budgets, relevance thresholds, refusal on weak evidence)</li>
-                <li>Tool allow-list + argument validation + deterministic fallbacks</li>
-                <li>Cost/latency controls (token budgets, caching, model routing)</li>
-              </ul>
-            </td>
-            <td>
-              <ul>
-                <li>Must-pass failures = 0 across repeat runs</li>
-                <li>Risk-tier gates met for quality/safety/perf</li>
-              </ul>
-            </td>
+            <td>Iterate on prompts, RAG tuning, tool controls, and cost/latency until gates pass consistently.</td>
           </tr>
           <tr>
             <td><strong>3. Release readiness</strong></td>
-            <td>
-              <ul>
-                <li>Rollout plan (shadow/canary/ramp)</li>
-                <li>Rollback triggers + rollback procedure tested in staging</li>
-                <li>Monitoring checklist for first 24h</li>
-              </ul>
-            </td>
-            <td>
-              <ul>
-                <li>Release review doc completed with evidence</li>
-                <li>Team can ship changes repeatedly with gates</li>
-              </ul>
-            </td>
+            <td>Define rollout plan, test rollback procedure in staging, finalize monitoring checklist.</td>
           </tr>
         </tbody>
       </table>
-      <p class="small">Timeline varies by integration complexity and number of failure surfaces (RAG/tools/agents). The phases above are the delivery order because they minimize wasted iteration.</p>
+      <p class="small">Timeline varies by integration complexity and number of failure surfaces (RAG/tools/agents).</p>
     </section>
 
     <section>
-      <h2>What You Get (Repo Artifacts)</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Eval Suite + Gating</h3>
-          <ul>
-            <li>Case set: golden + edge + regression + safety + high-stakes subsets</li>
-            <li>Must-pass set that blocks PRs/releases</li>
-            <li>Gate thresholds for quality, safety, latency, and cost</li>
-            <li>Run artifacts stored and comparable to baseline</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Production Hardening</h3>
-          <ul>
-            <li>Strict output contract enforcement (no "best effort" drift)</li>
-            <li>Traceability: prompt/model/retrieval versions + tool calls + retrieval IDs</li>
-            <li>RAG/tool controls: allow-lists, validation, failure handling</li>
-            <li>Performance controls: token budgets, caching, routing strategy</li>
-          </ul>
-        </div>
-      </div>
+      <h2>Deliverables</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Artifact</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Eval harness integrated into CI</td>
+            <td>Runs tests on every PR and blocks releases on failure</td>
+          </tr>
+          <tr>
+            <td>Test sets (golden, edge, regression, safety, high-stakes)</td>
+            <td>Covers critical paths and known failure modes</td>
+          </tr>
+          <tr>
+            <td>Must-pass gate configuration</td>
+            <td>Defines which failures block merges and releases</td>
+          </tr>
+          <tr>
+            <td>Output contract enforcement (schema + parser)</td>
+            <td>Ensures every response is valid or explicitly fails</td>
+          </tr>
+          <tr>
+            <td>Trace implementation (versions, tool calls, retrieval IDs)</td>
+            <td>Makes outputs debuggable and auditable</td>
+          </tr>
+          <tr>
+            <td>Release checklist and rollback plan</td>
+            <td>Documents rollout steps and tested recovery procedure</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <section>
       <h2>Definition of Done</h2>
       <div class="checklist">
         <ul>
-          <li><strong>Reproducible:</strong> you can identify the exact model/prompt/retrieval config that produced any output.</li>
-          <li><strong>Gateable:</strong> must-pass failures block merges/releases automatically.</li>
-          <li><strong>Safe uncertainty:</strong> the system refuses/escalates instead of guessing when evidence is weak.</li>
-          <li><strong>Operable:</strong> logs/traces are sufficient to debug incidents quickly without re-running blindly.</li>
-          <li><strong>Rollbackable:</strong> you can revert to a prior version in minutes with explicit triggers.</li>
+          <li>Eval harness runs in CI with a must-pass subset that blocks merges and releases.</li>
+          <li>Coverage includes critical failure modes and representative data slices.</li>
+          <li>Workflow meets defined thresholds (quality, safety, cost/latency where applicable).</li>
+          <li>Release checklist and rollback plan exist and are tested at least once.</li>
         </ul>
       </div>
-    </section>
-
-    <section>
-      <h2>Example: Minimal Gate Thresholds</h2>
-      <pre>must_pass_failures: 0
-schema_validity: >= 99.5% (Tier 2) / 100% (Tier 3)
-grounded_only_citation_integrity: 100% on must-pass
-latency_p95_ms: <= target
-cost_p95_usd: <= target</pre>
-      <p class="small">Thresholds should be set from baseline and ratcheted upward as the workflow hardens.</p>
     </section>
 
     <section>

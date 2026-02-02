@@ -354,7 +354,7 @@
     <header class="header">
       <div class="header-left">
         <h1>LLM Workflow Audit</h1>
-        <p class="subtitle">Define the production bar for one workflow and produce an implementation-ready plan to ship it safely.</p>
+        <p class="subtitle">Define the production bar: failure modes, acceptance criteria, and an eval plan you can implement.</p>
       </div>
       <div class="header-right">
         <div class="name">Phil Stevens</div>
@@ -371,24 +371,11 @@
 
     <section>
       <h2>Best Fit</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="card-label">You have</div>
-          <ul>
-            <li>A demo or pilot that "works," but is brittle or hard to trust.</li>
-            <li>Stakeholders asking: "How do we know it's safe to ship?"</li>
-            <li>Frequent changes (prompt/model/docs/tools) causing behavior drift.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="card-label">You need</div>
-          <ul>
-            <li>Explicit ship/no-ship criteria and a must-pass set.</li>
-            <li>A failure-mode map that's testable and operational.</li>
-            <li>An eval + monitoring plan tied to rollback triggers.</li>
-          </ul>
-        </div>
-      </div>
+      <ul>
+        <li>You need clear ship/no-ship criteria and realistic acceptance thresholds.</li>
+        <li>You have a workflow that works sometimes, but behavior is inconsistent or unmeasured.</li>
+        <li>You want a concrete eval and hardening plan before investing in implementation.</li>
+      </ul>
     </section>
 
     <section>
@@ -398,34 +385,29 @@
           <tr>
             <th>Input</th>
             <th>Minimum</th>
-            <th>What it enables</th>
+            <th>Why it matters</th>
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td>Workflow walkthrough</td>
+            <td>Prompts/routing and where it runs (repo access or walkthrough)</td>
+            <td>Accurate diagnosis; practical fixes; correct trace/version requirements.</td>
+          </tr>
           <tr>
             <td>Representative examples</td>
             <td>30–100 inputs (+ current outputs if available)</td>
             <td>Realistic eval coverage; must-pass selection; edge cases.</td>
           </tr>
           <tr>
-            <td>Current implementation overview</td>
-            <td>Prompts/routing and where it runs (repo access or walkthrough)</td>
-            <td>Accurate diagnosis; practical fixes; correct trace/version requirements.</td>
+            <td>Access to current implementation</td>
+            <td>Endpoint or repo to invoke/inspect the workflow</td>
+            <td>Enables reproducible runs and accurate failure-mode mapping.</td>
           </tr>
           <tr>
-            <td>Integration constraints</td>
-            <td>Output consumer + required format + downstream constraints</td>
-            <td>Correct output contract and validation strategy.</td>
-          </tr>
-          <tr>
-            <td>Policy/compliance constraints</td>
-            <td>PII rules, safety constraints, brand/voice rules (if any)</td>
-            <td>Explicit refusal/escalation behavior and safety gates.</td>
-          </tr>
-          <tr>
-            <td>Optional accelerators</td>
-            <td>Logs, known incidents, RAG details (chunking/retrieval), tool specs</td>
-            <td>Higher precision failure modes; stronger regression harness design.</td>
+            <td>Stakeholder constraints</td>
+            <td>Output consumer, required format, compliance/policy rules</td>
+            <td>Correct output contract, validation strategy, and refusal/escalation behavior.</td>
           </tr>
         </tbody>
       </table>
@@ -433,45 +415,38 @@
     </section>
 
     <section>
-      <h2>Process</h2>
+      <h2>How the Work Runs</h2>
       <table>
         <thead>
           <tr>
             <th>Step</th>
-            <th>What we do</th>
-            <th>Artifact produced</th>
+            <th>What happens</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><strong>1. Scope + risk tier</strong></td>
             <td>Define workflow boundaries, unacceptable failures, and allowed uncertainty (refuse / escalate / partial).</td>
-            <td>Workflow contract draft + risk tier defaults</td>
           </tr>
           <tr>
             <td><strong>2. System teardown</strong></td>
             <td>Map prompting, routing, RAG/tool use, validators, and where failures can occur.</td>
-            <td>Architecture + dependency map</td>
           </tr>
           <tr>
             <td><strong>3. Failure modes</strong></td>
             <td>Enumerate failures, severities, detection methods, and mitigations tied to the workflow.</td>
-            <td>Failure-mode coverage matrix</td>
           </tr>
           <tr>
             <td><strong>4. Eval design</strong></td>
             <td>Define test categories, must-pass set selection rules, and measurable gates.</td>
-            <td>Eval plan + gate thresholds proposal</td>
           </tr>
           <tr>
             <td><strong>5. Operability design</strong></td>
             <td>Define trace fields, versioning scheme, monitoring signals, rollout and rollback triggers.</td>
-            <td>Ops plan + release readiness requirements</td>
           </tr>
           <tr>
             <td><strong>6. Readout</strong></td>
-            <td>Prioritize fixes, estimate effort, and define "done" for Build & Harden.</td>
-            <td>Implementation roadmap (sequenced, with acceptance criteria)</td>
+            <td>Prioritize fixes, estimate effort, and hand off to Build & Harden.</td>
           </tr>
         </tbody>
       </table>
@@ -479,43 +454,50 @@
 
     <section>
       <h2>Deliverables</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Workflow Contract Pack</h3>
-          <ul>
-            <li><strong>Input contract:</strong> fields, validation rules, max sizes.</li>
-            <li><strong>Output contract:</strong> schema/format + refusal/escalation structure.</li>
-            <li><strong>Grounding mode:</strong> grounded-only / mixed / ungrounded, with evidence rules.</li>
-            <li><strong>Tool policy:</strong> allow-list + argument validation + failure handling (if tools).</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Gates + Coverage</h3>
-          <ul>
-            <li><strong>Failure-mode matrix:</strong> blocker/major/minor, detection (auto vs review), mitigations.</li>
-            <li><strong>Eval blueprint:</strong> categories, minimum counts, must-pass definition.</li>
-            <li><strong>Gate thresholds:</strong> risk-tier defaults for quality/safety/perf/regression.</li>
-            <li><strong>Release requirements:</strong> what evidence must exist to ship.</li>
-          </ul>
-        </div>
-        <div class="card card-full">
-          <h3>Ops & Auditability Plan</h3>
-          <ul>
-            <li><strong>Trace requirements:</strong> versions (model/prompt/retrieval), tool calls, retrieved IDs, latency/cost.</li>
-            <li><strong>Monitoring plan:</strong> alert thresholds and drift signals tied to rollback triggers.</li>
-            <li><strong>Rollout plan outline:</strong> shadow/canary/ramp recommendation and approval steps.</li>
-          </ul>
-        </div>
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Artifact</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Workflow contract (input/output schemas, grounding mode, tool policy)</td>
+            <td>Defines what valid requests and responses look like</td>
+          </tr>
+          <tr>
+            <td>Failure-mode matrix</td>
+            <td>Maps failures by severity, detection method, and mitigation</td>
+          </tr>
+          <tr>
+            <td>Eval plan with gate thresholds</td>
+            <td>Specifies test categories, must-pass rules, and acceptance criteria</td>
+          </tr>
+          <tr>
+            <td>Ops plan (trace fields, monitoring signals, rollback triggers)</td>
+            <td>Defines what gets logged and when to act</td>
+          </tr>
+          <tr>
+            <td>Ship/no-ship recommendation</td>
+            <td>Evidence-backed decision with rationale and next steps</td>
+          </tr>
+          <tr>
+            <td>Prioritized hardening roadmap</td>
+            <td>Sequenced fixes ready for Build & Harden</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <section>
-      <h2>Success Criteria</h2>
+      <h2>Definition of Done</h2>
       <div class="success-list">
         <ul>
-          <li>Everyone can answer: "What does 'correct' mean for this workflow?" in measurable terms.</li>
-          <li>There is a must-pass set and a gate definition that would prevent unacceptable releases.</li>
-          <li>There is an implementable plan to add traceability, monitoring, and rollback triggers.</li>
+          <li>Workflow spec with success criteria and known failure modes.</li>
+          <li>Eval plan covering key failure modes with acceptance thresholds.</li>
+          <li>Prioritized hardening roadmap.</li>
+          <li>Ship/no-ship recommendation with rationale and next steps.</li>
         </ul>
       </div>
     </section>
