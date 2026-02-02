@@ -479,6 +479,17 @@
         </tbody>
       </table>
       <p class="small">Timeline varies by integration complexity and number of failure surfaces (RAG/tools/agents).</p>
+
+    </section>
+
+    <section>
+      <h2>What usually moves the needle</h2>
+      <ul>
+        <li>Prompt restructuring vs prompt expansion</li>
+        <li>Moving logic out of the model and into validators</li>
+        <li>Shrinking must-pass sets instead of bloating evals</li>
+        <li>When <em>not</em> to fine-tune</li>
+      </ul>
     </section>
 
     <section>
@@ -493,15 +504,15 @@
         <tbody>
           <tr>
             <td>Eval harness integrated into CI</td>
-            <td>Runs tests on every PR and blocks releases on failure</td>
+            <td>Runs tests on every PR so regressions never reach production unnoticed</td>
           </tr>
           <tr>
             <td>Test sets (golden, edge, regression, safety, high-stakes)</td>
-            <td>Covers critical paths and known failure modes</td>
+            <td>Covers critical paths and known failure modes so you catch real problems, not just happy-path passes</td>
           </tr>
           <tr>
             <td>Must-pass gate configuration</td>
-            <td>Defines which failures block merges and releases</td>
+            <td>Defines which failures block merges and releases so bad changes can't slip through</td>
           </tr>
           <tr>
             <td>Output contract enforcement (schema + parser)</td>
@@ -523,10 +534,10 @@
       <h2>Definition of Done</h2>
       <div class="checklist">
         <ul>
-          <li>Eval harness runs in CI with a must-pass subset that blocks merges and releases.</li>
-          <li>Coverage includes critical failure modes and representative data slices.</li>
-          <li>Workflow meets defined thresholds (quality, safety, cost/latency where applicable).</li>
-          <li>Release checklist and rollback plan exist and are tested at least once.</li>
+          <li>Eval harness runs in CI with a must-pass subset that blocks merges and releases; no untested must-pass cases.</li>
+          <li>Coverage includes all agreed critical failure modes and representative data slices, with no known gaps.</li>
+          <li>Workflow meets all defined thresholds (quality, safety, cost/latency) with documented evidence.</li>
+          <li>Release checklist and rollback plan exist, are tested at least once in staging, and are signed off.</li>
         </ul>
       </div>
     </section>
@@ -554,6 +565,9 @@
             <strong>Email:</strong> philipstevens4@gmail.com<br>
             <strong>Web:</strong> philipstevens.github.io
           </div>
+          <p style="font-size: 12px; color: var(--muted); margin-top: 16px;">
+            <strong>Not ready?</strong> Get the free <a href="https://philipstevens.github.io/#lead-capture" style="color: var(--accent);">Production Readiness Checklist</a> to self-assess first.
+          </p>
         </div>
         <div class="qr-box">
           <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://calendly.com/philipstevens4/intro" alt="QR Code to book intro call" />

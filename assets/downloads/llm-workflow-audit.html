@@ -453,6 +453,16 @@
     </section>
 
     <section>
+      <h2>Common failure patterns I look for</h2>
+      <ul>
+        <li>Silent partial failures (plausible but incomplete outputs)</li>
+        <li>Over-broad refusals masking missing grounding</li>
+        <li>Eval metrics that don't correlate with user pain</li>
+        <li>Latency/cost failures that only appear at p95+</li>
+      </ul>
+    </section>
+
+    <section>
       <h2>Deliverables</h2>
       <table>
         <thead>
@@ -468,15 +478,15 @@
           </tr>
           <tr>
             <td>Failure-mode matrix</td>
-            <td>Maps failures by severity, detection method, and mitigation</td>
+            <td>Maps failures by severity, detection method, and mitigation so nothing ships without a plan to catch it</td>
           </tr>
           <tr>
             <td>Eval plan with gate thresholds</td>
-            <td>Specifies test categories, must-pass rules, and acceptance criteria</td>
+            <td>Specifies test categories, must-pass rules, and acceptance criteria so ship decisions are evidence-based</td>
           </tr>
           <tr>
             <td>Ops plan (trace fields, monitoring signals, rollback triggers)</td>
-            <td>Defines what gets logged and when to act</td>
+            <td>Defines what gets logged and when to act so incidents are diagnosable without guesswork</td>
           </tr>
           <tr>
             <td>Ship/no-ship recommendation</td>
@@ -494,10 +504,10 @@
       <h2>Definition of Done</h2>
       <div class="success-list">
         <ul>
-          <li>Workflow spec with success criteria and known failure modes.</li>
-          <li>Eval plan covering key failure modes with acceptance thresholds.</li>
-          <li>Prioritized hardening roadmap.</li>
-          <li>Ship/no-ship recommendation with rationale and next steps.</li>
+          <li>Workflow spec documents all agreed success criteria and known failure modes, with no ambiguous edge cases.</li>
+          <li>Eval plan covers all identified critical failure modes with measurable acceptance thresholds.</li>
+          <li>Prioritized hardening roadmap with sequenced fixes and clear ownership.</li>
+          <li>Ship/no-ship recommendation is evidence-backed with documented rationale and actionable next steps.</li>
         </ul>
       </div>
     </section>
@@ -525,6 +535,9 @@
             <strong>Email:</strong> philipstevens4@gmail.com<br>
             <strong>Web:</strong> philipstevens.github.io
           </div>
+          <p style="font-size: 12px; color: var(--muted); margin-top: 16px;">
+            <strong>Not ready?</strong> Get the free <a href="https://philipstevens.github.io/#lead-capture" style="color: var(--accent);">Production Readiness Checklist</a> to self-assess first.
+          </p>
         </div>
         <div class="qr-box">
           <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://calendly.com/philipstevens4/intro" alt="QR Code to book intro call" />

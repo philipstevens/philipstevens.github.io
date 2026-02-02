@@ -486,6 +486,17 @@
           </tr>
         </tbody>
       </table>
+
+    </section>
+
+    <section>
+      <h2>What breaks most release processes</h2>
+      <ul>
+        <li>Gates that are too slow to run, so they're skipped</li>
+        <li>Thresholds that never get ratcheted</li>
+        <li>Drift signals without an owner</li>
+        <li>Rollbacks that exist on paper only</li>
+      </ul>
     </section>
 
     <section>
@@ -500,15 +511,15 @@
         <tbody>
           <tr>
             <td>Maintained eval suite (test sets updated from incidents)</td>
-            <td>Keeps coverage current as product and failure modes evolve</td>
+            <td>Keeps coverage current as product and failure modes evolve so yesterday's bugs don't recur tomorrow</td>
           </tr>
           <tr>
             <td>Release gate reports</td>
-            <td>Documents what changed, what passed/failed, and ship decision</td>
+            <td>Documents what changed, what passed/failed, and ship decision so every release has a paper trail</td>
           </tr>
           <tr>
             <td>Weekly stability memos</td>
-            <td>Summarizes trends, drift signals, and recommended fixes</td>
+            <td>Summarizes trends, drift signals, and recommended fixes so problems surface before users report them</td>
           </tr>
           <tr>
             <td>Drift monitoring dashboards and alerts</td>
@@ -530,10 +541,10 @@
       <h2>Definition of Done</h2>
       <div class="success-list">
         <ul>
-          <li>Every release has a gate report (what changed, what passed/failed, decision recorded).</li>
-          <li>Drift and regression monitoring is in place with clear signals and response steps.</li>
-          <li>Thresholds and test sets are maintained (updates are versioned and reviewed).</li>
-          <li>Rollback is documented and exercised so failures are recoverable quickly.</li>
+          <li>Every release has a gate report documenting what changed, what passed/failed, and a signed-off ship decision.</li>
+          <li>Drift and regression monitoring is in place with defined signals, owners, and documented response steps.</li>
+          <li>Thresholds and test sets are maintained with versioned updates and review sign-off on each change.</li>
+          <li>Rollback is documented and exercised at least once per quarter so recovery time stays under SLA.</li>
         </ul>
       </div>
     </section>
@@ -562,6 +573,9 @@
             <strong>Email:</strong> philipstevens4@gmail.com<br>
             <strong>Web:</strong> philipstevens.github.io
           </div>
+          <p style="font-size: 12px; color: var(--muted); margin-top: 16px;">
+            <strong>Not ready?</strong> Get the free <a href="https://philipstevens.github.io/#lead-capture" style="color: var(--accent);">Production Readiness Checklist</a> to self-assess first.
+          </p>
         </div>
         <div class="qr-box">
           <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://calendly.com/philipstevens4/intro" alt="QR Code to book intro call" />
