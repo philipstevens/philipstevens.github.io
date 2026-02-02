@@ -199,8 +199,70 @@
 <h1>LLM Workflow Production Readiness Checklist</h1>
 <div class="subtitle"><strong>Version 1.0</strong> &nbsp;|&nbsp; Philip Stevens &nbsp;|&nbsp; philipstevens4@gmail.com</div>
 
+<table style="margin: 1.5em 0; border: 2px solid #5b21b6;">
+  <tr>
+    <td style="width: 50%; border-right: 1px solid #d1d5db;"><strong>Workflow name:</strong> _________________________________</td>
+    <td><strong>Review date:</strong> ____/____/________</td>
+  </tr>
+  <tr>
+    <td style="border-right: 1px solid #d1d5db;"><strong>Team / Owner:</strong> _________________________________</td>
+    <td><strong>Reviewer(s):</strong> _________________________________</td>
+  </tr>
+  <tr>
+    <td colspan="2"><strong>Workflow description (1 sentence):</strong> ________________________________________________________________</td>
+  </tr>
+</table>
+
 <h2>How to Use This Checklist</h2>
 <p>This checklist is designed for engineering teams preparing to ship an LLM-powered workflow to production. Work through each section before release. Items marked with <span class="critical">[CRITICAL]</span> are non-negotiable; shipping without them significantly increases the risk of production incidents.</p>
+
+<hr>
+
+<h2>Score Your Readiness</h2>
+<p>After completing the checklist, tally your results here:</p>
+
+<table>
+  <tr>
+    <th style="width: 50%;">Category</th>
+    <th style="width: 25%;">Passed</th>
+    <th style="width: 25%;">Total</th>
+  </tr>
+  <tr>
+    <td><span class="critical">[CRITICAL]</span> items (Parts 1–3)</td>
+    <td>____ / 7</td>
+    <td style="font-size: 8pt; color: #666;">Must be 7/7 to ship</td>
+  </tr>
+  <tr>
+    <td>Failure mode coverage (Part 2)</td>
+    <td>____ / 19</td>
+    <td style="font-size: 8pt; color: #666;">Target: 15+</td>
+  </tr>
+  <tr>
+    <td>Monitoring configured (Part 4)</td>
+    <td>____ / 14</td>
+    <td style="font-size: 8pt; color: #666;">Target: 10+</td>
+  </tr>
+  <tr>
+    <td>Harness requirements (Part 5)</td>
+    <td>____ / 7</td>
+    <td style="font-size: 8pt; color: #666;">Target: 5+</td>
+  </tr>
+</table>
+
+<div style="background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 6px; padding: 1em; margin: 1em 0;">
+  <strong>Interpretation:</strong>
+  <ul style="margin: 0.5em 0 0 0;">
+    <li><strong>All CRITICAL + targets met:</strong> You're ready to ship. Proceed with staged rollout.</li>
+    <li><strong>CRITICAL pass, targets partial:</strong> Ship with caution. Prioritize gaps in first week post-deploy.</li>
+    <li><strong>Any CRITICAL fail:</strong> <span class="critical">Do not ship.</span> Fix these first:
+      <ol style="margin: 0.3em 0 0 1em; font-size: 9pt;">
+        <li>Define and run a golden set eval (≥50 cases)</li>
+        <li>Add safety checks for unsafe inputs and PII</li>
+        <li>Test your rollback procedure once</li>
+      </ol>
+    </li>
+  </ul>
+</div>
 
 <hr>
 
@@ -515,23 +577,23 @@
 <h3>3.1 Ship / No-Ship Criteria</h3>
 
 <p><strong>SHIP</strong> if all of the following are true:</p>
-<ul>
-  <li><span class="checkbox"></span> All <span class="critical">[CRITICAL]</span> eval gates pass</li>
-  <li><span class="checkbox"></span> No regressions on the regression suite</li>
-  <li><span class="checkbox"></span> All failure modes have detection or mitigation in place</li>
-  <li><span class="checkbox"></span> Rollback tested and verified working</li>
-  <li><span class="checkbox"></span> Monitoring and alerting configured</li>
-  <li><span class="checkbox"></span> Required sign-offs collected</li>
-</ul>
+<table>
+  <tr><td style="width: 30px;"><span class="checkbox"></span></td><td>All <span class="critical">[CRITICAL]</span> eval gates pass</td></tr>
+  <tr><td><span class="checkbox"></span></td><td>No regressions on the regression suite</td></tr>
+  <tr><td><span class="checkbox"></span></td><td>All failure modes have detection or mitigation in place</td></tr>
+  <tr><td><span class="checkbox"></span></td><td>Rollback tested and verified working</td></tr>
+  <tr><td><span class="checkbox"></span></td><td>Monitoring and alerting configured</td></tr>
+  <tr><td><span class="checkbox"></span></td><td>Required sign-offs collected</td></tr>
+</table>
 
 <p><strong>NO-SHIP</strong> if any of the following are true:</p>
-<ul>
-  <li><span class="checkbox"></span> Any <span class="critical">[CRITICAL]</span> eval gate fails</li>
-  <li><span class="checkbox"></span> New regression introduced</li>
-  <li><span class="checkbox"></span> Unmitigated high-severity failure mode discovered</li>
-  <li><span class="checkbox"></span> Rollback not tested or broken</li>
-  <li><span class="checkbox"></span> Missing required sign-off</li>
-</ul>
+<table>
+  <tr><td style="width: 30px;"><span class="checkbox"></span></td><td>Any <span class="critical">[CRITICAL]</span> eval gate fails</td></tr>
+  <tr><td><span class="checkbox"></span></td><td>New regression introduced</td></tr>
+  <tr><td><span class="checkbox"></span></td><td>Unmitigated high-severity failure mode discovered</td></tr>
+  <tr><td><span class="checkbox"></span></td><td>Rollback not tested or broken</td></tr>
+  <tr><td><span class="checkbox"></span></td><td>Missing required sign-off</td></tr>
+</table>
 
 <h3>3.2 Release Artifacts Checklist</h3>
 <p>Before release, verify these artifacts exist and are versioned:</p>
@@ -920,11 +982,131 @@
   </tr>
 </table>
 
+<hr class="page-break">
+
+<h2>Example: Invoice Data Extraction Workflow</h2>
+<p style="color: #666; font-style: italic;">This example shows how to fill out key sections for a common workflow. Copy this pattern for your own.</p>
+
+<table style="margin: 1em 0; border: 2px solid #5b21b6;">
+  <tr>
+    <td style="width: 50%; border-right: 1px solid #d1d5db;"><strong>Workflow name:</strong> <span style="color: #5b21b6;">Invoice field extraction</span></td>
+    <td><strong>Review date:</strong> <span style="color: #5b21b6;">01/15/2025</span></td>
+  </tr>
+  <tr>
+    <td style="border-right: 1px solid #d1d5db;"><strong>Team / Owner:</strong> <span style="color: #5b21b6;">Finance Automation / J. Chen</span></td>
+    <td><strong>Reviewer(s):</strong> <span style="color: #5b21b6;">M. Park, S. Lee</span></td>
+  </tr>
+  <tr>
+    <td colspan="2"><strong>Workflow description:</strong> <span style="color: #5b21b6;">Extract vendor, amount, date, and line items from uploaded PDF invoices into structured JSON.</span></td>
+  </tr>
+</table>
+
+<h3>Example: Eval Gates (Section 1.1)</h3>
+<table>
+  <tr>
+    <th>Check</th>
+    <th>Your Threshold</th>
+    <th>Measured</th>
+    <th>Pass?</th>
+  </tr>
+  <tr>
+    <td><span class="critical">[CRITICAL]</span> Task accuracy on golden set (n≥50)</td>
+    <td><span style="color: #5b21b6;">≥92%</span></td>
+    <td><span style="color: #5b21b6;">94.2%</span></td>
+    <td><span style="color: #22c55e; font-weight: bold;">✓</span></td>
+  </tr>
+  <tr>
+    <td>Accuracy on edge cases subset</td>
+    <td><span style="color: #5b21b6;">≥85%</span></td>
+    <td><span style="color: #5b21b6;">87%</span></td>
+    <td><span style="color: #22c55e; font-weight: bold;">✓</span></td>
+  </tr>
+  <tr>
+    <td>Accuracy on adversarial/malformed inputs</td>
+    <td><span style="color: #5b21b6;">≥80%</span></td>
+    <td><span style="color: #5b21b6;">82%</span></td>
+    <td><span style="color: #22c55e; font-weight: bold;">✓</span></td>
+  </tr>
+</table>
+<p class="small"><strong>Why these thresholds:</strong> 92% baseline from current prod performance minus 2% buffer. Edge cases lower because they include handwritten invoices. Adversarial includes corrupted PDFs and injected text.</p>
+
+<h3>Example: Failure Mode Coverage (Section 2.1)</h3>
+<table>
+  <tr>
+    <th>Failure Mode</th>
+    <th>Detection Method</th>
+    <th>Mitigation</th>
+    <th></th>
+  </tr>
+  <tr>
+    <td><strong>Wrong amount extracted</strong></td>
+    <td><span style="color: #5b21b6;">Regex check: amount matches currency pattern</span></td>
+    <td><span style="color: #5b21b6;">Flag for human review if confidence &lt;0.9</span></td>
+    <td><span style="color: #22c55e; font-weight: bold;">✓</span></td>
+  </tr>
+  <tr>
+    <td><strong>Missing required field</strong></td>
+    <td><span style="color: #5b21b6;">Schema validation on output JSON</span></td>
+    <td><span style="color: #5b21b6;">Retry once, then escalate to human queue</span></td>
+    <td><span style="color: #22c55e; font-weight: bold;">✓</span></td>
+  </tr>
+  <tr>
+    <td><strong>Hallucinated line item</strong></td>
+    <td><span style="color: #5b21b6;">Compare line item count to OCR bounding boxes</span></td>
+    <td><span style="color: #5b21b6;">Reject if count mismatch &gt;1</span></td>
+    <td><span style="color: #22c55e; font-weight: bold;">✓</span></td>
+  </tr>
+</table>
+
+<h3>Example: Test Case (Section 5.2)</h3>
+<pre><code>{
+  "id": "inv-edge-003",
+  "category": "edge",
+  "input": {
+    "file": "handwritten_invoice_blurry.pdf",
+    "expected_fields": ["vendor", "amount", "date"]
+  },
+  "expected_output": {
+    "vendor": "ABC Supplies",
+    "amount": 1234.56,
+    "date": "2024-12-01",
+    "confidence": 0.85
+  },
+  "evaluation": {
+    "method": "custom",
+    "threshold": 0.9,
+    "custom_evaluator": "evals/invoice_field_match.py"
+  },
+  "metadata": {
+    "added_date": "2025-01-10",
+    "source": "production_failure",
+    "severity": "high",
+    "notes": "Handwritten invoices frequently miss date field"
+  }
+}</code></pre>
+
+<div style="margin-top: 48px; padding: 28px; background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border: 1px solid #c4b5fd; border-radius: 12px;">
+  <div style="display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;">
+    <div>
+      <h3 style="margin: 0 0 8px; font-size: 16px;">Need help filling this out?</h3>
+      <p style="margin: 0 0 16px; color: #64748b; font-size: 14px;">If you're preparing an LLM workflow for production and want expert help defining acceptance criteria, building eval suites, or setting up release gates:</p>
+      <div>
+        <strong>Book an intro call:</strong><br>
+        <a href="https://calendly.com/philipstevens4/intro" style="color: #5b21b6; font-weight: 600; font-size: 15px; text-decoration: none;">calendly.com/philipstevens4/intro</a>
+      </div>
+      <div style="font-size: 13px; color: #64748b; margin-top: 12px;">
+        <strong>Email:</strong> philipstevens4@gmail.com<br>
+        <strong>Web:</strong> philipstevens.github.io
+      </div>
+    </div>
+    <div style="text-align: center;">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://calendly.com/philipstevens4/intro" alt="QR Code to book intro call" style="width: 100px; height: 100px; border: 1px solid #e2e8f0; border-radius: 8px; background: white; padding: 4px;" />
+      <div style="font-size: 11px; color: #64748b; margin-top: 6px;">Scan to book a call</div>
+    </div>
+  </div>
+</div>
+
 <div class="footer">
-  <h2>Getting Help</h2>
-  <p>If you're preparing an LLM workflow for production and want expert help with defining acceptance criteria, building eval suites, hardening workflows, or setting up release gates and monitoring:</p>
-  <p><strong>Book an intro call:</strong> <a href="https://calendly.com/philipstevens4/intro">calendly.com/philipstevens4/intro</a></p>
-  <hr>
   <p><em>This checklist is provided as a starting point. Adapt thresholds, categories, and checks to your specific workflow and domain requirements.</em></p>
 </div>
 

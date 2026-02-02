@@ -360,8 +360,9 @@ You’ll end up with:
 [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
 [Download offer details (PDF)](/assets/downloads/llm-workflow-release-ops.pdf){: .btn .btn--inverse }
 
-
 {% include lead-capture.html source="services-page" %}
+
+---
 
 ## FAQ
 
