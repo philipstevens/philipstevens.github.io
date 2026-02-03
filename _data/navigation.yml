@@ -1,8 +1,6 @@
 main:
-  - title: "Start here"
-    url: /
   - title: "Services"
-    url: /services/
+    url: /
   - title: "Work"
     url: /work/
   - title: "About"

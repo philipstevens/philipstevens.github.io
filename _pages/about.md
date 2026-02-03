@@ -20,7 +20,7 @@ I publish case studies and technical write-ups here to share how I approach this
 
 ## Where to go next
 
-- [Services](/services/) — engagement options and pricing
+- [Services](/) — engagement options and pricing
 - [Work](/work/) — case studies and tutorials
 - [CV](/cv/) — full background
 
