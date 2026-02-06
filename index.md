@@ -1,9 +1,10 @@
 ---
 layout: splash
 permalink: /
-title: "Reliable LLM workflows for production"
-excerpt: "Make AI behavior consistent, testable, and safe to ship."
-description: "Make AI behavior consistent, testable, and safe to ship."
+title: "AI that works beyond the demo"
+excerpt: "Predictable behavior, every time, at scale, with real users."
+description: "Consulting and services for teams shipping AI features
+   into production."
 author_profile: false
 classes: wide
 last_updated: 2025-12-28
@@ -15,44 +16,31 @@ header:
       url: "https://calendly.com/philipstevens4/intro"
 ---
 
-Shipping an LLM feature usually works fine at first.
-Problems show up once real users, real data, and real edge cases enter the picture.
+Most AI pilots start strong, then break in ways no one predicted.
 
-This page explains how to make LLM workflows reliable enough to run in production.
+## Why teams get stuck
 
-## Why teams get stuck after the demo
+- Outputs vary too much to trust
+- Hard to explain or sign off on what it produces
+- Changes ship without knowing what they'll break
+- Too slow or expensive to scale up
 
-- It works in the demo… then falls apart on real inputs
-- No one can confidently explain or sign off on the outputs
-- It's too slow or too expensive to run reliably
+## The fix
 
-## A simple approach
+1. Define what "good" looks like (and what can't
+happen)
+2. Test until it passes consistently
+3. Add release checks so updates don't quietly break it
 
-- Agree on what "good" looks like (and what can't happen)
-- Turn it into tests, then iterate until it passes every time
-- Add release checks so updates don't quietly break it
+<br>
 
-Demos are easy. Real inputs aren't. Once edge cases pile up, shipping slows down fast.
-Reliability comes from clear rules, real tests, and release checks that catch breakage early.
+| Offer | What you get | Pricing | Details |
+| --- | --- | --- | --- |
+| [Audit](#audit) | Define the bar, find the gaps, get a plan | From $7,500 | [PDF](/assets/downloads/llm-workflow-audit.pdf) |
+| [Build & Fix](#build-and-fix) | Meet the bar. Reliable, scalable, trustworthy. | $25k–$90k | [PDF](/assets/downloads/llm-workflow-build-and-harden.pdf) |
+| [Keep it Stable](#keep-it-stable) | Keep meeting the bar. Predictable releases, fewer surprises. | From $3k/mo | [PDF](/assets/downloads/llm-workflow-release-ops.pdf) |
 
----
-
-Usually this is for product teams shipping an LLM feature into a real workflow.
-
-| Offer | What it does | Typical outcome | Pricing | Details |
-| --- | --- | --- | --- | --- |
-| [Audit](#audit) | Decide what "good enough" means | Clear ship / no-ship decision | Fixed fee (starting at $7500) for one workflow | [PDF](/assets/downloads/llm-workflow-audit.pdf) |
-| [Build & Fix](#build-and-fix) | Make it behave consistently | Something you can trust on real inputs | Project fee (typical range $25000-$90000) | [PDF](/assets/downloads/llm-workflow-build-and-harden.pdf) |
-| [Keep it Stable](#keep-it-stable) | Keep it steady as you ship | Predictable releases, fewer surprises | Monthly retainer (starting at $3000/mo) for one workflow + release checks | [PDF](/assets/downloads/llm-workflow-release-ops.pdf) |
-
-Most teams follow a simple path:
-**Define the bar → Meet it → Keep meeting it.**
-
-- **Audit:** We have something working, but we don't trust it yet.
-- **Build & Fix:** We need it to behave reliably in the real world.
-- **Keep it Stable:** We're already shipping and quality keeps drifting.
-
-Not sure which fits? Book 15 minutes to find out where to start.
+Not sure which fits?
 
 [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
 
