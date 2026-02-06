@@ -10,3 +10,5 @@ vendor/
 .DS_Store
 .vscode/
 node_modules
+
+TODO.txt
