@@ -139,4 +139,4 @@ Sketch Diagram Strokes.” SBIM ‘13](https://dl.acm.org/doi/10.1145/2487381.24
   - PyTorch; Transformers ecosystem (Transformers, PEFT, TRL); scikit-learn, xgboost
   - Spark, PySpark, Hive, Hadoop
 
-See supporting [write-ups](/work/).
+See supporting [write-ups](/library/).

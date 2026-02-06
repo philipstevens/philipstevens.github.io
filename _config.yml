@@ -85,6 +85,9 @@ author:
     icon: "fas fa-fw fa-file-alt"
     url: "/cv/"
 
+atom_feed:
+  hide: true
+
 footer:
   links:
     - label: "GitHub"
@@ -119,7 +122,7 @@ defaults:
 
   - scope:
       path: ""
-      type: work
+      type: library
     values:
       layout: single
       classes: wide
@@ -135,7 +138,7 @@ tag_archive:
   path: /tags/
 
 collections:
-  work:
+  library:
     output: true
-    permalink: /work/:path/
+    permalink: /library/:path/
   

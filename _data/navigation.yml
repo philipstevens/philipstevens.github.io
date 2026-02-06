@@ -1,7 +1,7 @@
 main:
   - title: "Services"
     url: /
-  - title: "Work"
-    url: /work/
+  - title: "Library"
+    url: /library/
   - title: "About"
     url: /about/

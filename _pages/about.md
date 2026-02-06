@@ -21,7 +21,7 @@ I publish case studies and technical write-ups here to share how I approach this
 ## Where to go next
 
 - [Services](/) — engagement options and pricing
-- [Work](/work/) — case studies and tutorials
+- [Library](/library/) — case studies and tutorials
 - [CV](/cv/) — full background
 
 {% include last-updated.html %}
