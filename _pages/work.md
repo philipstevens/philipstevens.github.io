@@ -1,7 +1,7 @@
 ---
-title: "Work"
+title: "Library"
 layout: splash
-permalink: /work/
+permalink: /library/
 description: "Case studies and technical notes on LLM workflow reliability, evals, and release gating."
 excerpt: "Case studies and technical notes."
 classes: wide
@@ -11,8 +11,8 @@ header:
   overlay_filter: 0.35
 ---
 
-{% assign case_studies = site.work | where: "type", "case-study" | reverse %}
-{% assign tutorials   = site.work | where: "type", "tutorial"   | reverse %}
+{% assign case_studies = site.library | where: "type", "case-study" | reverse %}
+{% assign tutorials   = site.library | where: "type", "tutorial"   | reverse %}
 {% assign total       = case_studies.size | plus: tutorials.size %}
 
 {% if total == 0 %}
