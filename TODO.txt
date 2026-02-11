@@ -1,5 +1,5 @@
-1. Services: Header, Intro, offer table, offer descriptions, lead magnet, FAQ
+
 2. Polish page
     1. Aesthetics, style, template and should I even keep using Jekyll if I use so much custom CSS/HTML? 
     2. Should I keep URL or should I even keep using Github sites? Can I create multiple sites of GitHub sites? Should I have 2 separate sites and link to each other or is that overboard?
-3. Make sure this is still aligned with original intent
+

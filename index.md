@@ -1,8 +1,8 @@
 ---
 layout: splash
 permalink: /
-title: "AI that works beyond the demo"
-excerpt: "Predictable behavior, every time, at scale, with real users."
+title: "AI that works in production"
+excerpt: "Build it right. Ship it safe."
 description: "Consulting and services for teams shipping AI features
    into production."
 author_profile: false
@@ -16,7 +16,7 @@ header:
       url: "https://calendly.com/philipstevens4/intro"
 ---
 
-Most AI pilots start strong, then break in ways no one predicted.
+Most AI projects stall. They break in ways no one predicted, or they never get built right in the first place.
 
 ## Why teams get stuck
 
@@ -24,21 +24,28 @@ Most AI pilots start strong, then break in ways no one predicted.
 - Hard to explain or sign off on what it produces
 - Changes ship without knowing what they'll break
 - Too slow or expensive to scale up
+- No clear path from prototype to production
+- Data foundations aren't in place for the AI layer on top
 
 ## The fix
 
-1. Define what "good" looks like (and what can't
-happen)
-2. Test until it passes consistently
+1. Get the data foundations and architecture right (or diagnose what's wrong)
+2. Define what "good" looks like and test until it passes consistently
 3. Add release checks so updates don't quietly break it
+
+## Who this is for
+
+- **Building something new** — You're building an AI-powered product and need senior engineering help to get the foundations right. You want it built for production from day one, not retrofitted later.
+- **Stuck in pilot** — You have an AI workflow that works sometimes but isn't reliable enough to ship. You need someone to define the bar, find the gaps, and make it pass consistently.
+- **Shipping and breaking things** — You're already in production but regressions keep slipping through. You need release discipline, drift detection, and fewer surprises.
 
 <br>
 
 | Offer | What you get | Pricing | Details |
 | --- | --- | --- | --- |
-| [Audit](#audit) | Define the bar, find the gaps, get a plan | From $7,500 | [PDF](/assets/downloads/llm-workflow-audit.pdf) |
-| [Build & Fix](#build-and-fix) | Meet the bar. Reliable, scalable, trustworthy. | $25k–$90k | [PDF](/assets/downloads/llm-workflow-build-and-harden.pdf) |
-| [Keep it Stable](#keep-it-stable) | Keep meeting the bar. Predictable releases, fewer surprises. | From $3k/mo | [PDF](/assets/downloads/llm-workflow-release-ops.pdf) |
+| [Audit](#audit) | Know exactly where you stand and what it'll take to ship with confidence | From $7,500 | [PDF](/assets/downloads/llm-workflow-audit.pdf) |
+| [Build & Fix](#build-and-fix) | Go from prototype to production-grade. On time, on budget, with evidence it works | $25k–$90k | [PDF](/assets/downloads/llm-workflow-build-and-harden.pdf) |
+| [Keep it Stable](#keep-it-stable) | Ship updates without surprises. Fewer incidents, faster releases, less firefighting | From $3k/mo | [PDF](/assets/downloads/llm-workflow-release-ops.pdf) |
 
 Not sure which fits?
 
@@ -50,7 +57,7 @@ Not sure which fits?
 
 *Get clarity + a plan*
 
-If you have a workflow that kind of works, this is the fast way to get clarity. Pull the system apart, look at real examples, and pin down what "good enough" actually means for your use case.
+Whether you have something that kind of works or you're designing from scratch, this is the fast way to get clarity. Map the system, define what "good enough" means, and get a concrete plan.
 
 What you get:
 
@@ -67,10 +74,11 @@ What you get:
 
 *Make it reliable*
 
-This covers implementation. Use an existing plan (or define "good"), build the tests, and iterate until behavior is consistent on real inputs.
+This covers implementation, whether that means building the right architecture from the ground up or hardening an existing workflow until it passes.
 
 Deliverables:
 
+- Data and system architecture designed for production from day one
 - A repeatable test set you can run before shipping changes
 - A version that behaves consistently on real inputs
 - A simple rollout + rollback plan
@@ -132,6 +140,14 @@ Typically: one engineering owner, one product/domain owner, and someone who can 
 ### How does it start?
 
 Book an intro call. If it's a fit, the next step is defining the workflow, scope, and success criteria, then starting with an Audit or jumping straight to Build & Fix.
+
+### What if we haven't built anything yet?
+
+That's fine. Many engagements start before the first line of code. An Audit defines the architecture, data foundations, and success criteria so you build it right the first time instead of retrofitting later.
+
+### Do you do the implementation or just advise?
+
+Both. Build & Fix is hands-on implementation: code, pipelines, and shipping. For teams that need ongoing support, Keep it Stable provides continued engineering alongside your team.
 
 </div>
 
