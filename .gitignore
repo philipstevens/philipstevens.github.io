@@ -9,3 +9,5 @@ vendor/
 # OS / editor junk
 .DS_Store
 .vscode/
+node_modules
+TODO.txt
