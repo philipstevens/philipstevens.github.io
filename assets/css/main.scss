@@ -579,6 +579,27 @@ details.template-dropdown[open] summary.template-dropdown-header::after {
   }
 }
 
+// Section heading accent
+.page__content h2 {
+  border-left: 4px solid #7c3aed;
+  padding-left: 0.75em;
+}
+
+// Offer table tier colors
+.offer-audit { border-left: 4px solid #22c55e; }
+.offer-build { border-left: 4px solid #3b82f6; }
+.offer-stable { border-left: 4px solid #a855f7; }
+
+// Lead capture button pulse animation
+.lead-capture-box .btn--primary {
+  animation: subtle-pulse 2s ease-in-out infinite;
+}
+
+@keyframes subtle-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(124, 58, 237, 0); }
+}
+
 // Checklist Thanks Page
 .checklist-thanks {
   max-width: 600px;

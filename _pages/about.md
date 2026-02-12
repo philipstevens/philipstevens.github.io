@@ -1,20 +1,18 @@
 ---
-title: "About Me"
+title: "About"
 layout: single
 permalink: /about/
-description: "Philip Stevens: 10+ years applied ML and foundation model engineering. I focus on making high-stakes LLM workflows reliable, measurable, and safe."
+description: "Phil Stevens helps teams ship LLM workflows to production with eval gating, release discipline, and failure-mode coverage. 12 years applied ML, consulting since 2023."
 author_profile: true
 profile_page: true
-last_updated: 2025-12-28
+last_updated: 2026-02-12
 ---
 
 [Email me](mailto:philipstevens4@gmail.com){: .btn .btn--primary }
 
-Hi, I'm Phil.
+Most teams shipping AI into production don't have a reliability problem — they have a measurement problem. They can't define what "good" looks like, so they can't tell when things break.
 
-I'm a foundation model engineer. I help teams build and ship AI systems that work reliably in production — from data foundations and architecture through to evals, release gates, and ongoing stability. I care about this because I've seen too many promising systems fail when they hit real users — and most of those failures were preventable with better evals and release discipline.
-
-I bring 10+ years of applied ML across personalization, recommendations, NLP, and real-time decision systems, including production work at Agoda and Quantcast. I've been consulting since 2023.
+I help fix that. I'm Phil Stevens, a foundation model engineer focused on making LLM workflows reliable, measurable, and safe to ship. I bring 12 years of applied ML across personalization, NLP, and real-time systems (Agoda, Quantcast), and have been consulting independently since 2023 on production LLM reliability: eval design, release gating, RAG hardening, and drift detection.
 
 My work typically spans the full stack: data pipelines, model selection and adaptation, evaluation design, and production hardening. I've built systems end-to-end and also parachuted into teams that needed a specific piece fixed.
 

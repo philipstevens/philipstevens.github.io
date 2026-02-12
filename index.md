@@ -7,7 +7,7 @@ description: "Consulting and services for teams shipping AI features
    into production."
 author_profile: false
 classes: wide
-last_updated: 2025-12-28
+last_updated: 2026-02-12
 header:
   overlay_color: "#0B1220"
   overlay_filter: 0.35
@@ -38,11 +38,86 @@ Not because the models aren't good enough. Because the work to make them product
 
 This applies whether you're calling a hosted API or running open-weight models in your own infra.
 
+## Why this matters now
+
+The gap between what AI benchmarks promise and what production systems actually deliver is wider than ever. One of the field's most respected researchers has [openly noted that models appear smarter on benchmarks than their economic impact suggests](https://www.notion.so/2d78346720b68036a0bffad652b6dbb8). Models that score well on evals [collapse past a complexity threshold instead of degrading gracefully](https://arxiv.org/abs/2502.07496). And a researcher recently found [~30% error rates in a benchmark dataset from a major lab](https://x.com/dierxx/status/1994042370376032701) that reviewers missed entirely.
+
+Benchmarks overfit to narrow metrics while real-world workflows break on edge cases, drift silently, and ship regressions no one catches until users report them. The teams that close this gap, with eval discipline, release gating, and failure-mode coverage, are the ones that actually ship.
+
 ## Who this is for
 
 - **Building something new** — You're building an AI-powered product and need senior engineering help to get the foundations right. You want it built for production from day one, not retrofitted later.
 - **Stuck in pilot** — You have an AI workflow that works sometimes but isn't reliable enough to ship. You need someone to define the bar, find the gaps, and make it pass consistently.
 - **Shipping and breaking things** — You're already in production but regressions keep slipping through. You need release discipline, drift detection, and fewer surprises.
+
+Sound familiar? [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
+
+<!-- REPLACE WITH REAL ENGAGEMENT DATA WHEN AVAILABLE -->
+
+## How this plays out
+
+<details class="case-snippet">
+<summary class="case-snippet-header">
+<span class="case-snippet-type">EXAMPLE · RAG RELIABILITY</span>
+<span class="case-snippet-title">Stabilizing a RAG pipeline across model updates</span>
+</summary>
+<div class="case-snippet-body">
+<div class="case-snippet-section">
+<div class="case-snippet-label">Scenario</div>
+<div class="case-snippet-content">A document QA pipeline breaks silently every time the embedding model is updated. Answers degrade for weeks before anyone notices.</div>
+</div>
+<div class="case-snippet-section">
+<div class="case-snippet-label">What the work covers</div>
+<div class="case-snippet-content">Build a regression harness with golden sets and retrieval instrumentation. Gate releases on answer accuracy. Add version-tracked retrieval metrics so regressions surface pre-merge.</div>
+</div>
+<div class="case-snippet-section">
+<div class="case-snippet-label">Typical outcome</div>
+<div class="case-snippet-content">Answer accuracy held above 94% across consecutive model swaps. Regressions caught in CI instead of by users.</div>
+</div>
+</div>
+</details>
+
+<details class="case-snippet">
+<summary class="case-snippet-header">
+<span class="case-snippet-type">EXAMPLE · STRUCTURED EXTRACTION</span>
+<span class="case-snippet-title">Eval suite and acceptance criteria for field extraction</span>
+</summary>
+<div class="case-snippet-body">
+<div class="case-snippet-section">
+<div class="case-snippet-label">Scenario</div>
+<div class="case-snippet-content">An extraction pipeline passes every demo but fails on roughly a third of real-world inputs. No one has defined what "correct" means beyond eyeballing samples.</div>
+</div>
+<div class="case-snippet-section">
+<div class="case-snippet-label">What the work covers</div>
+<div class="case-snippet-content">Define acceptance criteria with the domain owner. Build a must-pass eval set from representative and adversarial inputs. Add schema validation and confidence-based escalation to human review.</div>
+</div>
+<div class="case-snippet-section">
+<div class="case-snippet-label">Typical outcome</div>
+<div class="case-snippet-content">Field-level error rate drops from ~30% to under 3%, with a must-pass gate blocking bad releases from shipping.</div>
+</div>
+</div>
+</details>
+
+<details class="case-snippet">
+<summary class="case-snippet-header">
+<span class="case-snippet-type">EXAMPLE · RELEASE DISCIPLINE</span>
+<span class="case-snippet-title">Gated releases for a weekly-shipping LLM workflow</span>
+</summary>
+<div class="case-snippet-body">
+<div class="case-snippet-section">
+<div class="case-snippet-label">Scenario</div>
+<div class="case-snippet-content">A production LLM workflow ships updates weekly, but regressions keep slipping through. There's no eval gate, no rollback plan, and incidents are caught when users complain.</div>
+</div>
+<div class="case-snippet-section">
+<div class="case-snippet-label">What the work covers</div>
+<div class="case-snippet-content">Implement eval gates in CI with a must-pass blocking subset. Define rollback triggers and test the rollback procedure in staging. Add drift monitoring with weekly stability reviews.</div>
+</div>
+<div class="case-snippet-section">
+<div class="case-snippet-label">Typical outcome</div>
+<div class="case-snippet-content">Releases go from "ship and pray" to gated with a paper trail. Regressions caught before users report them. Rollback exercised and verified working.</div>
+</div>
+</div>
+</details>
 
 <br>
 
@@ -71,7 +146,7 @@ What you get:
 - A step-by-step plan to make it reliable
 
 [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
-[Download offer details (PDF)](/assets/downloads/llm-workflow-audit.pdf){: .btn .btn--inverse }
+[Get the full offer brief](#lead-capture){: .btn .btn--inverse data-source="offer-audit" }
 
 ---
 
@@ -90,7 +165,7 @@ Deliverables:
 - A simple rollout + rollback plan
 
 [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
-[Download offer details (PDF)](/assets/downloads/llm-workflow-build-and-harden.pdf){: .btn .btn--inverse }
+[Get the full offer brief](#lead-capture){: .btn .btn--inverse data-source="offer-build" }
 
 ---
 
@@ -107,7 +182,11 @@ Ongoing outputs:
 - New test cases added as edge cases show up
 
 [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
-[Download offer details (PDF)](/assets/downloads/llm-workflow-release-ops.pdf){: .btn .btn--inverse }
+[Get the full offer brief](#lead-capture){: .btn .btn--inverse data-source="offer-stable" }
+
+---
+
+Not sure yet? Start with the free checklist.
 
 {% include lead-capture.html source="landing-page" %}
 

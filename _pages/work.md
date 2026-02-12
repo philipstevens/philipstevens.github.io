@@ -5,7 +5,7 @@ permalink: /library/
 description: "Case studies and technical notes on LLM workflow reliability, evals, and release gating."
 excerpt: "Case studies and technical notes."
 classes: wide
-last_updated: 2026-01-01
+last_updated: 2026-02-12
 header:
   overlay_color: "#0B1220"
   overlay_filter: 0.35

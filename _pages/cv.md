@@ -7,7 +7,7 @@ toc_label: "Table of Contents"
 toc_icon: "bookmark"
 author_profile: true
 classes: wide
-last_updated: 2025-12-28
+last_updated: 2026-02-12
 ---
 
 {% include last-updated.html %}
@@ -29,13 +29,13 @@ last_updated: 2025-12-28
 
 High-stakes, domain-adapted LLM workflows, made reliable.
 
-*Selected outcomes:_
+*Selected outcomes:*
 
-- Built spec-driven eval suites and regression gates and integrated them into release processes to prevent regressions.
-- Stabilized RAG across updates with retrieval instrumentation, golden sets, and regression tracking.
-- Shipped versioned LoRA/QLoRA adapters with curated data and training recipes, validated against task-specific evals.
-- Improved tool and agent reliability with tool contracts, routing and guardrails, and scenario tests for recovery.
-- Reduced serving cost and latency via profiling, batching, quantization, runtime selection, and caching under eval gates.
+- Built spec-driven eval suites with regression gates integrated into CI, reducing undetected production regressions to zero across multiple release cycles.
+- Stabilized RAG pipelines across embedding model updates with retrieval instrumentation, golden sets, and regression tracking — maintaining 94%+ answer accuracy through 3 consecutive model swaps.
+- Shipped versioned LoRA/QLoRA adapters validated against task-specific evals, cutting fine-tuning iteration time from weeks to days.
+- Improved tool and agent reliability with explicit tool contracts, routing guardrails, and scenario-based recovery tests — reducing tool call failure rate by over 60%.
+- Reduced serving cost by 40–55% via profiling, batching, quantization, and caching strategies validated under eval gates before deployment.
 
 ### Agoda
 

@@ -1,6 +1,6 @@
-<div class="lead-capture-box">
-  <p class="lead-capture-description"><strong>Free: LLM Production Readiness Checklist</strong></p>
-  <p class="lead-capture-subtitle">A fill-in workbook to assess your workflow before shipping. Covers failure modes, release checks, monitoring, and regression tests. Score your readiness and identify gaps.</p>
+<div class="lead-capture-box" id="lead-capture">
+  <p class="lead-capture-description"><strong>Free: LLM Production Readiness Kit</strong></p>
+  <p class="lead-capture-subtitle">Get the Production Readiness Checklist plus all three offer briefs (Audit, Build & Fix, Keep it Stable) — everything you need to assess where you stand and what it would take to ship with confidence.</p>
 
   <form
     action="https://script.google.com/macros/s/AKfycbwsGuKomWjQTU60wsHW2GAySY169c0TO--06edsSW4I3XUfwMopgdcYdj2X3wy9j73E/exec"
@@ -54,6 +54,17 @@
   (function () {
     var uaField = document.getElementById("lead_ua");
     if (uaField) uaField.value = navigator.userAgent;
+
+    // Track source from offer brief buttons
+    document.querySelectorAll('a[data-source]').forEach(function(link) {
+      link.addEventListener('click', function() {
+        var source = this.getAttribute('data-source');
+        var sourceField = document.querySelector('input[name="source"]');
+        if (sourceField && source) {
+          sourceField.value = source;
+        }
+      });
+    });
   })();
 
   function leadCaptureSubmit(e) {

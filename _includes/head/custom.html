@@ -17,3 +17,71 @@
 }
 </script>
 {% endif %}
+
+{% if page.permalink == "/" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Phil Stevens - LLM Reliability Engineering",
+  "description": "Consulting and services for teams shipping AI features into production with eval gating, release discipline, and failure-mode coverage.",
+  "url": "{{ site.url }}",
+  "areaServed": "Worldwide",
+  "provider": {
+    "@type": "Person",
+    "name": "Phil Stevens",
+    "jobTitle": "Foundation Model Engineer",
+    "url": "{{ site.url }}/about/"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "LLM Reliability Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Audit",
+          "description": "Know exactly where you stand and what it'll take to ship with confidence. Define the bar, find the gaps, get a plan."
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "7500",
+          "priceCurrency": "USD",
+          "minPrice": "7500"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Build & Fix",
+          "description": "Go from prototype to production-grade. On time, on budget, with evidence it works."
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "priceCurrency": "USD",
+          "minPrice": "25000",
+          "maxPrice": "90000"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Keep it Stable",
+          "description": "Ship updates without surprises. Fewer incidents, faster releases, less firefighting."
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "3000",
+          "priceCurrency": "USD",
+          "minPrice": "3000",
+          "unitText": "MONTH"
+        }
+      }
+    ]
+  }
+}
+</script>
+{% endif %}
