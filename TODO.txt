@@ -1,5 +1,31 @@
+===========
+Code Dump
+===========
 
-2. Polish page
-    1. Aesthetics, style, template and should I even keep using Jekyll if I use so much custom CSS/HTML? 
-    2. Should I keep URL or should I even keep using Github sites? Can I create multiple sites of GitHub sites? Should I have 2 separate sites and link to each other or is that overboard?
+a() { echo "========== $1 ==========" >> codebase.txt && cat "$1" >> codebase.txt && echo >> codebase.txt; }
+
+a _data/navigation.yml
+a index.md
+a _pages/about.md
+a _pages/work.md
+a _pages/cv.md
+a assets/downloads/llm-workflow-release-ops.html
+a assets/downloads/llm-workflow-build-and-harden.html
+a assets/downloads/llm-workflow-audit.html
+a assets/downloads/llm-production-readiness-checklist.html
+
+find _includes -type f | sort | while read f; do a "$f"; done
+a assets/css/main.scss
+
+pandoc codebase.txt -o codebase.pdf --pdf-engine=wkhtmltopdf
+
+
+============
+AI Prompt
+============
+
+Evaluate how well this website aligns with the lean canvas and how effective it is, both in terms of content/messaging and layout/style/aesthetics. Note the transitionary customer segments, don't make overly specific and keep jargon light, otherwise it risks alienating early cusomers that I need.
+Also note the index.md front matter (title, excerpt) cannot be any longer than what it currently is.
+Aside from the about page do not reference to me as an individual (no "I").
+Break this down to a list of instructions I can pass my coding agent. Provide the exact content and layout/style/aesthetic level changes to be made and describe where and how they fit, but leave the actual nitty gritty for coding to the agent.  
 

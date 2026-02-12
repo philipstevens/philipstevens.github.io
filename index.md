@@ -18,12 +18,15 @@ header:
 
 Most AI projects stall. They break in ways no one predicted, or they never get built right in the first place.
 
+Not because the models aren't good enough. Because the work to make them production-ready never happened.
+
 ## Why teams get stuck
 
 - Outputs vary too much to trust
-- Hard to explain or sign off on what it produces
+- No clear way to explain or sign off on what it produces
+- Outputs that look right but aren't, with no way to catch them before users do
 - Changes ship without knowing what they'll break
-- Too slow or expensive to scale up
+- Inference costs or latency too high to scale, with no way to profile what's driving it
 - No clear path from prototype to production
 - Data foundations aren't in place for the AI layer on top
 
@@ -32,6 +35,8 @@ Most AI projects stall. They break in ways no one predicted, or they never get b
 1. Get the data foundations and architecture right (or diagnose what's wrong)
 2. Define what "good" looks like and test until it passes consistently
 3. Add release checks so updates don't quietly break it
+
+This applies whether you're calling a hosted API or running open-weight models in your own infra.
 
 ## Who this is for
 
@@ -81,6 +86,7 @@ Deliverables:
 - Data and system architecture designed for production from day one
 - A repeatable test set you can run before shipping changes
 - A version that behaves consistently on real inputs
+- Cost and latency profiled under eval gates, with a budget you can track per request
 - A simple rollout + rollback plan
 
 [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
