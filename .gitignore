@@ -10,4 +10,7 @@ vendor/
 .DS_Store
 .vscode/
 node_modules
+
+# Personal junk
 TODO.txt
+codebase.*
