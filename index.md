@@ -172,13 +172,11 @@ Sound familiar? [Book intro call](https://calendly.com/philipstevens4/intro){: .
 </tbody>
 </table>
 
-Not sure which fits?
+<i> Not sure which fits? </i>
 
-[Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
+[Book an intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
 
 </div>
-
----
 
 <div class="offer-box offer-box--audit" markdown="1">
 
@@ -239,11 +237,7 @@ Ongoing outputs:
 
 </div>
 
----
-
 {% include lead-capture.html source="landing-page" %}
-
----
 
 <div class="section-box section-box--faq" markdown="1">
 
