@@ -16,9 +16,11 @@ header:
       url: "https://calendly.com/philipstevens4/intro"
 ---
 
-Most AI projects stall. They break in ways no one predicted, or they never get built right in the first place.
+<p class="intro-text">Most AI projects stall. They break in ways no one predicted, or they never get built right in the first place.</p>
 
-Not because the models aren't good enough. Because the work to make them production-ready never happened.
+<p class="intro-text">Not because the models aren't good enough. Because the work to make them production-ready never happened.</p>
+
+<div class="section-box section-box--problem" markdown="1">
 
 ## Why teams get stuck
 
@@ -28,6 +30,10 @@ Not because the models aren't good enough. Because the work to make them product
 - Inference costs or latency too high to scale, with no way to profile what's driving it
 - No clear path from prototype to production, or the data foundations aren't in place to build on
 
+</div>
+
+<div class="section-box section-box--fix" markdown="1">
+
 ## The fix
 
 1. Get the data foundations and architecture right (or diagnose what's wrong)
@@ -36,11 +42,19 @@ Not because the models aren't good enough. Because the work to make them product
 
 This applies whether you're calling a hosted API or running open-weight models in your own infra.
 
+</div>
+
+<div class="section-box section-box--why" markdown="1">
+
 ## Why this matters now
 
 The gap between what AI benchmarks promise and what production systems actually deliver is wider than ever. One of the field's most respected researchers has [openly noted that models appear smarter on benchmarks than their economic impact suggests](https://www.dwarkesh.com/p/ilya-sutskever-2). Models that score well on evals [collapse past a complexity threshold instead of degrading gracefully](https://arxiv.org/abs/2502.07496). And a researcher recently found [~30% error rates in a benchmark dataset from a major AI lab](https://news.aibase.com/news/23229) that reviewers missed entirely.
 
 Benchmarks overfit to narrow metrics while real-world workflows break on edge cases, drift silently, and ship regressions no one catches until users report them. The teams that close this gap, with eval discipline, release gating, and failure-mode coverage, are the ones that actually ship.
+
+</div>
+
+<div class="section-box section-box--who" markdown="1">
 
 ## Who this is for
 
@@ -50,7 +64,11 @@ Benchmarks overfit to narrow metrics while real-world workflows break on edge ca
 
 Sound familiar? [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
 
+</div>
+
 <!-- REPLACE WITH REAL ENGAGEMENT DATA WHEN AVAILABLE -->
+
+<div class="section-box section-box--examples" markdown="1">
 
 ## How this plays out
 
@@ -117,19 +135,52 @@ Sound familiar? [Book intro call](https://calendly.com/philipstevens4/intro){: .
 </div>
 </details>
 
-<br>
+</div>
 
-| Offer | What you get | Pricing | Details |
-| --- | --- | --- | --- |
-| [Audit](#audit) | Know exactly where you stand and what it'll take to ship with confidence | From $7,500 | [Full offer brief](#lead-capture){: data-source="offer-audit" } |
-| [Build & Fix](#build-and-fix) | Go from prototype to production-grade. On time, on budget, with evidence it works | $25k–$90k | [Full offer brief](#lead-capture){: data-source="offer-build" } |
-| [Keep it Stable](#keep-it-stable) | Ship updates without surprises. Fewer incidents, faster releases, less firefighting | From $3k/mo | [Full offer brief](#lead-capture){: data-source="offer-stable" } |
+<div class="section-box section-box--offers" markdown="1">
+
+## Services & Pricing
+
+<table class="offer-summary-table">
+<thead>
+<tr>
+<th>Offer</th>
+<th>What you get</th>
+<th>Pricing</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#audit">Audit</a></td>
+<td>Know exactly where you stand and what it'll take to ship with confidence</td>
+<td>From $7,500</td>
+<td><a href="#lead-capture" data-source="offer-audit">Full offer brief</a></td>
+</tr>
+<tr>
+<td><a href="#build-and-fix">Build & Fix</a></td>
+<td>Go from prototype to production-grade. On time, on budget, with evidence it works</td>
+<td>$25k–$90k</td>
+<td><a href="#lead-capture" data-source="offer-build">Full offer brief</a></td>
+</tr>
+<tr>
+<td><a href="#keep-it-stable">Keep it Stable</a></td>
+<td>Ship updates without surprises. Fewer incidents, faster releases, less firefighting</td>
+<td>From $3k/mo</td>
+<td><a href="#lead-capture" data-source="offer-stable">Full offer brief</a></td>
+</tr>
+</tbody>
+</table>
 
 Not sure which fits?
 
 [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
 
+</div>
+
 ---
+
+<div class="offer-box offer-box--audit" markdown="1">
 
 ## Offer 1: Audit {#audit}
 
@@ -146,7 +197,9 @@ What you get:
 [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
 [Get the full offer brief](#lead-capture){: .btn .btn--inverse data-source="offer-audit" }
 
----
+</div>
+
+<div class="offer-box offer-box--build" markdown="1">
 
 ## Offer 2: Build & Fix {#build-and-fix}
 
@@ -165,7 +218,9 @@ Deliverables:
 [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
 [Get the full offer brief](#lead-capture){: .btn .btn--inverse data-source="offer-build" }
 
----
+</div>
+
+<div class="offer-box offer-box--stable" markdown="1">
 
 ## Offer 3: Keep it Stable {#keep-it-stable}
 
@@ -182,55 +237,84 @@ Ongoing outputs:
 [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
 [Get the full offer brief](#lead-capture){: .btn .btn--inverse data-source="offer-stable" }
 
----
+</div>
 
-Not sure yet? Start with the free checklist.
+---
 
 {% include lead-capture.html source="landing-page" %}
 
 ---
 
+<div class="section-box section-box--faq" markdown="1">
+
 ## FAQ
 
-<div class="faq-section" markdown="1">
+<details class="faq-item">
+<summary class="faq-question">Can we do this under NDA?</summary>
+<div class="faq-answer">
+<p>Yes, an NDA can be signed before reviewing sensitive details.</p>
+</div>
+</details>
 
-### Can we do this under NDA?
+<details class="faq-item">
+<summary class="faq-question">What do you need from us?</summary>
+<div class="faq-answer">
+<p>Usually: a few example inputs/outputs, current prompts or workflow code, and enough context to define what "good" looks like. For Build & Fix, repo access and a way to run tests in CI may also be needed.</p>
+</div>
+</details>
 
-Yes, an NDA can be signed before reviewing sensitive details.
+<details class="faq-item">
+<summary class="faq-question">What about sensitive data?</summary>
+<div class="faq-answer">
+<p>Data exposure can be minimized. Redacted samples, synthetic test cases, and tight access controls all work. Work can happen in your environment if needed.</p>
+</div>
+</details>
 
-### What do you need from us?
+<details class="faq-item">
+<summary class="faq-question">What does "success" mean?</summary>
+<div class="faq-answer">
+<p>Success means the workflow meets a clear definition of "good" and passes tests on representative cases, within agreed limits for cost, speed, and quality.</p>
+</div>
+</details>
 
-Usually: a few example inputs/outputs, current prompts or workflow code, and enough context to define what "good" looks like. For Build & Fix, repo access and a way to run tests in CI may also be needed.
+<details class="faq-item">
+<summary class="faq-question">Who needs to be involved?</summary>
+<div class="faq-answer">
+<p>Typically: one engineering owner, one product/domain owner, and someone who can approve the definition of "good" and provide access.</p>
+</div>
+</details>
 
-### What about sensitive data?
+<details class="faq-item">
+<summary class="faq-question">How long does this usually take?</summary>
+<div class="faq-answer">
+<ul>
+<li>Audit: 1-2 weeks</li>
+<li>Build & Fix: typically 3-8 weeks, depending on scope</li>
+<li>Keep it Stable: ongoing</li>
+</ul>
+</div>
+</details>
 
-Data exposure can be minimized. Redacted samples, synthetic test cases, and tight access controls all work. Work can happen in your environment if needed.
+<details class="faq-item">
+<summary class="faq-question">How does it start?</summary>
+<div class="faq-answer">
+<p>Book an intro call. If it's a fit, the next step is defining the workflow, scope, and success criteria, then starting with an Audit or jumping straight to Build & Fix.</p>
+</div>
+</details>
 
-### What does "success" mean?
+<details class="faq-item">
+<summary class="faq-question">What if we haven't built anything yet?</summary>
+<div class="faq-answer">
+<p>That's fine. Many engagements start before the first line of code. An Audit defines the architecture, data foundations, and success criteria so you build it right the first time instead of retrofitting later.</p>
+</div>
+</details>
 
-Success means the workflow meets a clear definition of "good" and passes tests on representative cases, within agreed limits for cost, speed, and quality.
-
-### Who needs to be involved?
-
-Typically: one engineering owner, one product/domain owner, and someone who can approve the definition of "good" and provide access.
-
-### How long does this usually take?
-
-- Audit: 1-2 weeks
-- Build & Fix: typically 3-8 weeks, depending on scope
-- Keep it Stable: ongoing
-
-### How does it start?
-
-Book an intro call. If it's a fit, the next step is defining the workflow, scope, and success criteria, then starting with an Audit or jumping straight to Build & Fix.
-
-### What if we haven't built anything yet?
-
-That's fine. Many engagements start before the first line of code. An Audit defines the architecture, data foundations, and success criteria so you build it right the first time instead of retrofitting later.
-
-### Do you do the implementation or just advise?
-
-Both. Build & Fix is hands-on implementation: code, pipelines, and shipping. For teams that need ongoing support, Keep it Stable provides continued engineering alongside your team.
+<details class="faq-item">
+<summary class="faq-question">Do you do the implementation or just advise?</summary>
+<div class="faq-answer">
+<p>Both. Build & Fix is hands-on implementation: code, pipelines, and shipping. For teams that need ongoing support, Keep it Stable provides continued engineering alongside your team.</p>
+</div>
+</details>
 
 </div>
 

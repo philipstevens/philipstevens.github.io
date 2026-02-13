@@ -4,22 +4,389 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
 @import "minimal-mistakes";
 
+// ── Global Typography ──────────────────────────────────────────────
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6,
+.page__title,
+.archive__item-title {
+  font-family: 'DM Sans', 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.page__content {
+  font-size: 1.05em;
+  line-height: 1.7;
+  color: #1f2937;
+}
+
+// ── Hero Header Enhancement ────────────────────────────────────────
+.page__hero--overlay {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+    linear-gradient(135deg, #0B1220 0%, #162033 40%, #1a2744 70%, #0f1729 100%) !important;
+  padding: 4em 0 3.5em !important;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 40px,
+        rgba(255, 255, 255, 0.02) 40px,
+        rgba(255, 255, 255, 0.02) 41px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 40px,
+        rgba(255, 255, 255, 0.02) 40px,
+        rgba(255, 255, 255, 0.02) 41px
+      );
+    pointer-events: none;
+  }
+
+  .page__title {
+    font-size: 2.4em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .page__lead {
+    font-size: 1.25em;
+    font-weight: 400;
+    opacity: 0.85;
+    letter-spacing: 0.02em;
+  }
+
+  .btn--primary {
+    background-color: #7c3aed;
+    border-color: #7c3aed;
+    font-weight: 600;
+    padding: 0.75em 1.75em;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #6d28d9;
+      border-color: #6d28d9;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+    }
+  }
+}
+
+// ── Horizontal Rules ───────────────────────────────────────────────
 hr {
   border: 0;
-  border-top: 2px solid #494e52;
+  border-top: 1px solid #e5e7eb;
   margin: 3em 0;
 }
 
+// ── Section Boxes ──────────────────────────────────────────────────
+.section-box {
+  border-radius: 10px;
+  padding: 2em 2em 1.5em;
+  margin: 2em 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+}
+
+.section-box--problem {
+  border: 1.5px solid #fbbf24;
+  background: linear-gradient(135deg, #fffbeb 0%, #fef9f0 100%);
+
+  h2 {
+    border-left-color: #f59e0b;
+  }
+}
+
+.section-box--fix {
+  border: 1.5px solid #34d399;
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf8 100%);
+
+  h2 {
+    border-left-color: #10b981;
+  }
+}
+
+.section-box--why {
+  border: 1.5px solid #93c5fd;
+  background: linear-gradient(135deg, #eff6ff 0%, #f0f7ff 100%);
+
+  h2 {
+    border-left-color: #3b82f6;
+  }
+}
+
+.section-box--who {
+  border: 1.5px solid #c4b5fd;
+  background: linear-gradient(135deg, #f5f3ff 0%, #faf5ff 100%);
+
+  h2 {
+    border-left-color: #8b5cf6;
+  }
+}
+
+.section-box--examples {
+  border: 1.5px solid #6ee7b7;
+  background: linear-gradient(135deg, #f0fdf4 0%, #f5fdf8 100%);
+
+  h2 {
+    border-left-color: #10b981;
+  }
+}
+
+.section-box--offers {
+  border: 1.5px solid #a5b4fc;
+  background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 100%);
+
+  h2 {
+    border-left-color: #6366f1;
+  }
+}
+
+.section-box--faq {
+  border: 1.5px solid #d1d5db;
+  background: #fafafa;
+
+  h2 {
+    border-left-color: #6b7280;
+  }
+}
+
+// ── Offer Detail Boxes ─────────────────────────────────────────────
+.offer-box {
+  border-radius: 10px;
+  padding: 2em;
+  margin: 2em 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.offer-box--audit {
+  border: 1.5px solid #86efac;
+  background: linear-gradient(135deg, #f0fdf4 0%, #fafff8 100%);
+
+  h2 {
+    border-left-color: #22c55e;
+  }
+}
+
+.offer-box--build {
+  border: 1.5px solid #93c5fd;
+  background: linear-gradient(135deg, #eff6ff 0%, #f5f9ff 100%);
+
+  h2 {
+    border-left-color: #3b82f6;
+  }
+}
+
+.offer-box--stable {
+  border: 1.5px solid #c4b5fd;
+  background: linear-gradient(135deg, #f5f3ff 0%, #faf5ff 100%);
+
+  h2 {
+    border-left-color: #a855f7;
+  }
+}
+
+// ── Offer Summary Table ────────────────────────────────────────────
+.offer-summary-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  margin: 1.5em 0;
+
+  thead th {
+    background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    padding: 0.85em 1em;
+    text-align: left;
+    font-size: 0.9em;
+    letter-spacing: 0.02em;
+  }
+
+  tbody td {
+    padding: 0.85em 1em;
+    border-bottom: 1px solid #e5e7eb;
+    color: #374151;
+    font-size: 0.95em;
+  }
+
+  tbody tr {
+    background: #fff;
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: #f9fafb;
+    }
+
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
+// ── Section Heading Accent ─────────────────────────────────────────
+.page__content h2 {
+  border-left: 4px solid #7c3aed;
+  padding-left: 0.75em;
+  font-size: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+// ── Intro Paragraphs ───────────────────────────────────────────────
+.intro-text {
+  font-size: 1.15em;
+  line-height: 1.8;
+  color: #374151;
+  max-width: 680px;
+  margin-bottom: 0.5em;
+
+  &:first-of-type {
+    font-weight: 500;
+  }
+}
+
+// ── CTA Buttons ────────────────────────────────────────────────────
+.page__content .btn--primary {
+  background-color: #7c3aed;
+  border-color: #7c3aed;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #6d28d9;
+    border-color: #6d28d9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+  }
+}
+
+.page__content .btn--inverse {
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+// ── FAQ Section (Collapsible) ──────────────────────────────────────
+.faq-section {
+  h3 {
+    font-style: italic;
+    font-size: 1.1em;
+  }
+}
+
+details.faq-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin: 0.75em 0;
+  background: #fff;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+
+  &[open] {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  & + details.faq-item {
+    margin-top: 0.5em;
+  }
+}
+
+summary.faq-question {
+  display: flex;
+  align-items: center;
+  padding: 1em 1.25em;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1em;
+  color: #1f2937;
+  cursor: pointer;
+  list-style: none;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: #f9fafb;
+  }
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &::before {
+    content: "+";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: 0.75em;
+    flex-shrink: 0;
+    background: #f3f4f6;
+    color: #6b7280;
+    border-radius: 50%;
+    font-size: 0.9em;
+    font-weight: 700;
+    transition: all 0.2s ease;
+  }
+}
+
+details.faq-item[open] > summary.faq-question::before {
+  content: "\2212";
+  background: #7c3aed;
+  color: #fff;
+}
+
+.faq-answer {
+  padding: 0 1.25em 1.25em 3.5em;
+  color: #4b5563;
+  line-height: 1.7;
+  font-size: 0.95em;
+
+  p {
+    margin: 0;
+  }
+
+  ul {
+    margin: 0.5em 0;
+    padding-left: 1.25em;
+  }
+}
+
+// ── Notice blocks ──────────────────────────────────────────────────
 .notice h2 {
   font-size: 1.5em;
   margin: 0;
 }
 
-.faq-section h3 {
-  font-style: italic;
-  font-size: 1.1em;
-}
-
+// ── Template Boxes ─────────────────────────────────────────────────
 .template-box {
   border: 2px solid #494e52;
   border-radius: 4px;
@@ -43,6 +410,7 @@ hr {
   color: #494e52;
 }
 
+// ── Dashboard Styles ───────────────────────────────────────────────
 .dashboard-example {
   border: 2px solid #494e52;
   border-radius: 6px;
@@ -142,7 +510,7 @@ hr {
   font-weight: bold;
 }
 
-// Eval Report Styles
+// ── Eval Report Styles ─────────────────────────────────────────────
 .eval-report {
   border: 2px solid #e5e7eb;
   border-radius: 6px;
@@ -234,11 +602,11 @@ hr {
   font-size: 0.95em;
 }
 
-// Case Snippet Styles (proof of work examples)
+// ── Case Snippet Styles ────────────────────────────────────────────
 details.case-snippet {
   border: 1px solid #e5e7eb;
   border-radius: 8px;
-  margin: 1.5em 0;
+  margin: 1em 0;
   background: #fff;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -263,7 +631,7 @@ summary.case-snippet-header::-webkit-details-marker {
 }
 
 summary.case-snippet-header::after {
-  content: "▶";
+  content: "\25B6";
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.7em;
   margin-left: auto;
@@ -361,7 +729,7 @@ details.case-snippet[open] summary.case-snippet-header::after {
   font-weight: 600;
 }
 
-// Template Dropdown Styles (for artifact templates)
+// ── Template Dropdown Styles ───────────────────────────────────────
 details.template-dropdown {
   border: 1px solid #e5e7eb;
   border-radius: 8px;
@@ -390,7 +758,7 @@ summary.template-dropdown-header::-webkit-details-marker {
 }
 
 summary.template-dropdown-header::after {
-  content: "▶";
+  content: "\25B6";
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.7em;
   margin-left: auto;
@@ -405,10 +773,10 @@ details.template-dropdown[open] summary.template-dropdown-header::after {
   padding: 1em 1.25em;
 }
 
-// Lead Capture Box
+// ── Lead Capture Box ───────────────────────────────────────────────
 .lead-capture-box {
   border: 2px solid #7c3aed;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 1.5em;
   margin: 3em 0 1.5em 0;
   background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
@@ -454,6 +822,7 @@ details.template-dropdown[open] summary.template-dropdown-header::after {
       border: 1px solid #d1d5db;
       border-radius: 6px;
       font-size: 1em;
+      font-family: 'Inter', sans-serif;
 
       &:focus {
         outline: none;
@@ -490,7 +859,7 @@ details.template-dropdown[open] summary.template-dropdown-header::after {
   }
 }
 
-// Checklist Landing Page
+// ── Checklist Landing Page ─────────────────────────────────────────
 .checklist-landing {
   max-width: 600px;
   margin: 0 auto;
@@ -579,18 +948,12 @@ details.template-dropdown[open] summary.template-dropdown-header::after {
   }
 }
 
-// Section heading accent
-.page__content h2 {
-  border-left: 4px solid #7c3aed;
-  padding-left: 0.75em;
-}
-
-// Offer table tier colors
+// ── Offer Table Tier Colors ────────────────────────────────────────
 .offer-audit { border-left: 4px solid #22c55e; }
 .offer-build { border-left: 4px solid #3b82f6; }
 .offer-stable { border-left: 4px solid #a855f7; }
 
-// Lead capture button pulse animation
+// ── Lead Capture Button Pulse ──────────────────────────────────────
 .lead-capture-box .btn--primary {
   animation: subtle-pulse 2s ease-in-out infinite;
 }
@@ -600,7 +963,7 @@ details.template-dropdown[open] summary.template-dropdown-header::after {
   50% { box-shadow: 0 0 0 8px rgba(124, 58, 237, 0); }
 }
 
-// Checklist Thanks Page
+// ── Checklist Thanks Page ──────────────────────────────────────────
 .checklist-thanks {
   max-width: 600px;
   margin: 0 auto;
