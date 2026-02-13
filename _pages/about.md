@@ -10,7 +10,7 @@ last_updated: 2026-02-12
 
 [Email me](mailto:philipstevens4@gmail.com){: .btn .btn--primary }
 
-Most teams shipping AI into production don't have a reliability problem — they have a measurement problem. They can't define what "good" looks like, so they can't tell when things break.
+Most teams shipping AI into production don't have a reliability problem, they have a measurement problem. They can't define what "good" looks like, so they can't tell when things break.
 
 I help fix that. I'm Phil Stevens, a foundation model engineer focused on making LLM workflows reliable, measurable, and safe to ship. I bring 12 years of applied ML across personalization, NLP, and real-time systems (Agoda, Quantcast), and have been consulting independently since 2023 on production LLM reliability: eval design, release gating, RAG hardening, and drift detection.
 
@@ -20,8 +20,8 @@ I publish case studies and technical write-ups here to share how I approach this
 
 ## Where to go next
 
-- [Services](/) — engagement options and pricing
-- [Library](/library/) — case studies and tutorials
-- [CV](/cv/) — full background
+- [Services](/): engagement options and pricing
+- [Library](/library/): case studies and tutorials
+- [CV](/cv/): full background
 
 {% include last-updated.html %}

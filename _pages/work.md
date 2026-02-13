@@ -25,7 +25,7 @@ Content in progress. Case studies and tutorials will appear here as published.
 ## Case studies
 
 {% for item in case_studies %}
-- [{{ item.title }}]({{ item.url | relative_url }}){% if item.excerpt %} — {{ item.excerpt }}{% endif %}
+- [{{ item.title }}]({{ item.url | relative_url }}){% if item.excerpt %}: {{ item.excerpt }}{% endif %}
 {% endfor %}
 {% endif %}
 
@@ -33,7 +33,7 @@ Content in progress. Case studies and tutorials will appear here as published.
 ## Tutorials
 
 {% for item in tutorials %}
-- [{{ item.title }}]({{ item.url | relative_url }}){% if item.excerpt %} — {{ item.excerpt }}{% endif %}
+- [{{ item.title }}]({{ item.url | relative_url }}){% if item.excerpt %}: {{ item.excerpt }}{% endif %}
 {% endfor %}
 {% endif %}
 

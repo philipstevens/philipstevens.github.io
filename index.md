@@ -58,11 +58,13 @@ Benchmarks overfit to narrow metrics while real-world workflows break on edge ca
 
 ## Who this is for
 
-- **Building something new** — You're building an AI-powered product and need senior engineering help to get the foundations right. You want it built for production from day one, not retrofitted later.
-- **Stuck in pilot** — You have an AI workflow that works sometimes but isn't reliable enough to ship. You need someone to define the bar, find the gaps, and make it pass consistently.
-- **Shipping and breaking things** — You're already in production but regressions keep slipping through. You need release discipline, drift detection, and fewer surprises.
+- **Building something new:** You're building an AI-powered product and need senior engineering help to get the foundations right. You want it built for production from day one, not retrofitted later.
+- **Stuck in pilot:** You have an AI workflow that works sometimes but isn't reliable enough to ship. You need someone to define the bar, find the gaps, and make it pass consistently.
+- **Shipping and breaking things:** You're already in production but regressions keep slipping through. You need release discipline, drift detection, and fewer surprises.
 
-Sound familiar? [Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
+<i> Sound familiar? </i>
+
+[Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
 
 </div>
 
@@ -192,8 +194,7 @@ What you get:
 - A clear definition of "good enough" everyone can agree on
 - A step-by-step plan to make it reliable
 
-[Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
-[Get the full offer brief](#lead-capture){: .btn .btn--inverse data-source="offer-audit" }
+[Get the full offer brief](#lead-capture){: .btn .btn--primary data-source="offer-audit" }
 
 </div>
 
@@ -213,8 +214,7 @@ Deliverables:
 - Cost and latency profiled under eval gates, with a budget you can track per request
 - A simple rollout + rollback plan
 
-[Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
-[Get the full offer brief](#lead-capture){: .btn .btn--inverse data-source="offer-build" }
+[Get the full offer brief](#lead-capture){: .btn .btn--primary data-source="offer-build" }
 
 </div>
 
@@ -232,8 +232,7 @@ Ongoing outputs:
 - Early warning when things start degrading
 - New test cases added as edge cases show up
 
-[Book intro call](https://calendly.com/philipstevens4/intro){: .btn .btn--primary }
-[Get the full offer brief](#lead-capture){: .btn .btn--inverse data-source="offer-stable" }
+[Get the full offer brief](#lead-capture){: .btn .btn--primary data-source="offer-stable" }
 
 </div>
 
