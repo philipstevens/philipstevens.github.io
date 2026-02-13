@@ -2,6 +2,8 @@
 Code Dump
 ===========
 
+rm codebase.*
+
 a() { echo "========== $1 ==========" >> codebase.txt && cat "$1" >> codebase.txt && echo >> codebase.txt; }
 
 a _data/navigation.yml

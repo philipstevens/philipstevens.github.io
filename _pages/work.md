@@ -17,7 +17,10 @@ header:
 
 {% if total == 0 %}
 
-Content in progress. Case studies and tutorials will appear here as published.
+## Coming soon
+
+- **RAG regression harness:** Stabilizing retrieval accuracy across embedding model updates with golden sets and regression tracking
+- **Structured extraction with acceptance criteria:** Eval suite and CI gates for field extraction from unstructured documents
 
 {% else %}
 

@@ -92,6 +92,34 @@ h1, h2, h3, h4, h5, h6,
       box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
     }
   }
+
+  // First hero button: solid primary
+  .page__hero-actions .btn--light-outline:first-child,
+  .page__hero .btn--light-outline:first-child {
+    background-color: #7c3aed;
+    border-color: #7c3aed;
+    color: #fff;
+    font-weight: 600;
+
+    &:hover {
+      background-color: #6d28d9;
+      border-color: #6d28d9;
+    }
+  }
+
+  // Second hero button: outline style
+  .page__hero-actions .btn--light-outline:nth-child(2),
+  .page__hero .btn--light-outline:nth-child(2) {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    color: #fff;
+    font-weight: 600;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-color: #fff;
+    }
+  }
 }
 
 // ── Horizontal Rules ───────────────────────────────────────────────

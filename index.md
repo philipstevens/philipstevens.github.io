@@ -14,6 +14,8 @@ header:
   actions:
     - label: "Book intro call"
       url: "https://calendly.com/philipstevens4/intro"
+    - label: "Free checklist"
+      url: "#lead-capture"
 ---
 
 <p class="intro-text">Most AI projects stall. They break in ways no one predicted, or they never get built right in the first place.</p>
@@ -48,9 +50,11 @@ This applies whether you're calling a hosted API or running open-weight models i
 
 ## Why this matters now
 
-The gap between what AI benchmarks promise and what production systems actually deliver is wider than ever. One of the field's most respected researchers has [openly noted that models appear smarter on benchmarks than their economic impact suggests](https://www.dwarkesh.com/p/ilya-sutskever-2). Models that score well on evals [collapse past a complexity threshold instead of degrading gracefully](https://arxiv.org/abs/2502.07496). And a researcher recently found [~30% error rates in a benchmark dataset from a major AI lab](https://news.aibase.com/news/23229) that reviewers missed entirely.
+The gap between what AI benchmarks promise and what production systems actually deliver is wider than ever. Ilya Sutskeverr, one of the field's most respected researchers, has [openly noted that models appear smarter on benchmarks than their economic impact suggests](https://www.dwarkesh.com/p/ilya-sutskever-2). Recent research has shown LLMs that score well on evals don't get gradually worse as tasks get harder. [They just stop working altogether.](https://arxiv.org/abs/2510.22371). And a researcher recently found [~30% error rates in a benchmark dataset from a major AI lab](https://news.aibase.com/news/23229) that reviewers missed entirely.
 
-Benchmarks overfit to narrow metrics while real-world workflows break on edge cases, drift silently, and ship regressions no one catches until users report them. The teams that close this gap, with eval discipline, release gating, and failure-mode coverage, are the ones that actually ship.
+Benchmarks overfit to narrow metrics while real-world workflows break on edge cases, drift silently, and ship regressions no one catches until users report them. The teams that recognize this and work to close this gap, with eval discipline, release gating, and failure-mode coverage, are the ones that actually ship.
+
+*Not sure where you stand? Start with the free [Production Readiness Checklist](#lead-capture).*
 
 </div>
 
