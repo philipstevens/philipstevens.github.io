@@ -22,13 +22,11 @@ Not because the models aren't good enough. Because the work to make them product
 
 ## Why teams get stuck
 
-- Outputs vary too much to trust
-- No clear way to explain or sign off on what it produces
+- Outputs vary in ways no one measures, so no one can sign off on shipping
 - Outputs that look right but aren't, with no way to catch them before users do
-- Changes ship without knowing what they'll break
+- Changes ship without knowing what they'll break, whether the change was yours or a provider update
 - Inference costs or latency too high to scale, with no way to profile what's driving it
-- No clear path from prototype to production
-- Data foundations aren't in place for the AI layer on top
+- No clear path from prototype to production, or the data foundations aren't in place to build on
 
 ## The fix
 
@@ -40,7 +38,7 @@ This applies whether you're calling a hosted API or running open-weight models i
 
 ## Why this matters now
 
-The gap between what AI benchmarks promise and what production systems actually deliver is wider than ever. One of the field's most respected researchers has [openly noted that models appear smarter on benchmarks than their economic impact suggests](https://www.notion.so/2d78346720b68036a0bffad652b6dbb8). Models that score well on evals [collapse past a complexity threshold instead of degrading gracefully](https://arxiv.org/abs/2502.07496). And a researcher recently found [~30% error rates in a benchmark dataset from a major lab](https://x.com/dierxx/status/1994042370376032701) that reviewers missed entirely.
+The gap between what AI benchmarks promise and what production systems actually deliver is wider than ever. One of the field's most respected researchers has [openly noted that models appear smarter on benchmarks than their economic impact suggests](https://www.dwarkesh.com/p/ilya-sutskever-2). Models that score well on evals [collapse past a complexity threshold instead of degrading gracefully](https://arxiv.org/abs/2502.07496). And a researcher recently found [~30% error rates in a benchmark dataset from a major AI lab](https://news.aibase.com/news/23229) that reviewers missed entirely.
 
 Benchmarks overfit to narrow metrics while real-world workflows break on edge cases, drift silently, and ship regressions no one catches until users report them. The teams that close this gap, with eval discipline, release gating, and failure-mode coverage, are the ones that actually ship.
 
@@ -93,7 +91,7 @@ Sound familiar? [Book intro call](https://calendly.com/philipstevens4/intro){: .
 </div>
 <div class="case-snippet-section">
 <div class="case-snippet-label">Typical outcome</div>
-<div class="case-snippet-content">Field-level error rate drops from ~30% to under 3%, with a must-pass gate blocking bad releases from shipping.</div>
+<div class="case-snippet-content">Field-level error rate drops from roughly one in five to under 3%, with a must-pass gate blocking bad releases from shipping.</div>
 </div>
 </div>
 </details>
@@ -123,9 +121,9 @@ Sound familiar? [Book intro call](https://calendly.com/philipstevens4/intro){: .
 
 | Offer | What you get | Pricing | Details |
 | --- | --- | --- | --- |
-| [Audit](#audit) | Know exactly where you stand and what it'll take to ship with confidence | From $7,500 | [PDF](/assets/downloads/llm-workflow-audit.pdf) |
-| [Build & Fix](#build-and-fix) | Go from prototype to production-grade. On time, on budget, with evidence it works | $25k–$90k | [PDF](/assets/downloads/llm-workflow-build-and-harden.pdf) |
-| [Keep it Stable](#keep-it-stable) | Ship updates without surprises. Fewer incidents, faster releases, less firefighting | From $3k/mo | [PDF](/assets/downloads/llm-workflow-release-ops.pdf) |
+| [Audit](#audit) | Know exactly where you stand and what it'll take to ship with confidence | From $7,500 | [Full offer brief](#lead-capture){: data-source="offer-audit" } |
+| [Build & Fix](#build-and-fix) | Go from prototype to production-grade. On time, on budget, with evidence it works | $25k–$90k | [Full offer brief](#lead-capture){: data-source="offer-build" } |
+| [Keep it Stable](#keep-it-stable) | Ship updates without surprises. Fewer incidents, faster releases, less firefighting | From $3k/mo | [Full offer brief](#lead-capture){: data-source="offer-stable" } |
 
 Not sure which fits?
 
