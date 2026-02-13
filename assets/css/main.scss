@@ -4,6 +4,12 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
 @import "minimal-mistakes";
 
+// ── Sidebar: prevent scrollable overflow ───────────────────────────
+.sidebar.sticky {
+  overflow-y: visible;
+  max-height: none;
+}
+
 // ── Global Typography ──────────────────────────────────────────────
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;

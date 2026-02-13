@@ -18,10 +18,4 @@ My work typically spans the full stack: data pipelines, model selection and adap
 
 I publish case studies and technical write-ups here to share how I approach this work.
 
-## Where to go next
-
-- [Services](/): engagement options and pricing
-- [Library](/library/): case studies and tutorials
-- [CV](/cv/): full background
-
 {% include last-updated.html %}
