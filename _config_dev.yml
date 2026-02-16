@@ -1,2 +1,4 @@
+# Development-specific settings
 remote_theme: null
 theme: minimal-mistakes-jekyll
+encoding: UTF-8
