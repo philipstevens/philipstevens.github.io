@@ -1,6 +1,6 @@
 ---
 title: "About"
-layout: single
+layout: splash
 permalink: /about/
 description: "Phil Stevens helps teams ship LLM workflows to production with eval gating, release discipline, and failure-mode coverage. 12 years applied ML, consulting since 2023."
 author_profile: true
