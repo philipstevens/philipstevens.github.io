@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+{% assign header_cfg = page.header %}
+
+<div class="page-hero">
+  <div class="page-hero__inner">
+    <p class="page-hero__eyebrow">Philip Stevens &middot; Foundation Model Engineer</p>
+    <h1 class="page-hero__title">{{ page.title }}</h1>
+    {% if page.excerpt %}
+    <p class="page-hero__lead">{{ page.excerpt }}</p>
+    {% endif %}
+    {% if header_cfg.actions %}
+    <div class="page-hero__actions">
+      {% for action in header_cfg.actions %}
+      <a href="{{ action.url }}" class="btn{% if forloop.first %} btn--primary{% else %} btn--outline{% endif %}">{{ action.label }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<div class="page__content-wrap">
+  <article class="page__content" role="article">
+    {{ content }}
+  </article>
+</div>

@@ -1,0 +1,13 @@
+---
+layout: default
+---
+
+<div class="page__content-wrap page__content-wrap--single">
+  <article class="page__content" role="article">
+    <header class="page__header">
+      <h1 class="page__title">{{ page.title }}</h1>
+      {% if page.excerpt %}<p class="page__excerpt">{{ page.excerpt }}</p>{% endif %}
+    </header>
+    {{ content }}
+  </article>
+</div>

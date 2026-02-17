@@ -1,0 +1,16 @@
+<header class="site-header" role="banner">
+  <div class="site-header__inner">
+    <a href="{{ '/' | prepend: site.baseurl }}" class="site-header__brand">
+      {{ site.masthead_title | default: site.title }}
+    </a>
+    <nav class="site-nav" role="navigation" aria-label="Primary">
+      {% for link in site.data.navigation.main %}
+      <a href="{{ link.url | prepend: site.baseurl }}" class="site-nav__link{% if page.url == link.url %} site-nav__link--active{% endif %}">{{ link.title }}</a>
+      {% endfor %}
+      <a href="https://calendly.com/philipstevens4/intro" class="btn btn--nav" target="_blank" rel="noopener">Book a call</a>
+    </nav>
+    <button class="site-nav__toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>

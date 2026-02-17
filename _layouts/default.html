@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>{% include head.html %}</head>
+<body class="layout--{{ page.layout | default: 'default' }}{% if page.classes %} {{ page.classes | join: ' ' }}{% endif %}{% if page.profile_page %} profile-page{% endif %}">
+  {% include header.html %}
+  <main id="main" role="main">
+    {{ content }}
+  </main>
+  {% include footer.html %}
+</body>
+</html>
